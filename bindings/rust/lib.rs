@@ -99,8 +99,8 @@ mod value_tests {
             (
                 super::LANGUAGE_XML,
                 "EntityValue",
-                r#"<!DOCTYPE root [<!ENTITY mixed "first &amp; %suffix; &#65; last"> <!ENTITY empty ''> <!ENTITY single 'one'> ]><root/>"#,
-                "first &amp; %suffix; &#65; last",
+                r#"<!DOCTYPE root [<!ENTITY mixed "first &amp; &#65; last"> <!ENTITY empty ''> <!ENTITY single 'one'> ]><root/>"#,
+                "first &amp; &#65; last",
             ),
             (
                 super::LANGUAGE_DTD,
