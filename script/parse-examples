@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+
+# Parses real-world XML and DTD files cloned into examples/, each with the grammar its extension belongs to in
+# tree-sitter.json, and rewrites script/known-failures.txt, the list of files that fail to parse. With --check, fails instead when that list would change.
+
+set -euo pipefail
+
+check=false
+if [[ ${1-} == --check ]]; then
+  check=true
+fi
+
+# Each example repository is pinned to a commit so that the list of failures changes only with the grammar.
+# Moving a pin requires running this script without --check to update the list. The checkouts under
+# examples/ belong to this script: local changes there are discarded so that the pinned files are parsed.
+# The hosts occasionally answer with a server error, so each fetch is retried in place.
+clone() {
+  local dir=examples/$1
+  if [[ $(git -C "$dir" rev-parse HEAD 2> /dev/null) != "$3" ]]; then
+    if [[ ! -d $dir/.git ]]; then
+      rm -rf "$dir"
+      git init -q "$dir"
+    fi
+    local attempt
+    for attempt in 1 2 3 4; do
+      if git -C "$dir" fetch -q --depth=1 "$2" "$3"; then
+        break
+      fi
+      if [[ $attempt == 4 ]]; then
+        return 1
+      fi
+      sleep $((attempt * 15))
+    done
+    git -C "$dir" checkout -q -f --detach "$3"
+  fi
+  git -C "$dir" reset -q --hard
+  git -C "$dir" clean -q -ffdx
+}
+
+cd "$(dirname "$0")/.."
+
+clone lemminx https://github.com/eclipse/lemminx d3a123531c8b48d6139759beab6ea1fdaeefe158
+clone libxml2 https://github.com/GNOME/libxml2 de918d45e1b2276a28a4cd32bcf556bef65284e4
+clone maven https://github.com/apache/maven 8e8579a9e76f7d015ee5ec7bfcdc97d260186937
+
+output=$(mktemp)
+failures=$(mktemp)
+files=$(mktemp)
+mkdir -p .tmp/parse-examples
+# Runs in the same checkout may overlap, so each builds the parsers into files of their own.
+parsers=$(mktemp -d .tmp/parse-examples/run.XXXXXX)
+trap 'rm -rf "$output" "$failures" "$files" "$parsers"' EXIT
+
+# Parses the files with the given extensions with one grammar; `parse --grammar-path` would recompile the parser for
+# every file.
+parse() {
+  local grammar=$1
+  shift
+  local pattern=(-name "*.$1") extension
+  shift
+  for extension in "$@"; do
+    pattern+=(-o -name "*.$extension")
+  done
+  find examples -type f \( "${pattern[@]}" \) -print | LC_ALL=C sort > "$files"
+  script/tree-sitter build -o "$parsers/$grammar" "$grammar"
+  # The CLI exits non-zero whenever a file fails, so the output decides success. `--time` makes it print
+  # a line for each file, including files that exceed `--timeout` (30 s), which bounds a runaway parse.
+  script/tree-sitter parse --lib-path "$parsers/$grammar" --lang-name "$grammar" -q -s --time --timeout 30000000 \
+    --paths "$files" > "$output" || true
+  if ! grep -q '^Total parses' "$output"; then
+    cat "$output" >&2
+    exit 1
+  fi
+  echo "$grammar: $(grep '^Total parses' "$output")"
+  # With an empty known-failures.txt, a run that parses no file would pass, so every file found must have been parsed.
+  local total expected
+  total=$(sed -n 's/^Total parses: \([0-9]*\);.*/\1/p' "$output")
+  expected=$(grep -c . "$files" || true)
+  if [[ $expected == 0 || $total != "$expected" ]]; then
+    echo "Parsed $total of $expected example files with $grammar" >&2
+    exit 1
+  fi
+  # A timeout depends on the machine, so it is no expected failure.
+  if grep -q 'timed out' "$output"; then
+    echo 'These files exceeded the parse timeout; known-failures.txt is left unchanged:' >&2
+    awk -F '\t' '/timed out/{sub(/ +$/, "", $1); print $1}' "$output" >&2
+    exit 1
+  fi
+  # Each line holds the path, padded with spaces, and the parse results, separated by tabs; some paths contain spaces.
+  awk -F '\t' '/ERROR|MISSING/{sub(/ +$/, "", $1); print $1}' "$output" >> "$failures"
+}
+
+# The file types of each grammar in tree-sitter.json.
+parse xml xml svg xsd xslt xsl rng
+parse dtd dtd
+LC_ALL=C sort -o "$failures" "$failures"
+if [[ $check == true ]]; then
+  if ! diff -u script/known-failures.txt "$failures" >&2; then
+    echo 'The files failing to parse differ from script/known-failures.txt (- fixed, + broken).' >&2
+    echo 'Run script/parse-examples to update the list after checking the diff.' >&2
+    exit 1
+  fi
+else
+  cp "$failures" script/known-failures.txt
+fi

@@ -1,55 +1,48 @@
 {
-  "metadata": {
-    "version": "0.7.0",
-    "description": "XML & DTD grammars for tree-sitter",
-    "links": {
-      "repository": "https://github.com/tree-sitter-grammars/tree-sitter-xml"
-    },
-    "authors": [
-      {
-        "name": "ObserverOfTime",
-        "email": "chronobserver@disroot.org",
-        "url": "https://observeroftime.github.io/"
-      },
-      {
-        "name": "Amaan Qureshi",
-        "email": "amaanq12@gmail.com"
-      }
-    ]
-  },
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
   "grammars": [
     {
       "name": "xml",
       "camelcase": "XML",
       "scope": "source.xml",
-      "file-types": [
-        "xml",
-        "svg",
-        "xsd",
-        "xslt",
-        "xsl",
-        "rng"
-      ],
-      "injection-regex": "^(xml|svg|xsd|xslt|xsl|rng)$",
-      "highlights": "queries/xml/highlights.scm",
       "path": "xml",
-      "external-files": [
-        "common/scanner.h"
-      ]
+      "external-files": ["common/scanner.h"],
+      "file-types": ["xml", "svg", "xsd", "xslt", "xsl", "rng"],
+      "highlights": "queries/xml/highlights.scm",
+      "injection-regex": "^(xml|svg|xsd|xslt|xsl|rng)$"
     },
     {
       "name": "dtd",
       "camelcase": "DTD",
       "scope": "source.dtd",
-      "file-types": [
-        "dtd"
-      ],
-      "injection-regex": "^dtd$",
-      "highlights": "queries/dtd/highlights.scm",
       "path": "dtd",
-      "external-files": [
-        "common/scanner.h"
-      ]
+      "external-files": ["common/scanner.h"],
+      "file-types": ["dtd"],
+      "highlights": "queries/dtd/highlights.scm",
+      "injection-regex": "^dtd$"
     }
-  ]
+  ],
+  "metadata": {
+    "version": "0.7.0",
+    "license": "MIT",
+    "description": "XML & DTD grammars for tree-sitter",
+    "authors": [
+      {
+        "name": "WillBooster Inc."
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/WillBooster/tree-sitter-xml"
+    }
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "java": false,
+    "node": false,
+    "python": false,
+    "rust": true,
+    "swift": false,
+    "zig": false
+  }
 }

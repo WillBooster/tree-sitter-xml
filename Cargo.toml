@@ -1,39 +1,42 @@
 [package]
-name = "tree-sitter-xml"
-description = "XML & DTD grammars for tree-sitter"
-version = "0.7.0"
-license = "MIT"
-readme = "README.md"
-keywords = ["incremental", "parsing", "tree-sitter", "dtd", "xml"]
-categories = ["parsing", "text-editors"]
-authors = [
-  "ObserverOfTime <chronobserver@disroot.org>",
-  "Amaan Qureshi <amaanq12@gmail.com>",
-]
-repository = "https://github.com/tree-sitter-grammars/tree-sitter-xml"
-edition = "2021"
+authors = ["WillBooster Inc."]
 autoexamples = false
+categories = ["parser-implementations", "parsing", "text-editors"]
+description = "XML & DTD grammars for tree-sitter"
+edition = "2024"
+keywords = ["incremental", "parsing", "tree-sitter", "xml", "dtd"]
+license = "MIT"
+name = "willbooster-tree-sitter-xml"
+readme = "README.md"
+repository = "https://github.com/WillBooster/tree-sitter-xml"
+version = "0.0.0"
 
 build = "bindings/rust/build.rs"
 include = [
-  "common/*",
-  "bindings/rust/*",
-  "dtd/grammar.js",
-  "dtd/src/*",
-  "xml/grammar.js",
-  "xml/src/*",
-  "queries/*",
-  "tree-sitter.json",
+  "/bindings/rust/*",
+  "/common/*",
+  "/xml/grammar.js",
+  "/xml/src/*",
+  "!/xml/src/.gitattributes",
+  "!/xml/src/.editorconfig",
+  "/dtd/grammar.js",
+  "/dtd/src/*",
+  "!/dtd/src/.gitattributes",
+  "!/dtd/src/.editorconfig",
+  "/queries/*",
+  "/tree-sitter.json",
+  "/LICENSE",
 ]
 
 [lib]
+name = "tree_sitter_xml"
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter-language = "0.1"
+tree-sitter-language = "0.1.6"
 
 [build-dependencies]
-cc = "1.1"
+cc = "1.2"
 
 [dev-dependencies]
-tree-sitter = "0.24"
+tree-sitter = { package = "willbooster-tree-sitter", version = "2.0.0" }
