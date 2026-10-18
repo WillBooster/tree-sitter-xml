@@ -16,7 +16,8 @@ fn main() {
             );
         };
 
-        c_config.include(&wasm_headers);
+        // The shim headers leave wchar_t, which common/scanner.h uses, to the compiler's stddef.h.
+        c_config.include(&wasm_headers).flag("-include").flag("stddef.h");
     }
 
     for grammar in ["xml", "dtd"] {
