@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Runs `tree-sitter fuzz` for the given grammar (`xml` or `dtd`): it edits each of that grammar's corpus cases at random,
+# reparses it incrementally, undoes the edits, and reparses again.
+
+set -euo pipefail
+
+cd "$(dirname "$0")/.."
+grammar=$1
+
+mkdir -p .tmp/fuzz
+# Runs in the same checkout may overlap, so each builds the parser into a file of its own.
+parser=$(mktemp ".tmp/fuzz/$grammar.XXXXXX")
+trap 'rm -f "$parser"' EXIT
+script/tree-sitter build -o "$parser" "$grammar"
+script/tree-sitter fuzz --lib-path "$parser" --lang-name "$grammar"

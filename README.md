@@ -1,30 +1,150 @@
-# tree-sitter-xml
+# @willbooster/tree-sitter-xml
 
-[![CI][ci]](https://github.com/tree-sitter-grammars/tree-sitter-xml/actions)
-[![discord][discord]](https://discord.gg/w7nTvsVJhm)
-[![matrix][matrix]](https://matrix.to/#/#tree-sitter-chat:matrix.org)
-[![npm][npm]](https://www.npmjs.com/package/@tree-sitter-grammars/tree-sitter-xml)
-[![crates][crates]](https://crates.io/crates/tree-sitter-xml)
-[![pypi][pypi]](https://pypi.org/project/tree-sitter-xml/)
+[![npm version](https://img.shields.io/npm/v/@willbooster/tree-sitter-xml.svg)](https://www.npmjs.com/package/@willbooster/tree-sitter-xml)
+[![license](https://img.shields.io/npm/l/@willbooster/tree-sitter-xml.svg)](https://www.npmjs.com/package/@willbooster/tree-sitter-xml)
+[![Test](https://github.com/WillBooster/tree-sitter-xml/actions/workflows/test.yml/badge.svg)](https://github.com/WillBooster/tree-sitter-xml/actions/workflows/test.yml)
+[![Test rust](https://github.com/WillBooster/tree-sitter-xml/actions/workflows/test-rust.yml/badge.svg)](https://github.com/WillBooster/tree-sitter-xml/actions/workflows/test-rust.yml)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![wbfy](https://img.shields.io/badge/wbfy-20.41.8-1e90ff.svg)](https://github.com/WillBooster/shared/tree/main/packages/wbfy)
+[![crates.io](https://img.shields.io/crates/v/willbooster-tree-sitter-xml.svg)](https://crates.io/crates/willbooster-tree-sitter-xml)
 
-A tree-sitter parser for XML & DTD files.
+XML and DTD grammars for [tree-sitter](https://github.com/tree-sitter/tree-sitter), forked from
+[tree-sitter-grammars/tree-sitter-xml](https://github.com/tree-sitter-grammars/tree-sitter-xml). We are grateful
+to its authors and contributors. This is not an official release of that project.
 
-## References
+This fork builds on the grammars and queries of upstream's version 0.7.0 and generates the parsers with the
+[WillBooster/tree-sitter](https://github.com/WillBooster/tree-sitter) generator. The parsers carry that fork's own ABI
+number (`0x57420001`) and load only with that fork's runtime, version 2.0.0 or later: upstream's tree-sitter runtime
+rejects them. The XML scanner adapts to the generated array API with the change upstream itself made after 0.7.0. The
+parsers parse as the parsers in upstream's 0.7.0 packages do, except for NUL characters, which are ordinary characters:
+
+- A NUL character inside a quoted literal, such as an attribute value (`AttValue`), an entity value (`EntityValue`),
+  or a system literal (`SystemLiteral`), is part of that token, where upstream's lexer reports an error.
+- Where a NUL character cannot be part of any token, the `ERROR` node covers it as it covers any other unexpected
+  character, without the unexpected-character node that upstream's parsers put inside it.
+
+It holds two grammars, as upstream does: `xml` parses XML documents, including an internal DTD subset, and `dtd`
+parses external DTD files.
+
+## Usage
+
+The npm package ships `tree-sitter-xml.wasm` and `tree-sitter-dtd.wasm` for
+[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 2.0.0 or later, which runs in Node.js, Bun, browsers, and Cloudflare Workers. In Node.js and Bun, load the grammar from its path:
+
+```js
+import { fileURLToPath } from 'node:url';
+import { Language, Parser } from '@willbooster/web-tree-sitter';
+
+await Parser.init();
+const parser = new Parser();
+const wasmPath = fileURLToPath(import.meta.resolve('@willbooster/tree-sitter-xml/tree-sitter-xml.wasm'));
+parser.setLanguage(await Language.load(wasmPath));
+const tree = parser.parse('<?xml version="1.0"?>\n<note><to>Tove</to></note>\n');
+```
+
+In browsers, serve both `.wasm` files and load them by URL (the example uses Vite's `?url` imports):
+
+```js
+import { Language, Parser } from '@willbooster/web-tree-sitter';
+import runtimeUrl from '@willbooster/web-tree-sitter/web-tree-sitter.wasm?url';
+import xmlUrl from '@willbooster/tree-sitter-xml/tree-sitter-xml.wasm?url';
+
+await Parser.init({ locateFile: () => runtimeUrl });
+const parser = new Parser();
+parser.setLanguage(await Language.load(xmlUrl));
+```
+
+Cloudflare Workers do not allow compiling Wasm at run time, so import both `.wasm` files as modules, with or without
+Node.js compatibility:
+
+```js
+import { Language, Parser } from '@willbooster/web-tree-sitter';
+import runtime from '@willbooster/web-tree-sitter/web-tree-sitter.wasm';
+import xml from '@willbooster/tree-sitter-xml/tree-sitter-xml.wasm';
+
+await Parser.init({ wasmModule: runtime });
+const parser = new Parser();
+parser.setLanguage(await Language.load(xml));
+```
+
+The package also ships the grammar definitions (`common/common.mjs`, `xml/grammar.js`, and `dtd/grammar.js`, with the
+`package.json` files that mark the latter two as ES modules), the queries in `queries/`, and the node types in
+`xml/src/node-types.json` and `dtd/src/node-types.json`.
+
+In Rust, depend on the [crate](https://crates.io/crates/willbooster-tree-sitter-xml) and on
+[willbooster-tree-sitter](https://crates.io/crates/willbooster-tree-sitter), the runtime this package is tested and
+fuzzed with:
+
+```toml
+[dependencies]
+tree-sitter = { package = "willbooster-tree-sitter", version = "2" }
+tree-sitter-xml = { package = "willbooster-tree-sitter-xml", version = "1" }
+```
+
+```rust
+let mut parser = tree_sitter::Parser::new();
+parser.set_language(&tree_sitter_xml::LANGUAGE_XML.into())?;
+```
+
+`tree_sitter_xml::LANGUAGE_DTD` is the `dtd` grammar. The crate also exports upstream's `XML_HIGHLIGHT_QUERY`,
+`DTD_HIGHLIGHT_QUERY`, `XML_NODE_TYPES`, and `DTD_NODE_TYPES`.
+
+## Development
+
+```sh
+mise install
+bun install --frozen-lockfile
+bun run test/ci-setup # installs Chromium for the browser test
+bun run build/ci
+bun run test
+script/parse-examples
+cargo test
+```
+
+The scripts and tests generate, build, test, and parse with `script/tree-sitter`, the tree-sitter CLI of the
+WillBooster/tree-sitter runtime version locked in `Cargo.lock`, since the generator and the runtime of upstream's CLI are
+not the ones this package ships with. Its first run downloads that CLI from the runtime's GitHub Release, or builds it
+with `cargo` (whose build runs the CMake that `mise.toml` pins) when the download fails or the release has no binary that runs here. Run other CLI commands through it as
+well (e.g. `script/tree-sitter parse --grammar-path xml file.xml`).
+
+`bun run generate` records a fresh generation profile for each grammar from the `test/corpus` cases of that grammar,
+then generates compact parser tables. It would also profile files tracked in `examples/`, but this repository tracks
+none. The corpus is upstream's, with the blank line between each case's name and its attributes removed, since the
+WillBooster/tree-sitter CLI, like upstream's current CLI, reads no case whose header has one, plus
+`null-characters.txt`, which pins this parser's reading of NUL characters. The parsers also embed metadata from
+`tree-sitter.json`. After changing a grammar, `tree-sitter.json`, or a corpus case, regenerate and commit `xml/src/`
+and `dtd/src/`. Profiles in `.tmp/generation-profiles/` are temporary and must not be committed. `bun run build-wasm`,
+`bun run build/ci`, and the release build regenerate the parsers before compiling them.
+
+`bun run test` runs:
+
+- the corpus in `test/corpus`, with the native build and with the Wasm build (the first run downloads the WASI SDK).
+  Each case names its grammar with `:language(xml)` or `:language(dtd)`;
+- an incremental-parsing check (`test/unit/incremental.test.ts`): `script/fuzz-corpus` runs `tree-sitter fuzz` for a
+  grammar, which edits each of its corpus cases at random, reparses it, undoes the edits, and reparses again.
+  `TREE_SITTER_SEED`, `TREE_SITTER_ITERATIONS`, and `TREE_SITTER_EDITS` run other or more edits;
+- a check that the real-world files in `examples/` fail to parse exactly as listed in `script/known-failures.txt`, each
+  parsed with the grammar its extension belongs to in `tree-sitter.json`. The first run clones the repositories. The
+  example repositories are pinned to commits in `script/parse-examples`. After a grammar change or a moved pin alters
+  that list, `script/parse-examples` rewrites it; review its diff before committing;
+- a performance check (`test/unit/performance.test.ts`) that recovering from an error on each line takes linear
+  time with both grammars, since consumers parse files while they are being edited. It loads the Wasm builds through
+  @willbooster/web-tree-sitter, which `bun run build/ci` rebuilds after regenerating the parsers;
+- a check (`test/unit/runtimeVersion.test.ts`) that `@willbooster/web-tree-sitter` in `package.json` and
+  `willbooster-tree-sitter` in `Cargo.lock` are the same version, since the Wasm tests run on the former and the Rust
+  tests, the fuzzer, and the CLI on the latter;
+- tests that load the Wasm builds with @willbooster/web-tree-sitter in Chromium (`test/e2e/browser.test.ts`) and in
+  Cloudflare Workers with and without Node.js compatibility (`test/e2e/workers.test.ts`).
+
+The tests compile the parsers into `.tmp/tree-sitter-lib` rather than the CLI's cache shared by every checkout;
+`script/fuzz-corpus` and `script/parse-examples` build parsers of their own in `.tmp/` for each run and delete them
+afterwards.
+
+CI also runs these tests on Linux arm64 and macOS, where the CLI compiles the parsers and the scanners natively, and
+fuzzes both parsers with libFuzzer and sanitizers (`.github/workflows/robustness.yml`).
+
+### References
 
 - [Extensible Markup Language (XML) 1.0](https://www.w3.org/TR/xml/)
 - [Associating Schemas with XML documents 1.0](https://www.w3.org/TR/xml-model/)
 - [Associating Style Sheets with XML documents 1.0](https://www.w3.org/TR/xml-stylesheet/)
-
-## Editors
-
-- [x] Neovim
-- [ ] Helix _(has alternatives)_
-- [x] Emacs
-- [ ] Zed
-
-[ci]: https://img.shields.io/github/actions/workflow/status/tree-sitter-grammars/tree-sitter-xml/ci.yml?logo=github&label=CI
-[discord]: https://img.shields.io/discord/1063097320771698699?logo=discord&label=discord
-[matrix]: https://img.shields.io/matrix/tree-sitter-chat%3Amatrix.org?logo=matrix&label=matrix
-[npm]: https://img.shields.io/npm/v/%40tree-sitter-grammars%2Ftree-sitter-xml?logo=npm
-[crates]: https://img.shields.io/crates/v/tree-sitter-xml?logo=rust
-[pypi]: https://img.shields.io/pypi/v/tree-sitter-xml?logo=pypi&logoColor=ffd242
