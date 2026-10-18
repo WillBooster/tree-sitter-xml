@@ -61,7 +61,10 @@ parse() {
   for extension in "$@"; do
     pattern+=(-o -name "*.$extension")
   done
-  find examples -type f \( "${pattern[@]}" \) -print | LC_ALL=C sort > "$files"
+  # lemminx's content.xml, a 40 MB generated p2 repository index, takes several seconds alone and exceeds the timeout
+  # on slow runners beside the other tests; upstream's CI leaves it out as well.
+  find examples -type f \( "${pattern[@]}" \) ! -path examples/lemminx/org.eclipse.lemminx/src/test/resources/xml/content.xml \
+    -print | LC_ALL=C sort > "$files"
   script/tree-sitter build -o "$parsers/$grammar" "$grammar"
   # The CLI exits non-zero whenever a file fails, so the output decides success. `--time` makes it print
   # a line for each file, including files that exceed `--timeout` (30 s), which bounds a runaway parse.
