@@ -78,3 +78,42 @@ mod tests {
             .expect("Error loading DTD parser");
     }
 }
+
+#[cfg(test)]
+mod attribute_tests {
+    #[test]
+    fn attribute_content_spans_text_and_references() {
+        for (language, source) in [
+            (
+                super::LANGUAGE_XML,
+                r#"<root value="first &amp; last" empty='' single='one'/>"#,
+            ),
+            (
+                super::LANGUAGE_DTD,
+                r#"<!ATTLIST root value CDATA "first &amp; last" empty CDATA '' single CDATA 'one'>"#,
+            ),
+        ] {
+            let mut parser = tree_sitter::Parser::new();
+            parser.set_language(&language.into()).unwrap();
+            let tree = parser.parse(source, None).unwrap();
+            assert!(!tree.root_node().has_error());
+            let mut pending = vec![tree.root_node()];
+            let mut values = Vec::new();
+            while let Some(node) = pending.pop() {
+                if node.kind() == "AttValue" {
+                    values.push(
+                        node.child_by_field_name("content").map(|content| {
+                            content.utf8_text(source.as_bytes()).unwrap().to_owned()
+                        }),
+                    );
+                }
+                let children: Vec<_> = node.children(&mut node.walk()).collect();
+                pending.extend(children.into_iter().rev());
+            }
+            assert_eq!(
+                values,
+                [Some("first &amp; last".into()), None, Some("one".into())]
+            );
+        }
+    }
+}

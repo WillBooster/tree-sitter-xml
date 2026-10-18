@@ -16,12 +16,17 @@ This fork builds on the grammars and queries of upstream's version 0.7.0 and gen
 [WillBooster/tree-sitter](https://github.com/WillBooster/tree-sitter) generator. The parsers carry that fork's own ABI
 number (`0x57420001`) and load only with that fork's runtime, version 2.0.0 or later: upstream's tree-sitter runtime
 rejects them. The XML scanner adapts to the generated array API with the change upstream itself made after 0.7.0. The
-parsers parse as the parsers in upstream's 0.7.0 packages do, except for NUL characters, which are ordinary characters:
+parsers differ from upstream's 0.7.0 packages in these ways:
 
 - A NUL character inside a quoted literal, such as an attribute value (`AttValue`), an entity value (`EntityValue`),
   or a system literal (`SystemLiteral`), is part of that token, where upstream's lexer reports an error.
 - Where a NUL character cannot be part of any token, the `ERROR` node covers it as it covers any other unexpected
   character, without the unexpected-character node that upstream's parsers put inside it.
+
+- Nonempty attribute values (`AttValue` and `PseudoAttValue`) expose their full unquoted value through the `content`
+  field. This field points to an anonymous `content` node wrapping text and references. Access references through this
+  wrapper using the node API; references are not direct children of the attribute-value node. Empty values have no
+  `content` field.
 
 It holds two grammars, as upstream does: `xml` parses XML documents, including an internal DTD subset, and `dtd`
 parses external DTD files.
