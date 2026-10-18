@@ -38,14 +38,14 @@ export const att_value = ($, q) =>
 export const entity_value = ($, q) =>
   seq(
     q,
-    field(
+    optional(field(
       'content',
-      repeat(choice(
+      alias(repeat1(choice(
         new RegExp(`[^<%&${q}]`),
         $.PEReference,
         $._Reference
-      ))
-    ),
+      )), 'content')
+    )),
     q
   );
 
