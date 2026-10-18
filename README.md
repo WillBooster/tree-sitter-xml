@@ -23,10 +23,10 @@ parsers differ from upstream's 0.7.0 packages in these ways:
 - Where a NUL character cannot be part of any token, the `ERROR` node covers it as it covers any other unexpected
   character, without the unexpected-character node that upstream's parsers put inside it.
 
-- Nonempty attribute values (`AttValue` and `PseudoAttValue`) expose their full unquoted value through the `content`
-  field. This field points to an anonymous `content` node wrapping text and references. Access references through this
-  wrapper using the node API; references are not direct children of the attribute-value node. Empty values have no
-  `content` field.
+- Nonempty attribute values (`AttValue` and `PseudoAttValue`) and entity values (`EntityValue`) expose their full
+  unquoted value through the `content` field. This field points to an anonymous `content` node wrapping text and
+  references. Access references through this wrapper using the node API; references are not direct children of the
+  value node. Empty values have no `content` field.
 
 It holds two grammars, as upstream does: `xml` parses XML documents, including an internal DTD subset, and `dtd`
 parses external DTD files.

@@ -199,16 +199,12 @@
     "named": true,
     "fields": {
       "content": {
-        "multiple": true,
+        "multiple": false,
         "required": false,
         "types": [
           {
-            "type": "PEReference",
-            "named": true
-          },
-          {
-            "type": "_Reference",
-            "named": true
+            "type": "content",
+            "named": false
           }
         ]
       }
@@ -524,6 +520,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "PEReference",
+          "named": true
+        },
         {
           "type": "_Reference",
           "named": true

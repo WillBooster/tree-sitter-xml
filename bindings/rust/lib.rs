@@ -80,27 +80,47 @@ mod tests {
 }
 
 #[cfg(test)]
-mod attribute_tests {
+mod value_tests {
     #[test]
-    fn attribute_content_spans_text_and_references() {
-        for (language, source) in [
+    fn value_content_spans_text_and_references() {
+        for (language, kind, source, expected) in [
             (
                 super::LANGUAGE_XML,
+                "AttValue",
                 r#"<root value="first &amp; last" empty='' single='one'/>"#,
+                "first &amp; last",
             ),
             (
                 super::LANGUAGE_DTD,
+                "AttValue",
                 r#"<!ATTLIST root value CDATA "first &amp; last" empty CDATA '' single CDATA 'one'>"#,
+                "first &amp; last",
+            ),
+            (
+                super::LANGUAGE_XML,
+                "EntityValue",
+                r#"<!DOCTYPE root [<!ENTITY mixed "first &amp; &#65; last"> <!ENTITY empty ''> <!ENTITY single 'one'> ]><root/>"#,
+                "first &amp; &#65; last",
+            ),
+            (
+                super::LANGUAGE_DTD,
+                "EntityValue",
+                r#"<!ENTITY mixed "first &amp; %suffix; &#65; last"> <!ENTITY empty ''> <!ENTITY single 'one'>"#,
+                "first &amp; %suffix; &#65; last",
             ),
         ] {
             let mut parser = tree_sitter::Parser::new();
             parser.set_language(&language.into()).unwrap();
             let tree = parser.parse(source, None).unwrap();
-            assert!(!tree.root_node().has_error());
+            assert!(
+                !tree.root_node().has_error(),
+                "{source}: {}",
+                tree.root_node().to_sexp()
+            );
             let mut pending = vec![tree.root_node()];
             let mut values = Vec::new();
             while let Some(node) = pending.pop() {
-                if node.kind() == "AttValue" {
+                if node.kind() == kind {
                     values.push(
                         node.child_by_field_name("content").map(|content| {
                             content.utf8_text(source.as_bytes()).unwrap().to_owned()
@@ -110,10 +130,7 @@ mod attribute_tests {
                 let children: Vec<_> = node.children(&mut node.walk()).collect();
                 pending.extend(children.into_iter().rev());
             }
-            assert_eq!(
-                values,
-                [Some("first &amp; last".into()), None, Some("one".into())]
-            );
+            assert_eq!(values, [Some(expected.into()), None, Some("one".into())]);
         }
     }
 }
