@@ -15,17 +15,38 @@ static inline bool string_eq(String *a, String *b) {
     return memcmp(a->contents, b->contents, a->size) == 0;
 }
 
+static void append_code_point(String *string, int32_t code_point);
+
 static String scan_tag_name(TSLexer *lexer) {
     String tag_name = array_new();
-    if (is_valid_name_start_char(lexer->lookahead)) {
-        array_push(&tag_name, (char)lexer->lookahead);
-        advance(lexer);
+    if (!is_valid_name_start_char(lexer->lookahead)) {
+        return tag_name;
     }
+    append_code_point(&tag_name, lexer->lookahead);
+    advance(lexer);
     while (is_valid_name_char(lexer->lookahead)) {
-        array_push(&tag_name, (char)lexer->lookahead);
+        append_code_point(&tag_name, lexer->lookahead);
         advance(lexer);
     }
     return tag_name;
+}
+
+static void append_code_point(String *string, int32_t code_point) {
+    if (code_point <= 0x7F) {
+        array_push(string, (char)code_point);
+    } else if (code_point <= 0x7FF) {
+        array_push(string, (char)(0xC0 | (code_point >> 6)));
+        array_push(string, (char)(0x80 | (code_point & 0x3F)));
+    } else if (code_point <= 0xFFFF) {
+        array_push(string, (char)(0xE0 | (code_point >> 12)));
+        array_push(string, (char)(0x80 | ((code_point >> 6) & 0x3F)));
+        array_push(string, (char)(0x80 | (code_point & 0x3F)));
+    } else {
+        array_push(string, (char)(0xF0 | (code_point >> 18)));
+        array_push(string, (char)(0x80 | ((code_point >> 12) & 0x3F)));
+        array_push(string, (char)(0x80 | ((code_point >> 6) & 0x3F)));
+        array_push(string, (char)(0x80 | (code_point & 0x3F)));
+    }
 }
 
 static bool scan_start_tag_name(Vector *tags, TSLexer *lexer) {
@@ -69,18 +90,15 @@ static bool scan_self_closing_tag_delimiter(Vector *tags, TSLexer *lexer) {
     return true;
 }
 
-/// Check if the lexer is in error recovery mode
 static inline bool in_error_recovery(const bool *valid_symbols) {
     return valid_symbols[PI_TARGET] && valid_symbols[PI_CONTENT] && valid_symbols[COMMENT] &&
            valid_symbols[CHAR_DATA] && valid_symbols[CDATA];
 }
 
-/// Check if the lexer is in a char data node
 static inline bool in_char_data(TSLexer *lexer) {
     return !lexer->eof(lexer) && lexer->lookahead != '<' && lexer->lookahead != '&';
 }
 
-/// Scan for a CharData node
 static bool scan_char_data(TSLexer *lexer) {
     bool advanced_once = false;
 
@@ -113,7 +131,6 @@ static bool scan_char_data(TSLexer *lexer) {
     return false;
 }
 
-/// Scan for a CData node
 static bool scan_cdata(TSLexer *lexer) {
     bool advanced_once = false;
 
@@ -213,14 +230,12 @@ unsigned tree_sitter_xml_external_scanner_serialize(void *payload, char *buffer)
 
     for (; serialized_tag_count < tag_count; ++serialized_tag_count) {
         String *tag = array_get(tags, serialized_tag_count);
-        uint32_t name_length = tag->size;
-        if (name_length > UINT8_MAX) {
-            name_length = UINT8_MAX;
-        }
-        if (size + 2 + name_length >= TREE_SITTER_SERIALIZATION_BUFFER_SIZE) {
+        uint16_t name_length = tag->size;
+        if (tag->size > UINT16_MAX || size + sizeof name_length + name_length > TREE_SITTER_SERIALIZATION_BUFFER_SIZE) {
             break;
         }
-        buffer[size++] = (char)name_length;
+        memcpy(&buffer[size], &name_length, sizeof name_length);
+        size += sizeof name_length;
         if (name_length > 0) {
             memcpy(&buffer[size], tag->contents, name_length);
         }
@@ -255,7 +270,10 @@ void tree_sitter_xml_external_scanner_deserialize(void *payload, const char *buf
     uint32_t iter = 0;
     for (; iter < serialized_tag_count; ++iter) {
         String tag = array_new();
-        tag.size = (uint8_t)buffer[size++];
+        uint16_t name_length;
+        memcpy(&name_length, &buffer[size], sizeof name_length);
+        size += sizeof name_length;
+        tag.size = name_length;
         if (tag.size > 0) {
             array_reserve(&tag, tag.size + 1);
             memcpy(tag.contents, &buffer[size], tag.size);
