@@ -66,12 +66,10 @@ examples/libxml2/result/ebcdic_566012.xml
 examples/libxml2/result/errors/ns-ent.xml
 examples/libxml2/result/intsubset.xml
 examples/libxml2/result/intsubset2.xml
-examples/libxml2/result/japancrlf.xml
 examples/libxml2/result/noent/boundaries1.xml
 examples/libxml2/result/noent/ebcdic_566012.xml
 examples/libxml2/result/noent/intsubset.xml
 examples/libxml2/result/noent/intsubset2.xml
-examples/libxml2/result/noent/japancrlf.xml
 examples/libxml2/result/noent/utf16bebom.xml
 examples/libxml2/result/noent/utf16lebom.xml
 examples/libxml2/result/utf16bebom.xml
@@ -80,7 +78,6 @@ examples/libxml2/result/valid/REC-xml-19980210.xml
 examples/libxml2/result/valid/huge.xml
 examples/libxml2/result/valid/id2.xml
 examples/libxml2/result/valid/index.xml
-examples/libxml2/result/valid/objednavka.xml
 examples/libxml2/result/valid/rss.xml
 examples/libxml2/result/xmlid/id_err1.xml
 examples/libxml2/result/xmlid/id_err2.xml
@@ -118,6 +115,7 @@ examples/libxml2/test/errors/invalid-start-tag-2.xml
 examples/libxml2/test/errors/issue151.xml
 examples/libxml2/test/errors/name.xml
 examples/libxml2/test/errors/name2.xml
+examples/libxml2/test/errors/name3.xml
 examples/libxml2/test/errors/ns-ent.xml
 examples/libxml2/test/errors/trailing-null-1.xml
 examples/libxml2/test/errors/trailing-null-2.xml
@@ -126,7 +124,6 @@ examples/libxml2/test/errors/utf8-1.xml
 examples/libxml2/test/errors/utf8-2.xml
 examples/libxml2/test/errors10/781205.xml
 examples/libxml2/test/errors10/781361.xml
-examples/libxml2/test/japancrlf.xml
 examples/libxml2/test/recurse/lol_ep.xml
 examples/libxml2/test/recurse/lol_ip_content.dtd
 examples/libxml2/test/recurse/lol_ip_value.dtd
@@ -147,7 +144,6 @@ examples/libxml2/test/valid/dtds/pe-test.dtd
 examples/libxml2/test/valid/huge.xml
 examples/libxml2/test/valid/id2.xml
 examples/libxml2/test/valid/index.xml
-examples/libxml2/test/valid/objednavka.xml
 examples/libxml2/test/valid/pe-latin1.xml
 examples/libxml2/test/valid/rss.xml
 examples/libxml2/test/valid/t4.dtd

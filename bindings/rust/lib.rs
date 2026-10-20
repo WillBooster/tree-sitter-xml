@@ -134,3 +134,53 @@ mod value_tests {
         }
     }
 }
+
+#[cfg(test)]
+mod unicode_tag_tests {
+    #[test]
+    fn distinguishes_unicode_closing_tag_names() {
+        let mut parser = tree_sitter::Parser::new();
+        parser.set_language(&super::LANGUAGE_XML.into()).unwrap();
+        for (opening, closing) in [
+            ("é", "ǩ"),
+            ("Ā", "Ȁ"),
+            ("𠀀", "𠄀"),
+            ("漢", "瀢"),
+            ("à", "á"),
+        ] {
+            let matched = format!("<root><{opening}></{opening}><following/></root>");
+            let tree = parser.parse(&matched, None).unwrap();
+            assert!(!tree.root_node().has_error(), "{matched}");
+            let mismatched = format!("<root><{opening}></{closing}><following/></root>");
+            let tree = parser.parse(&mismatched, None).unwrap();
+            assert!(tree.root_node().has_error(), "{mismatched}");
+        }
+    }
+    #[test]
+    fn restores_multibyte_names_across_byte_length_boundaries() {
+        let mut parser = tree_sitter::Parser::new();
+        parser.set_language(&super::LANGUAGE_XML.into()).unwrap();
+        for (character, counts) in [
+            ("é", [127, 128, 129, 500]),
+            ("漢", [84, 85, 86, 333]),
+            ("𠀀", [63, 64, 65, 250]),
+        ] {
+            for count in counts {
+                let name = character.repeat(count);
+                let source = format!("<root><{name}><child/></{name}><following/></root>");
+                let tree = parser.parse(&source, None).unwrap();
+                assert!(!tree.root_node().has_error(), "{source}");
+            }
+        }
+    }
+    #[test]
+    fn preserves_deep_short_name_elements() {
+        let mut parser = tree_sitter::Parser::new();
+        parser.set_language(&super::LANGUAGE_XML.into()).unwrap();
+        for depth in [339, 400, 507] {
+            let source = format!("{}{}", "<a>".repeat(depth), "</a>".repeat(depth));
+            let tree = parser.parse(&source, None).unwrap();
+            assert!(!tree.root_node().has_error(), "depth {depth}");
+        }
+    }
+}
