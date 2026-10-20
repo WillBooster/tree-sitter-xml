@@ -14,9 +14,9 @@ to its authors and contributors. This is not an official release of that project
 
 This fork builds on the grammars and queries of upstream's version 0.7.0 and generates the parsers with the
 [WillBooster/tree-sitter](https://github.com/WillBooster/tree-sitter) generator. The parsers carry that fork's own ABI
-number (`0x57420001`) and load only with that fork's runtime, version 2.0.0 or later: upstream's tree-sitter runtime
-rejects them. The XML scanner adapts to the generated array API with the change upstream itself made after 0.7.0. The
-parsers differ from upstream's 0.7.0 packages in these ways:
+number (`0x57420006`) and load with that fork's runtime, version 7.0.5 or later in the 7.x series. The XML scanner
+adapts to the generated array API with the change upstream itself made after 0.7.0. The parsers differ from
+upstream's 0.7.0 packages in these ways:
 
 - A NUL character inside a quoted literal, such as an attribute value (`AttValue`), an entity value (`EntityValue`),
   or a system literal (`SystemLiteral`), is part of that token, where upstream's lexer reports an error.
@@ -34,7 +34,8 @@ parses external DTD files.
 ## Usage
 
 The npm package ships `tree-sitter-xml.wasm` and `tree-sitter-dtd.wasm` for
-[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 2.0.0 or later, which runs in Node.js, Bun, browsers, and Cloudflare Workers. In Node.js and Bun, load the grammar from its path:
+[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 7.0.5 or later in the 7.x series, which runs in Node.js, Bun, browsers, and Cloudflare Workers.
+In Node.js and Bun, load the grammar from its path:
 
 ```js
 import { fileURLToPath } from 'node:url';
@@ -82,8 +83,8 @@ fuzzed with:
 
 ```toml
 [dependencies]
-tree-sitter = { package = "willbooster-tree-sitter", version = "2" }
-tree-sitter-xml = { package = "willbooster-tree-sitter-xml", version = "1" }
+tree-sitter = { package = "willbooster-tree-sitter", version = "7.0.5" }
+tree-sitter-xml = { package = "willbooster-tree-sitter-xml", version = "2" }
 ```
 
 ```rust
