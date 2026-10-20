@@ -230,12 +230,18 @@ unsigned tree_sitter_xml_external_scanner_serialize(void *payload, char *buffer)
 
     for (; serialized_tag_count < tag_count; ++serialized_tag_count) {
         String *tag = array_get(tags, serialized_tag_count);
-        uint16_t name_length = tag->size;
-        if (tag->size > UINT16_MAX || size + sizeof name_length + name_length > TREE_SITTER_SERIALIZATION_BUFFER_SIZE) {
+        uint32_t name_length = tag->size;
+        uint32_t length_size = name_length < UINT8_MAX ? 1 : 1 + sizeof(uint16_t);
+        if (name_length > TREE_SITTER_SERIALIZATION_BUFFER_SIZE ||
+            size + length_size + name_length > TREE_SITTER_SERIALIZATION_BUFFER_SIZE) {
             break;
         }
-        memcpy(&buffer[size], &name_length, sizeof name_length);
-        size += sizeof name_length;
+        buffer[size++] = (char)(name_length < UINT8_MAX ? name_length : UINT8_MAX);
+        if (name_length >= UINT8_MAX) {
+            uint16_t extended_length = name_length;
+            memcpy(&buffer[size], &extended_length, sizeof extended_length);
+            size += sizeof extended_length;
+        }
         if (name_length > 0) {
             memcpy(&buffer[size], tag->contents, name_length);
         }
@@ -263,28 +269,23 @@ void tree_sitter_xml_external_scanner_deserialize(void *payload, const char *buf
     memcpy(&tag_count, &buffer[size], sizeof tag_count);
     size += sizeof tag_count;
 
-    if (tag_count == 0) return;
-
     array_reserve(tags, tag_count);
-
-    uint32_t iter = 0;
-    for (; iter < serialized_tag_count; ++iter) {
+    for (uint32_t i = 0; i < tag_count; ++i) {
         String tag = array_new();
-        uint16_t name_length;
-        memcpy(&name_length, &buffer[size], sizeof name_length);
-        size += sizeof name_length;
-        tag.size = name_length;
-        if (tag.size > 0) {
-            array_reserve(&tag, tag.size + 1);
-            memcpy(tag.contents, &buffer[size], tag.size);
-            size += tag.size;
+        if (i < serialized_tag_count) {
+            tag.size = (uint8_t)buffer[size++];
+            if (tag.size == UINT8_MAX) {
+                uint16_t extended_length;
+                memcpy(&extended_length, &buffer[size], sizeof extended_length);
+                size += sizeof extended_length;
+                tag.size = extended_length;
+            }
+            if (tag.size > 0) {
+                array_reserve(&tag, tag.size + 1);
+                memcpy(tag.contents, &buffer[size], tag.size);
+                size += tag.size;
+            }
         }
-        array_push(tags, tag);
-    }
-    // add zero tags if we didn't read enough, this is because the
-    // buffer had no more room but we held more tags.
-    for (; iter < tag_count; ++iter) {
-        String tag = array_new();
         array_push(tags, tag);
     }
 }

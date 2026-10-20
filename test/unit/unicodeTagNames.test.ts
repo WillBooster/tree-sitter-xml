@@ -82,3 +82,14 @@ test('accepts combining continuations and the supplementary name-start upper bou
     tree.delete();
   }
 });
+
+for (const depth of [339, 400, 507]) {
+  test(`preserves matching short-name elements at depth ${depth}`, () => {
+    const source = '<a>'.repeat(depth) + '</a>'.repeat(depth);
+    const tree = parser.parse(source)!;
+    expect(tree.rootNode.hasError).toBe(false);
+    expect(tree.rootNode.descendantsOfType('STag')).toHaveLength(depth);
+    expect(tree.rootNode.descendantsOfType('ETag')).toHaveLength(depth);
+    tree.delete();
+  });
+}

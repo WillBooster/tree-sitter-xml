@@ -173,4 +173,14 @@ mod unicode_tag_tests {
             }
         }
     }
+    #[test]
+    fn preserves_deep_short_name_elements() {
+        let mut parser = tree_sitter::Parser::new();
+        parser.set_language(&super::LANGUAGE_XML.into()).unwrap();
+        for depth in [339, 400, 507] {
+            let source = format!("{}{}", "<a>".repeat(depth), "</a>".repeat(depth));
+            let tree = parser.parse(&source, None).unwrap();
+            assert!(!tree.root_node().has_error(), "depth {depth}");
+        }
+    }
 }
