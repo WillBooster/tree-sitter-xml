@@ -245,7 +245,6 @@ unsigned tree_sitter_xml_external_scanner_serialize(void *payload, char *buffer)
         if (name_length > 0) {
             memcpy(&buffer[size], tag->contents, name_length);
         }
-        array_delete(tag);
         size += name_length;
     }
 
@@ -256,12 +255,13 @@ unsigned tree_sitter_xml_external_scanner_serialize(void *payload, char *buffer)
 void tree_sitter_xml_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
     Vector *tags = (Vector *)payload;
 
-    for (unsigned i = 0; i < tags->size; ++i) {
-        array_delete(array_get(tags, i));
+    if (length == 0) {
+        for (unsigned i = 0; i < tags->size; ++i) {
+            array_delete(array_get(tags, i));
+        }
+        array_clear(tags);
+        return;
     }
-    array_clear(tags);
-
-    if (length == 0) return;
 
     uint32_t size = 0, tag_count = 0, serialized_tag_count = 0;
     memcpy(&serialized_tag_count, &buffer[size], sizeof serialized_tag_count);
@@ -269,23 +269,32 @@ void tree_sitter_xml_external_scanner_deserialize(void *payload, const char *buf
     memcpy(&tag_count, &buffer[size], sizeof tag_count);
     size += sizeof tag_count;
 
-    array_reserve(tags, tag_count);
+    while (tags->size > tag_count) {
+        String tag = array_pop(tags);
+        array_delete(&tag);
+    }
+    while (tags->size < tag_count) {
+        array_push(tags, ((String)array_new()));
+    }
     for (uint32_t i = 0; i < tag_count; ++i) {
-        String tag = array_new();
+        String *tag = array_get(tags, i);
+        tag->size = 0;
         if (i < serialized_tag_count) {
-            tag.size = (uint8_t)buffer[size++];
-            if (tag.size == UINT8_MAX) {
+            uint32_t name_length = (uint8_t)buffer[size++];
+            if (name_length == UINT8_MAX) {
                 uint16_t extended_length;
                 memcpy(&extended_length, &buffer[size], sizeof extended_length);
                 size += sizeof extended_length;
-                tag.size = extended_length;
+                name_length = extended_length;
             }
-            if (tag.size > 0) {
-                array_reserve(&tag, tag.size + 1);
-                memcpy(tag.contents, &buffer[size], tag.size);
-                size += tag.size;
+            array_reserve(tag, name_length);
+            if (name_length > 0) {
+                memcpy(tag->contents, &buffer[size], name_length);
+                size += name_length;
             }
+            tag->size = name_length;
+        } else {
+            array_delete(tag);
         }
-        array_push(tags, tag);
     }
 }
