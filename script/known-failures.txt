@@ -135,7 +135,6 @@ examples/libxml2/test/utf16lebom.xml
 examples/libxml2/test/valid/REC-xml-19980210.xml
 examples/libxml2/test/valid/dtds/766956.dtd
 examples/libxml2/test/valid/dtds/cond_sect2.dtd
-examples/libxml2/test/valid/dtds/objednavka.dtd
 examples/libxml2/test/valid/dtds/pe-in-text-decl.dtd
 examples/libxml2/test/valid/dtds/pe-test.dtd
 examples/libxml2/test/valid/huge.xml
