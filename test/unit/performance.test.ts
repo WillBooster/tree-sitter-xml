@@ -50,18 +50,9 @@ for (const [grammar, errorSource] of Object.entries(ErrorSources)) {
     // the engine's background threads, which compile the Wasm build and collect garbage during the parses. 2,000 and
     // 20,000 lines are measured after warm-up parses and in alternation, each keeping its fastest run; their ratio is
     // about 10 locally, and 18 leaves a margin over that while failing for growth faster than about n^1.25.
-    test.each([
-      { name: 'invalid markup', source: errorSource },
-      {
-        name: 'unterminated processing instructions',
-        source: (lines: number): string => {
-          const instructions = '<?target data\n'.repeat(lines);
-          return grammar === 'xml' ? `<root>${instructions}</root>` : instructions;
-        },
-      },
-    ])('recovers from $name in linear time', { timeout: 60_000 }, ({ source }) => {
-      const small = source(2000);
-      const large = source(20_000);
+    test('recovers from an error on each line in linear time', { timeout: 60_000 }, () => {
+      const small = errorSource(2000);
+      const large = errorSource(20_000);
       parseCpuTime(parser, large);
       parseCpuTime(parser, large);
       let smallFastest = Infinity;
@@ -72,23 +63,40 @@ for (const [grammar, errorSource] of Object.entries(ErrorSources)) {
       }
       expect(largeFastest / smallFastest).toBeLessThan(18);
     });
+
+    test('reads repeated unterminated processing instructions in linear input volume', () => {
+      const small = countInstructionReads(parser, grammar, 200);
+      const large = countInstructionReads(parser, grammar, 2000);
+      expect(small).toBeGreaterThan(0);
+      expect(large / small).toBeLessThan(18);
+    });
   });
+}
+
+function countInstructionReads(parser: Parser, grammar: string, lines: number): number {
+  const instructions = '<?target data\n'.repeat(lines);
+  const source = grammar === 'xml' ? `<root>${instructions}</root>` : instructions;
+  let reads = 0;
+  const tree = parser.parse((index) => {
+    reads++;
+    return source.slice(index, index + 64);
+  });
+  if (!tree) throw new Error('The parser returned no tree');
+  try {
+    expect(tree.rootNode.hasError).toBe(true);
+  } finally {
+    tree.delete();
+  }
+  return reads;
 }
 
 function parseCpuTime(parser: Parser, source: string): number {
   const start = process.threadCpuUsage();
-  let parses = 0;
-  let elapsed = 0;
-  // A single fast parse can fall below the OS thread CPU clock's resolution.
-  do {
-    const tree = parser.parse(source);
-    if (!tree) throw new Error('The parser returned no tree');
-    const { hasError } = tree.rootNode;
-    tree.delete();
-    expect(hasError).toBe(true);
-    parses++;
-    const { system, user } = process.threadCpuUsage(start);
-    elapsed = system + user;
-  } while (elapsed < 10_000);
-  return elapsed / parses;
+  const tree = parser.parse(source);
+  const { system, user } = process.threadCpuUsage(start);
+  if (!tree) throw new Error('The parser returned no tree');
+  const { hasError } = tree.rootNode;
+  tree.delete();
+  expect(hasError).toBe(true);
+  return system + user;
 }
