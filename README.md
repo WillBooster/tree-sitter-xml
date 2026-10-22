@@ -23,6 +23,8 @@ upstream's 0.7.0 packages in these ways:
 - Where a NUL character cannot be part of any token, the `ERROR` node covers it as it covers any other unexpected
   character, without the unexpected-character node that upstream's parsers put inside it.
 
+- Names and enumeration tokens use the [XML 1.0 Unicode character ranges](https://www.w3.org/TR/xml/#NT-NameStartChar),
+  including supplementary characters, in attributes, references, and DTD declarations.
 - Generic processing instructions accept multiline content and question marks up to the closing `?>`, including
   when another instruction or markup immediately follows.
 - Nonempty attribute values (`AttValue` and `PseudoAttValue`) and entity values (`EntityValue`) expose their full

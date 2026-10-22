@@ -1,0 +1,69 @@
+================================================================================
+Unicode attribute, DOCTYPE and entity names
+:language(xml)
+================================================================================
+
+<!DOCTYPE café [<!ENTITY élève "value"> ]><café donnée="&élève;" à="value" a‿="x" 𠀀="supplementary">&élève;<following/></café>
+
+--------------------------------------------------------------------------------
+
+(document
+  (prolog
+    (doctypedecl
+      (Name)
+      (GEDecl (Name) (EntityValue))))
+  (element
+    (STag
+      (Name)
+      (Attribute (Name) (AttValue (EntityRef (Name))))
+      (Attribute (Name) (AttValue))
+      (Attribute (Name) (AttValue))
+      (Attribute (Name) (AttValue)))
+    (content
+      (EntityRef (Name))
+      (element (EmptyElemTag (Name))))
+    (ETag (Name))))
+
+================================================================================
+Unicode DTD declaration names and enumeration tokens
+:language(dtd)
+================================================================================
+
+<!ELEMENT café EMPTY>
+<!ATTLIST café état (prêt|𠀀|̀|1) #IMPLIED>
+<!ENTITY élève "value">
+<!ENTITY % modèle "">%modèle;
+
+--------------------------------------------------------------------------------
+
+(extSubset
+  (elementdecl (Name) (contentspec))
+  (AttlistDecl
+    (Name)
+    (AttDef
+      (Name)
+      (Enumeration (Nmtoken) (Nmtoken) (Nmtoken) (Nmtoken))
+      (DefaultDecl)))
+  (GEDecl (Name) (EntityValue))
+  (PEDecl (Name) (EntityValue))
+  (PEReference (Name)))
+
+================================================================================
+A combining mark cannot start an XML attribute name
+:error
+:language(xml)
+================================================================================
+
+<root ̀name="value"/>
+
+--------------------------------------------------------------------------------
+
+================================================================================
+A combining mark cannot start a DTD element name
+:error
+:language(dtd)
+================================================================================
+
+<!ELEMENT ̀name EMPTY>
+
+--------------------------------------------------------------------------------
