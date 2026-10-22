@@ -63,7 +63,31 @@ for (const [grammar, errorSource] of Object.entries(ErrorSources)) {
       }
       expect(largeFastest / smallFastest).toBeLessThan(18);
     });
+
+    test('reads repeated unterminated processing instructions in linear input volume', () => {
+      const small = countInstructionReads(parser, grammar, 200);
+      const large = countInstructionReads(parser, grammar, 2000);
+      expect(small).toBeGreaterThan(0);
+      expect(large / small).toBeLessThan(18);
+    });
   });
+}
+
+function countInstructionReads(parser: Parser, grammar: string, lines: number): number {
+  const instructions = '<?target data\n'.repeat(lines);
+  const source = grammar === 'xml' ? `<root>${instructions}</root>` : instructions;
+  let reads = 0;
+  const tree = parser.parse((index) => {
+    reads++;
+    return source.slice(index, index + 64);
+  });
+  if (!tree) throw new Error('The parser returned no tree');
+  try {
+    expect(tree.rootNode.hasError).toBe(true);
+  } finally {
+    tree.delete();
+  }
+  return reads;
 }
 
 function parseCpuTime(parser: Parser, source: string): number {

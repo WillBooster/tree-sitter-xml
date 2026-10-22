@@ -1,0 +1,39 @@
+================================================================================
+XML processing instructions with unrestricted content and adjacent markup
+:language(xml)
+================================================================================
+
+<?target first?second?><?target first
+second??third?><root><?target data?><following/><?target ?></root><?target trailing?>
+
+--------------------------------------------------------------------------------
+
+(document
+  (prolog
+    (PI (PITarget))
+    (PI (PITarget)))
+  (element
+    (STag (Name))
+    (content
+      (PI (PITarget))
+      (element (EmptyElemTag (Name)))
+      (PI (PITarget)))
+    (ETag (Name)))
+  (PI (PITarget)))
+
+================================================================================
+DTD processing instructions with unrestricted content and adjacent declarations
+:language(dtd)
+================================================================================
+
+<?target first?second?><?target first
+second??third?><!ELEMENT following EMPTY><?target ?><?target trailing?>
+
+--------------------------------------------------------------------------------
+
+(extSubset
+  (PI (PITarget))
+  (PI (PITarget))
+  (elementdecl (Name) (contentspec))
+  (PI (PITarget))
+  (PI (PITarget)))

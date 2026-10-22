@@ -47,9 +47,6 @@ examples/lemminx/org.eclipse.lemminx/src/test/resources/validation/syntax/XMLDec
 examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/entities-fmt.xml
 examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/entities-newfmt.xml
 examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/entities.xml
-examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/simple-standalone-fmt.xml
-examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/simple-standalone-newfmt.xml
-examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/simple-standalone.xml
 examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/xml-221279-fmt.xml
 examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/xml-221279.xml
 examples/lemminx/org.eclipse.lemminx/src/test/resources/wtp/testfiles/xml/xml-space-preserve.dtd
