@@ -14,7 +14,7 @@ to its authors and contributors. This is not an official release of that project
 
 This fork builds on the grammars and queries of upstream's version 0.7.0 and generates the parsers with the
 [WillBooster/tree-sitter](https://github.com/WillBooster/tree-sitter) generator. The parsers carry that fork's own ABI
-number (`0x57420007`) and load with that fork's runtime, version 10.0.3 or later in the 10.x series. The XML scanner
+number (`0x57420009`) and load with that fork's runtime, version 13.0.0 or later in the 13.x series. The XML scanner
 adapts to the generated array API with the change upstream itself made after 0.7.0. The parsers differ from
 upstream's 0.7.0 packages in these ways:
 
@@ -36,7 +36,7 @@ parses external DTD files.
 ## Usage
 
 The npm package ships `tree-sitter-xml.wasm` and `tree-sitter-dtd.wasm` for
-[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 10.0.3 or later in the 10.x series, which runs in Node.js, Bun, browsers, and Cloudflare Workers.
+[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 13.0.0 or later in the 13.x series, which runs in Node.js, Bun, browsers, and Cloudflare Workers.
 In Node.js and Bun, load the grammar from its path:
 
 ```js
@@ -85,8 +85,8 @@ fuzzed with:
 
 ```toml
 [dependencies]
-tree-sitter = { package = "willbooster-tree-sitter", version = "10.0.3" }
-tree-sitter-xml = { package = "willbooster-tree-sitter-xml", version = "3" }
+tree-sitter = { package = "willbooster-tree-sitter", version = "13.0.0" }
+tree-sitter-xml = { package = "willbooster-tree-sitter-xml", version = "4" }
 ```
 
 ```rust
