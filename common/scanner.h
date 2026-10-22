@@ -105,24 +105,18 @@ static bool scan_pi_target(TSLexer *lexer, const bool *valid_symbols) {
 }
 
 static bool scan_pi_content(TSLexer *lexer) {
-    while (!lexer->eof(lexer) && lexer->lookahead != '\n' && lexer->lookahead != '?')
-        advance(lexer);
-
-    if (lexer->lookahead != '?')
-        return false;
-
-    lexer->mark_end(lexer);
-    advance(lexer);
-
-    if (lexer->lookahead == '>') {
-        advance(lexer);
-        while (lexer->lookahead == ' ')
+    while (!lexer->eof(lexer)) {
+        if (lexer->lookahead == '?') {
+            lexer->mark_end(lexer);
             advance(lexer);
-        advance_if_eq(lexer, '\n');
-        lexer->result_symbol = PI_CONTENT;
-        return true;
+            if (lexer->lookahead == '>') {
+                lexer->result_symbol = PI_CONTENT;
+                return true;
+            }
+        } else {
+            advance(lexer);
+        }
     }
-
     return false;
 }
 

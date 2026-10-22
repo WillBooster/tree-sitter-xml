@@ -9,7 +9,7 @@
 #define TS_GENERATION_PROFILED 1
 #define LANGUAGE_VERSION 0x57420007
 #define STATE_COUNT 338
-#define LARGE_STATE_COUNT 67
+#define LARGE_STATE_COUNT 69
 #define LEX_STATE_COUNT 138
 #define SYMBOL_COUNT 111
 #define ALIAS_COUNT 1
@@ -1031,12 +1031,12 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
   [162] = 162,
   [163] = 163,
   [164] = 164,
-  [165] = 15,
+  [165] = 165,
   [166] = 166,
   [167] = 167,
   [168] = 168,
   [169] = 169,
-  [170] = 170,
+  [170] = 15,
   [171] = 171,
   [172] = 172,
   [173] = 173,
@@ -1045,37 +1045,37 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
   [176] = 176,
   [177] = 177,
   [178] = 178,
-  [179] = 15,
+  [179] = 179,
   [180] = 180,
   [181] = 181,
   [182] = 182,
-  [183] = 183,
+  [183] = 15,
   [184] = 184,
   [185] = 185,
   [186] = 186,
   [187] = 187,
   [188] = 188,
   [189] = 189,
-  [190] = 189,
-  [191] = 181,
-  [192] = 182,
-  [193] = 15,
-  [194] = 194,
-  [195] = 195,
-  [196] = 196,
-  [197] = 197,
+  [190] = 190,
+  [191] = 191,
+  [192] = 192,
+  [193] = 193,
+  [194] = 193,
+  [195] = 185,
+  [196] = 186,
+  [197] = 15,
   [198] = 198,
   [199] = 199,
-  [200] = 189,
-  [201] = 181,
-  [202] = 182,
-  [203] = 189,
-  [204] = 181,
-  [205] = 182,
-  [206] = 206,
-  [207] = 207,
-  [208] = 208,
-  [209] = 209,
+  [200] = 200,
+  [201] = 201,
+  [202] = 202,
+  [203] = 203,
+  [204] = 193,
+  [205] = 185,
+  [206] = 186,
+  [207] = 193,
+  [208] = 185,
+  [209] = 186,
   [210] = 210,
   [211] = 211,
   [212] = 212,
@@ -1139,10 +1139,10 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
   [270] = 270,
   [271] = 271,
   [272] = 272,
-  [273] = 16,
+  [273] = 273,
   [274] = 274,
   [275] = 275,
-  [276] = 276,
+  [276] = 16,
   [277] = 277,
   [278] = 278,
   [279] = 279,
@@ -1167,10 +1167,10 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
   [298] = 298,
   [299] = 299,
   [300] = 300,
-  [301] = 16,
-  [302] = 17,
-  [303] = 303,
-  [304] = 304,
+  [301] = 301,
+  [302] = 302,
+  [303] = 16,
+  [304] = 17,
   [305] = 305,
   [306] = 306,
   [307] = 307,
@@ -1185,14 +1185,14 @@ static const TSStateId ts_primary_state_ids[STATE_COUNT] = {
   [316] = 316,
   [317] = 317,
   [318] = 318,
-  [319] = 308,
-  [320] = 310,
+  [319] = 309,
+  [320] = 311,
   [321] = 16,
-  [322] = 308,
-  [323] = 310,
+  [322] = 309,
+  [323] = 311,
   [324] = 324,
-  [325] = 308,
-  [326] = 310,
+  [325] = 309,
+  [326] = 311,
   [327] = 316,
   [328] = 317,
   [329] = 318,
@@ -2538,40 +2538,40 @@ static const TSLexerMode ts_lex_modes[] = {
   [6] = {.lex_state = 5, .lex_state_after_extra = 5, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
   [7] = {.lex_state = 6, .lex_state_after_extra = 6, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
   [8] = {.lex_state = 0, .lex_state_after_extra = 0, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
-  [9] = {.lex_state = 8, .lex_state_after_extra = 8, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
-  [10] = {.lex_state = 7, .lex_state_after_extra = 7, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
-  [11] = {.lex_state = 9, .lex_state_after_extra = 9, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
-  [12] = {.lex_state = 1, .lex_state_after_extra = 1, .external_lex_state = 3, .external_lex_state_after_extra = 3, .reserved_word_set_id = 0},
-  [13] = {.lex_state = 14, .lex_state_after_extra = 14, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
-  [14] = {.lex_state = 41, .lex_state_after_extra = 41, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
-  [15] = {.lex_state = 43, .lex_state_after_extra = 43, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
-  [16] = {.lex_state = 44, .lex_state_after_extra = 44, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
-  [17] = {.lex_state = 0, .lex_state_after_extra = 0, .external_lex_state = 3, .external_lex_state_after_extra = 3, .reserved_word_set_id = 0},
-  [18] = {.lex_state = 0, .lex_state_after_extra = 0, .external_lex_state = 4, .external_lex_state_after_extra = 4, .reserved_word_set_id = 0},
+  [9] = {.lex_state = 0, .lex_state_after_extra = 0, .external_lex_state = 4, .external_lex_state_after_extra = 4, .reserved_word_set_id = 0},
+  [10] = {.lex_state = 0, .lex_state_after_extra = 0, .external_lex_state = 3, .external_lex_state_after_extra = 3, .reserved_word_set_id = 0},
+  [11] = {.lex_state = 8, .lex_state_after_extra = 8, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
+  [12] = {.lex_state = 7, .lex_state_after_extra = 7, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
+  [13] = {.lex_state = 9, .lex_state_after_extra = 9, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
+  [14] = {.lex_state = 1, .lex_state_after_extra = 1, .external_lex_state = 3, .external_lex_state_after_extra = 3, .reserved_word_set_id = 0},
+  [15] = {.lex_state = 14, .lex_state_after_extra = 14, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
+  [16] = {.lex_state = 41, .lex_state_after_extra = 41, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
+  [17] = {.lex_state = 43, .lex_state_after_extra = 43, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
+  [18] = {.lex_state = 44, .lex_state_after_extra = 44, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
   [19] = {.lex_state = 40, .lex_state_after_extra = 40, .external_lex_state = 0, .external_lex_state_after_extra = 0, .reserved_word_set_id = 0},
 };
 
 static const uint16_t ts_lex_mode_ids[STATE_COUNT] = {
-  0, 1, 2, 2, 2, 1, 1, 3, 3, 3, 3, 3, 4, 4, 4, 3, 
+  0, 1, 1, 2, 2, 2, 1, 3, 3, 3, 3, 3, 4, 4, 4, 3, 
   3, 3, 5, 5, 5, 1, 3, 3, 3, 3, 3, 3, 3, 3, 3, 6, 
   3, 3, 3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 7, 7, 7, 3, 
-  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 1, 3, 3, 
-  3, 3, 3, 8, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 1, 
-  3, 3, 3, 3, 3, 3, 1, 3, 4, 3, 3, 3, 3, 3, 3, 3, 
-  3, 3, 3, 3, 3, 3, 9, 3, 1, 5, 7, 1, 1, 3, 3, 3, 
-  3, 3, 10, 3, 3, 3, 3, 3, 10, 3, 3, 3, 3, 3, 3, 1, 
-  3, 3, 3, 3, 3, 3, 3, 11, 3, 3, 3, 3, 3, 3, 3, 3, 
-  3, 3, 3, 10, 10, 3, 3, 3, 3, 1, 1, 1, 1, 1, 1, 3, 
-  3, 3, 3, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 3, 
-  3, 3, 3, 7, 1, 5, 5, 1, 3, 3, 3, 3, 3, 5, 7, 7, 
-  7, 5, 1, 3, 3, 3, 3, 3, 2, 2, 2, 4, 4, 4, 3, 3, 
-  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-  6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-  3, 3, 3, 12, 3, 6, 3, 3, 3, 6, 3, 3, 3, 3, 3, 13, 
-  3, 6, 3, 3, 3, 3, 6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
-  3, 3, 3, 3, 3, 14, 3, 3, 10, 3, 14, 3, 3, 3, 6, 3, 
-  3, 3, 3, 3, 3, 6, 3, 3, 15, 3, 3, 16, 3, 3, 3, 17, 
-  3, 3, 3, 3, 3, 3, 3, 18, 3, 3, 3, 10, 3, 6, 19, 3, 
+  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 8, 3, 2, 1, 3, 
+  3, 3, 3, 3, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 1, 
+  1, 3, 3, 3, 3, 3, 3, 1, 6, 9, 6, 10, 3, 4, 3, 3, 
+  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 11, 3, 1, 5, 7, 
+  1, 1, 3, 3, 3, 3, 3, 12, 3, 3, 3, 3, 3, 12, 3, 3, 
+  3, 3, 3, 3, 1, 3, 3, 3, 3, 3, 3, 3, 13, 3, 3, 3, 
+  3, 3, 3, 3, 3, 3, 3, 3, 12, 12, 3, 3, 3, 3, 1, 1, 
+  1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 1, 1, 1, 3, 1, 1, 
+  1, 1, 1, 3, 3, 3, 3, 7, 1, 5, 5, 1, 3, 3, 3, 3, 
+  3, 5, 7, 7, 7, 5, 1, 3, 3, 3, 3, 3, 2, 2, 2, 4, 
+  4, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
+  3, 3, 3, 3, 6, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 
+  3, 3, 3, 3, 3, 3, 3, 14, 3, 6, 3, 3, 3, 3, 3, 3, 
+  3, 3, 15, 3, 6, 3, 3, 3, 3, 6, 3, 3, 3, 3, 3, 3, 
+  3, 3, 3, 3, 3, 3, 3, 3, 16, 3, 3, 12, 3, 16, 3, 3, 
+  3, 3, 3, 3, 3, 3, 3, 6, 3, 3, 17, 3, 3, 18, 3, 3, 
+  3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 12, 3, 6, 19, 3, 
   3, 3, 3, 3, 3, 3, 3, 3, 6, 19, 3, 3, 6, 19, 3, 3, 
   6, 19, 
 };
@@ -2636,21 +2636,21 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_Comment] = ACTIONS(1),
   },
   [STATE(1)] = {
-    [sym_extSubset] = STATE(67),
-    [sym_TextDecl] = STATE(158),
-    [sym__extSubsetDecl] = STATE(5),
-    [sym_conditionalSect] = STATE(5),
-    [sym__markupdecl] = STATE(5),
-    [sym__DeclSep] = STATE(5),
+    [sym_extSubset] = STATE(59),
+    [sym_TextDecl] = STATE(163),
+    [sym__extSubsetDecl] = STATE(2),
+    [sym_conditionalSect] = STATE(2),
+    [sym__markupdecl] = STATE(2),
+    [sym__DeclSep] = STATE(2),
     [sym_elementdecl] = STATE(21),
     [sym_AttlistDecl] = STATE(21),
     [sym__EntityDecl] = STATE(21),
-    [sym_GEDecl] = STATE(61),
-    [sym_PEDecl] = STATE(61),
+    [sym_GEDecl] = STATE(62),
+    [sym_PEDecl] = STATE(62),
     [sym_NotationDecl] = STATE(21),
-    [sym_PEReference] = STATE(5),
+    [sym_PEReference] = STATE(2),
     [sym_PI] = STATE(21),
-    [aux_sym_extSubset_repeat1] = STATE(5),
+    [aux_sym_extSubset_repeat1] = STATE(2),
     [anon_sym_LT_QMARK] = ACTIONS(3),
     [anon_sym_LT_BANG_LBRACK] = ACTIONS(5),
     [anon_sym_LT_BANG] = ACTIONS(7),
@@ -2659,35 +2659,6 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_Comment] = ACTIONS(13),
   },
   [STATE(2)] = {
-    [sym__Reference] = STATE(3),
-    [sym_EntityRef] = STATE(200),
-    [sym_CharRef] = STATE(200),
-    [aux_sym_AttValue_repeat1] = STATE(4),
-    [anon_sym_DQUOTE] = ACTIONS(15),
-    [anon_sym_AMP] = ACTIONS(17),
-    [anon_sym_AMP_POUND] = ACTIONS(19),
-    [anon_sym_AMP_POUNDx] = ACTIONS(21),
-    [aux_sym_AttValue_token1] = ACTIONS(23),
-  },
-  [STATE(3)] = {
-    [anon_sym_DQUOTE] = ACTIONS(25),
-    [anon_sym_AMP] = ACTIONS(27),
-    [anon_sym_AMP_POUND] = ACTIONS(27),
-    [anon_sym_AMP_POUNDx] = ACTIONS(25),
-    [aux_sym_AttValue_token1] = ACTIONS(25),
-  },
-  [STATE(4)] = {
-    [sym__Reference] = STATE(3),
-    [sym_EntityRef] = STATE(200),
-    [sym_CharRef] = STATE(200),
-    [aux_sym_AttValue_repeat1] = STATE(4),
-    [anon_sym_DQUOTE] = ACTIONS(29),
-    [anon_sym_AMP] = ACTIONS(31),
-    [anon_sym_AMP_POUND] = ACTIONS(34),
-    [anon_sym_AMP_POUNDx] = ACTIONS(37),
-    [aux_sym_AttValue_token1] = ACTIONS(40),
-  },
-  [STATE(5)] = {
     [sym__extSubsetDecl] = STATE(6),
     [sym_conditionalSect] = STATE(6),
     [sym__markupdecl] = STATE(6),
@@ -2695,19 +2666,48 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_elementdecl] = STATE(21),
     [sym_AttlistDecl] = STATE(21),
     [sym__EntityDecl] = STATE(21),
-    [sym_GEDecl] = STATE(61),
-    [sym_PEDecl] = STATE(61),
+    [sym_GEDecl] = STATE(62),
+    [sym_PEDecl] = STATE(62),
     [sym_NotationDecl] = STATE(21),
     [sym_PEReference] = STATE(6),
     [sym_PI] = STATE(21),
     [aux_sym_extSubset_repeat1] = STATE(6),
-    [ts_builtin_sym_end] = ACTIONS(43),
-    [anon_sym_LT_QMARK] = ACTIONS(45),
+    [ts_builtin_sym_end] = ACTIONS(15),
+    [anon_sym_LT_QMARK] = ACTIONS(17),
     [anon_sym_LT_BANG_LBRACK] = ACTIONS(5),
     [anon_sym_LT_BANG] = ACTIONS(7),
     [anon_sym_PERCENT] = ACTIONS(9),
-    [sym__S] = ACTIONS(47),
+    [sym__S] = ACTIONS(19),
     [sym_Comment] = ACTIONS(13),
+  },
+  [STATE(3)] = {
+    [sym__Reference] = STATE(4),
+    [sym_EntityRef] = STATE(204),
+    [sym_CharRef] = STATE(204),
+    [aux_sym_AttValue_repeat1] = STATE(5),
+    [anon_sym_DQUOTE] = ACTIONS(21),
+    [anon_sym_AMP] = ACTIONS(23),
+    [anon_sym_AMP_POUND] = ACTIONS(25),
+    [anon_sym_AMP_POUNDx] = ACTIONS(27),
+    [aux_sym_AttValue_token1] = ACTIONS(29),
+  },
+  [STATE(4)] = {
+    [anon_sym_DQUOTE] = ACTIONS(31),
+    [anon_sym_AMP] = ACTIONS(33),
+    [anon_sym_AMP_POUND] = ACTIONS(33),
+    [anon_sym_AMP_POUNDx] = ACTIONS(31),
+    [aux_sym_AttValue_token1] = ACTIONS(31),
+  },
+  [STATE(5)] = {
+    [sym__Reference] = STATE(4),
+    [sym_EntityRef] = STATE(204),
+    [sym_CharRef] = STATE(204),
+    [aux_sym_AttValue_repeat1] = STATE(5),
+    [anon_sym_DQUOTE] = ACTIONS(35),
+    [anon_sym_AMP] = ACTIONS(37),
+    [anon_sym_AMP_POUND] = ACTIONS(40),
+    [anon_sym_AMP_POUNDx] = ACTIONS(43),
+    [aux_sym_AttValue_token1] = ACTIONS(46),
   },
   [STATE(6)] = {
     [sym__extSubsetDecl] = STATE(6),
@@ -2717,8 +2717,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym_elementdecl] = STATE(21),
     [sym_AttlistDecl] = STATE(21),
     [sym__EntityDecl] = STATE(21),
-    [sym_GEDecl] = STATE(61),
-    [sym_PEDecl] = STATE(61),
+    [sym_GEDecl] = STATE(62),
+    [sym_PEDecl] = STATE(62),
     [sym_NotationDecl] = STATE(21),
     [sym_PEReference] = STATE(6),
     [sym_PI] = STATE(21),
@@ -2758,9 +2758,9 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym__S] = ACTIONS(78),
   },
   [STATE(10)] = {
-    [sym_PEReference] = STATE(90),
+    [sym_PEReference] = STATE(95),
     [aux_sym__choice_repeat1] = STATE(9),
-    [aux_sym__choice_repeat2] = STATE(90),
+    [aux_sym__choice_repeat2] = STATE(95),
     [anon_sym_PIPE] = ACTIONS(81),
     [anon_sym_RPAREN] = ACTIONS(83),
     [anon_sym_COMMA] = ACTIONS(81),
@@ -2778,10 +2778,10 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   },
   [STATE(12)] = {
     [sym__Reference] = STATE(13),
-    [sym_EntityRef] = STATE(203),
-    [sym_CharRef] = STATE(203),
+    [sym_EntityRef] = STATE(207),
+    [sym_CharRef] = STATE(207),
     [aux_sym_AttValue_repeat2] = STATE(14),
-    [anon_sym_SQUOTE] = ACTIONS(15),
+    [anon_sym_SQUOTE] = ACTIONS(21),
     [anon_sym_AMP] = ACTIONS(95),
     [anon_sym_AMP_POUND] = ACTIONS(97),
     [anon_sym_AMP_POUNDx] = ACTIONS(99),
@@ -2796,8 +2796,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   },
   [STATE(14)] = {
     [sym__Reference] = STATE(13),
-    [sym_EntityRef] = STATE(203),
-    [sym_CharRef] = STATE(203),
+    [sym_EntityRef] = STATE(207),
+    [sym_CharRef] = STATE(207),
     [aux_sym_AttValue_repeat2] = STATE(14),
     [anon_sym_SQUOTE] = ACTIONS(107),
     [anon_sym_AMP] = ACTIONS(109),
@@ -2827,8 +2827,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [STATE(18)] = {
     [sym_PEReference] = STATE(19),
     [sym__Reference] = STATE(19),
-    [sym_EntityRef] = STATE(189),
-    [sym_CharRef] = STATE(189),
+    [sym_EntityRef] = STATE(193),
+    [sym_CharRef] = STATE(193),
     [aux_sym_EntityValue_repeat1] = STATE(20),
     [anon_sym_PERCENT] = ACTIONS(127),
     [anon_sym_DQUOTE] = ACTIONS(129),
@@ -2848,8 +2848,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [STATE(20)] = {
     [sym_PEReference] = STATE(19),
     [sym__Reference] = STATE(19),
-    [sym_EntityRef] = STATE(189),
-    [sym_CharRef] = STATE(189),
+    [sym_EntityRef] = STATE(193),
+    [sym_CharRef] = STATE(193),
     [aux_sym_EntityValue_repeat1] = STATE(20),
     [anon_sym_PERCENT] = ACTIONS(143),
     [anon_sym_DQUOTE] = ACTIONS(146),
@@ -2899,7 +2899,7 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [STATE(27)] = {
     [sym__cp] = STATE(47),
     [sym__choice] = STATE(7),
-    [sym_PEReference] = STATE(87),
+    [sym_PEReference] = STATE(92),
     [sym_Name] = ACTIONS(89),
     [anon_sym_LPAREN] = ACTIONS(91),
     [anon_sym_POUNDPCDATA] = ACTIONS(182),
@@ -2924,8 +2924,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [STATE(31)] = {
     [sym__AttType] = STATE(32),
     [sym__EnumeratedType] = STATE(34),
-    [sym_NotationType] = STATE(95),
-    [sym_Enumeration] = STATE(95),
+    [sym_NotationType] = STATE(100),
+    [sym_Enumeration] = STATE(100),
     [sym_PEReference] = STATE(34),
     [anon_sym_LPAREN] = ACTIONS(196),
     [sym_StringType] = ACTIONS(198),
@@ -3006,8 +3006,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [STATE(44)] = {
     [sym_PEReference] = STATE(45),
     [sym__Reference] = STATE(45),
-    [sym_EntityRef] = STATE(190),
-    [sym_CharRef] = STATE(190),
+    [sym_EntityRef] = STATE(194),
+    [sym_CharRef] = STATE(194),
     [aux_sym_EntityValue_repeat2] = STATE(46),
     [anon_sym_PERCENT] = ACTIONS(240),
     [anon_sym_SQUOTE] = ACTIONS(129),
@@ -3027,8 +3027,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [STATE(46)] = {
     [sym_PEReference] = STATE(45),
     [sym__Reference] = STATE(45),
-    [sym_EntityRef] = STATE(190),
-    [sym_CharRef] = STATE(190),
+    [sym_EntityRef] = STATE(194),
+    [sym_CharRef] = STATE(194),
     [aux_sym_EntityValue_repeat2] = STATE(46),
     [anon_sym_PERCENT] = ACTIONS(254),
     [anon_sym_SQUOTE] = ACTIONS(257),
@@ -3038,9 +3038,9 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_AMP_POUNDx] = ACTIONS(268),
   },
   [STATE(47)] = {
-    [sym_PEReference] = STATE(129),
+    [sym_PEReference] = STATE(134),
     [aux_sym__choice_repeat1] = STATE(10),
-    [aux_sym__choice_repeat2] = STATE(129),
+    [aux_sym__choice_repeat2] = STATE(134),
     [anon_sym_PIPE] = ACTIONS(81),
     [anon_sym_RPAREN] = ACTIONS(271),
     [anon_sym_COMMA] = ACTIONS(81),
@@ -3055,9 +3055,9 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym__S] = ACTIONS(275),
   },
   [STATE(49)] = {
-    [sym_PEReference] = STATE(145),
-    [aux_sym_Mixed_repeat1] = STATE(62),
-    [aux_sym_Mixed_repeat2] = STATE(208),
+    [sym_PEReference] = STATE(150),
+    [aux_sym_Mixed_repeat1] = STATE(63),
+    [aux_sym_Mixed_repeat2] = STATE(212),
     [anon_sym_PIPE] = ACTIONS(279),
     [anon_sym_RPAREN] = ACTIONS(281),
     [anon_sym_PERCENT] = ACTIONS(85),
@@ -3083,9 +3083,9 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [sym__S] = ACTIONS(289),
   },
   [STATE(53)] = {
-    [sym_PEReference] = STATE(145),
+    [sym_PEReference] = STATE(150),
     [aux_sym_Mixed_repeat1] = STATE(49),
-    [aux_sym_Mixed_repeat2] = STATE(207),
+    [aux_sym_Mixed_repeat2] = STATE(211),
     [anon_sym_PIPE] = ACTIONS(279),
     [anon_sym_RPAREN] = ACTIONS(291),
     [anon_sym_PERCENT] = ACTIONS(85),
@@ -3121,943 +3121,960 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [anon_sym_PERCENT] = ACTIONS(85),
   },
   [STATE(59)] = {
-    [sym__S] = ACTIONS(307),
+    [ts_builtin_sym_end] = ACTIONS(307),
   },
   [STATE(60)] = {
-    [sym__Reference] = STATE(3),
-    [sym_EntityRef] = STATE(200),
-    [sym_CharRef] = STATE(200),
-    [aux_sym_AttValue_repeat1] = STATE(2),
-    [anon_sym_DQUOTE] = ACTIONS(309),
-    [anon_sym_AMP] = ACTIONS(17),
-    [anon_sym_AMP_POUND] = ACTIONS(19),
-    [anon_sym_AMP_POUNDx] = ACTIONS(21),
-    [aux_sym_AttValue_token1] = ACTIONS(23),
+    [sym__S] = ACTIONS(309),
   },
   [STATE(61)] = {
-    [ts_builtin_sym_end] = ACTIONS(311),
-    [anon_sym_LT_QMARK] = ACTIONS(311),
-    [anon_sym_LT_BANG_LBRACK] = ACTIONS(311),
-    [anon_sym_RBRACK_RBRACK_GT] = ACTIONS(311),
-    [anon_sym_LT_BANG] = ACTIONS(313),
-    [anon_sym_PERCENT] = ACTIONS(311),
-    [sym__S] = ACTIONS(311),
-    [sym_Comment] = ACTIONS(311),
+    [sym__Reference] = STATE(4),
+    [sym_EntityRef] = STATE(204),
+    [sym_CharRef] = STATE(204),
+    [aux_sym_AttValue_repeat1] = STATE(3),
+    [anon_sym_DQUOTE] = ACTIONS(311),
+    [anon_sym_AMP] = ACTIONS(23),
+    [anon_sym_AMP_POUND] = ACTIONS(25),
+    [anon_sym_AMP_POUNDx] = ACTIONS(27),
+    [aux_sym_AttValue_token1] = ACTIONS(29),
   },
   [STATE(62)] = {
-    [aux_sym_Mixed_repeat1] = STATE(62),
-    [anon_sym_PIPE] = ACTIONS(315),
-    [anon_sym_RPAREN] = ACTIONS(318),
-    [anon_sym_PERCENT] = ACTIONS(318),
-    [sym__S] = ACTIONS(320),
+    [ts_builtin_sym_end] = ACTIONS(313),
+    [anon_sym_LT_QMARK] = ACTIONS(313),
+    [anon_sym_LT_BANG_LBRACK] = ACTIONS(313),
+    [anon_sym_RBRACK_RBRACK_GT] = ACTIONS(313),
+    [anon_sym_LT_BANG] = ACTIONS(315),
+    [anon_sym_PERCENT] = ACTIONS(313),
+    [sym__S] = ACTIONS(313),
+    [sym_Comment] = ACTIONS(313),
   },
   [STATE(63)] = {
-    [sym_PEReference] = STATE(64),
-    [sym_Name] = ACTIONS(323),
-    [anon_sym_PERCENT] = ACTIONS(325),
+    [aux_sym_Mixed_repeat1] = STATE(63),
+    [anon_sym_PIPE] = ACTIONS(317),
+    [anon_sym_RPAREN] = ACTIONS(320),
+    [anon_sym_PERCENT] = ACTIONS(320),
+    [sym__S] = ACTIONS(322),
   },
   [STATE(64)] = {
-    [sym__S] = ACTIONS(327),
+    [sym_PEReference] = STATE(65),
+    [sym_Name] = ACTIONS(325),
+    [anon_sym_PERCENT] = ACTIONS(327),
   },
   [STATE(65)] = {
-    [sym_EntityValue] = STATE(124),
-    [sym_ExternalID] = STATE(96),
-    [anon_sym_DQUOTE] = ACTIONS(329),
-    [anon_sym_SQUOTE] = ACTIONS(331),
-    [anon_sym_SYSTEM] = ACTIONS(333),
-    [anon_sym_PUBLIC] = ACTIONS(335),
+    [sym__S] = ACTIONS(329),
   },
   [STATE(66)] = {
-    [sym__S] = ACTIONS(337),
+    [sym_EntityValue] = STATE(129),
+    [sym_ExternalID] = STATE(101),
+    [anon_sym_DQUOTE] = ACTIONS(331),
+    [anon_sym_SQUOTE] = ACTIONS(333),
+    [anon_sym_SYSTEM] = ACTIONS(335),
+    [anon_sym_PUBLIC] = ACTIONS(337),
+  },
+  [STATE(67)] = {
+    [sym__S] = ACTIONS(339),
+  },
+  [STATE(68)] = {
+    [sym__extSubsetDecl] = STATE(6),
+    [sym_conditionalSect] = STATE(6),
+    [sym__markupdecl] = STATE(6),
+    [sym__DeclSep] = STATE(6),
+    [sym_elementdecl] = STATE(21),
+    [sym_AttlistDecl] = STATE(21),
+    [sym__EntityDecl] = STATE(21),
+    [sym_GEDecl] = STATE(62),
+    [sym_PEDecl] = STATE(62),
+    [sym_NotationDecl] = STATE(21),
+    [sym_PEReference] = STATE(6),
+    [sym_PI] = STATE(21),
+    [aux_sym_extSubset_repeat1] = STATE(6),
+    [anon_sym_LT_QMARK] = ACTIONS(17),
+    [anon_sym_LT_BANG_LBRACK] = ACTIONS(5),
+    [anon_sym_RBRACK_RBRACK_GT] = ACTIONS(341),
+    [anon_sym_LT_BANG] = ACTIONS(7),
+    [anon_sym_PERCENT] = ACTIONS(9),
+    [sym__S] = ACTIONS(19),
+    [sym_Comment] = ACTIONS(13),
   },
 };
 
 static const uint16_t ts_small_parse_table[] = {
   [0] =
-    1, 0, 339, 
-  [3] =
-    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 45, 5, 
-    341, 7, 9, 47, 13, 6, 6, 6, 6, 21, 21, 21, 61, 61, 21, 6, 
-    21, 6, 
-  [37] =
     2, 345, 1, 10, 343, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [50] =
+  [13] =
     2, 349, 1, 10, 347, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [63] =
+  [26] =
     7, 1, 89, 15, 91, 31, 85, 38, 351, 71, 40, 72, 7, 86, 7, 
-  [78] =
-    6, 1, 89, 15, 91, 31, 85, 71, 89, 72, 7, 86, 7, 
-  [91] =
-    5, 17, 353, 18, 355, 22, 353, 31, 85, 86, 117, 
-  [102] =
+  [41] =
+    6, 1, 89, 15, 91, 31, 85, 71, 94, 72, 7, 86, 7, 
+  [54] =
+    5, 17, 353, 18, 355, 22, 353, 31, 85, 86, 122, 
+  [65] =
     4, 1, 357, 31, 85, 38, 359, 86, 75, 
-  [111] =
-    1, 318, 4, 17, 18, 31, 38, 
-  [118] =
+  [74] =
+    1, 320, 4, 17, 18, 31, 38, 
+  [81] =
     1, 12, 361, 
-  [121] =
+  [84] =
     3, 32, 210, 34, 212, 90, 51, 
-  [128] =
+  [91] =
     1, 38, 363, 
-  [131] =
+  [94] =
     2, 367, 1, 10, 365, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [144] =
-    4, 1, 369, 31, 85, 38, 371, 86, 210, 
+  [107] =
+    2, 371, 1, 10, 369, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [120] =
+    4, 1, 373, 31, 85, 38, 375, 86, 214, 
+  [129] =
+    3, 1, 377, 31, 85, 86, 83, 
+  [136] =
+    1, 379, 4, 17, 18, 31, 38, 
+  [143] =
+    2, 12, 381, 38, 381, 
+  [148] =
+    2, 12, 383, 38, 385, 
   [153] =
-    3, 1, 373, 31, 85, 86, 82, 
-  [160] =
-    1, 375, 4, 17, 18, 31, 38, 
-  [167] =
-    2, 12, 377, 38, 377, 
-  [172] =
-    2, 12, 379, 38, 381, 
+    1, 12, 387, 
+  [156] =
+    2, 391, 1, 10, 389, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [169] =
+    2, 4, 393, 38, 395, 
+  [174] =
+    1, 59, 397, 
   [177] =
-    1, 12, 383, 
+    1, 4, 399, 
   [180] =
-    2, 387, 1, 10, 385, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [193] =
-    5, 49, 1, 100, 145, 1, 86, 207, 1, 101, 71, 3, 19, 20, 21, 69, 
+    1, 58, 401, 
+  [183] =
+    5, 49, 1, 100, 150, 1, 86, 211, 1, 101, 71, 3, 19, 20, 21, 69, 
     5, 17, 18, 22, 31, 38, 
-  [215] =
-    9, 34, 309, 40, 95, 41, 97, 43, 99, 46, 101, 87, 13, 88, 203, 89, 
-    203, 110, 12, 
-  [234] =
-    1, 389, 5, 17, 18, 22, 31, 38, 
-  [242] =
-    5, 18, 355, 31, 85, 38, 391, 86, 130, 103, 130, 
-  [253] =
+  [205] =
+    9, 34, 311, 40, 95, 41, 97, 43, 99, 46, 101, 87, 13, 88, 207, 89, 
+    207, 110, 12, 
+  [224] =
+    1, 403, 5, 17, 18, 22, 31, 38, 
+  [232] =
+    5, 18, 355, 31, 85, 38, 405, 86, 135, 103, 135, 
+  [243] =
     0, 3, 4096, 32894, 64, 
-  [258] =
-    1, 393, 253, 0, 
-  [262] =
-    5, 17, 395, 18, 397, 31, 85, 86, 145, 101, 211, 
-  [273] =
-    4, 17, 399, 18, 401, 38, 403, 106, 116, 
-  [282] =
-    2, 12, 405, 38, 405, 
-  [287] =
-    2, 12, 407, 38, 407, 
-  [292] =
-    3, 12, 409, 38, 411, 84, 142, 
-  [299] =
-    2, 12, 413, 38, 413, 
-  [304] =
-    2, 12, 415, 38, 415, 
-  [309] =
-    2, 12, 417, 38, 417, 
-  [314] =
+  [248] =
+    1, 407, 243, 0, 
+  [252] =
+    5, 17, 409, 18, 411, 31, 85, 86, 150, 101, 215, 
+  [263] =
+    4, 17, 413, 18, 415, 38, 417, 106, 121, 
+  [272] =
     2, 12, 419, 38, 419, 
-  [319] =
-    1, 32, 421, 
-  [322] =
-    1, 49, 423, 
-  [325] =
-    1, 19, 425, 
-  [328] =
-    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 45, 5, 
-    427, 7, 9, 429, 13, 68, 68, 68, 68, 21, 21, 21, 61, 61, 21, 68, 
+  [277] =
+    2, 12, 421, 38, 421, 
+  [282] =
+    3, 12, 423, 38, 425, 84, 147, 
+  [289] =
+    2, 12, 427, 38, 427, 
+  [294] =
+    2, 12, 429, 38, 429, 
+  [299] =
+    2, 12, 431, 38, 431, 
+  [304] =
+    2, 12, 433, 38, 433, 
+  [309] =
+    1, 32, 435, 
+  [312] =
+    1, 49, 437, 
+  [315] =
+    1, 19, 439, 
+  [318] =
+    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 17, 5, 
+    441, 7, 9, 443, 13, 68, 68, 68, 68, 21, 21, 21, 62, 62, 21, 68, 
     21, 68, 
-  [362] =
-    11, 31, 127, 32, 431, 33, 131, 40, 133, 41, 135, 43, 137, 86, 19, 87, 
-    19, 88, 189, 89, 189, 107, 18, 
-  [385] =
-    11, 31, 240, 34, 431, 35, 242, 40, 244, 41, 246, 43, 248, 86, 45, 87, 
-    45, 88, 190, 89, 190, 108, 44, 
-  [408] =
-    2, 435, 1, 10, 433, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [421] =
-    2, 439, 1, 10, 437, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [434] =
-    6, 32, 329, 34, 331, 47, 333, 48, 335, 83, 84, 91, 84, 
-  [447] =
-    5, 6, 441, 7, 441, 31, 85, 38, 443, 86, 119, 
-  [458] =
-    5, 17, 353, 18, 83, 22, 353, 31, 85, 86, 117, 
-  [469] =
-    5, 17, 395, 18, 445, 31, 85, 86, 145, 101, 131, 
-  [480] =
-    4, 17, 399, 18, 447, 38, 449, 106, 93, 
-  [489] =
-    2, 38, 451, 39, 453, 
-  [494] =
-    1, 455, 3, 17, 18, 38, 
-  [500] =
-    4, 17, 457, 18, 455, 38, 460, 106, 65535, 
-  [509] =
-    1, 463, 3, 18, 31, 38, 
-  [515] =
-    3, 32, 465, 34, 467, 93, 98, 
+  [352] =
+    11, 31, 127, 32, 445, 33, 131, 40, 133, 41, 135, 43, 137, 86, 19, 87, 
+    19, 88, 193, 89, 193, 107, 18, 
+  [375] =
+    11, 31, 240, 34, 445, 35, 242, 40, 244, 41, 246, 43, 248, 86, 45, 87, 
+    45, 88, 194, 89, 194, 108, 44, 
+  [398] =
+    2, 449, 1, 10, 447, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [411] =
+    2, 453, 1, 10, 451, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [424] =
+    6, 32, 331, 34, 333, 47, 335, 48, 337, 83, 85, 91, 85, 
+  [437] =
+    5, 6, 455, 7, 455, 31, 85, 38, 457, 86, 124, 
+  [448] =
+    5, 17, 353, 18, 83, 22, 353, 31, 85, 86, 122, 
+  [459] =
+    5, 17, 409, 18, 459, 31, 85, 86, 150, 101, 136, 
+  [470] =
+    4, 17, 413, 18, 461, 38, 463, 106, 98, 
+  [479] =
+    2, 38, 465, 39, 467, 
+  [484] =
+    1, 469, 3, 17, 18, 38, 
+  [490] =
+    4, 17, 471, 18, 469, 38, 474, 106, 65535, 
+  [499] =
+    1, 477, 3, 18, 31, 38, 
+  [505] =
+    3, 32, 479, 34, 481, 93, 103, 
+  [512] =
+    2, 8, 483, 38, 485, 
+  [517] =
+    2, 38, 487, 39, 489, 
   [522] =
-    2, 8, 469, 38, 471, 
+    2, 1, 125, 38, 491, 
   [527] =
-    2, 38, 473, 39, 475, 
-  [532] =
-    2, 1, 125, 38, 477, 
-  [537] =
-    1, 1, 479, 
-  [540] =
-    1, 38, 481, 
-  [543] =
-    2, 12, 409, 38, 483, 
-  [548] =
-    1, 38, 485, 
-  [551] =
-    1, 487, 253, 0, 
-  [555] =
-    2, 491, 1, 10, 489, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [568] =
-    7, 1, 89, 15, 91, 31, 85, 38, 493, 71, 47, 72, 7, 86, 7, 
-  [583] =
-    5, 18, 83, 31, 85, 38, 495, 86, 130, 103, 130, 
-  [594] =
-    5, 18, 463, 31, 497, 38, 500, 86, 65535, 103, 65535, 
-  [605] =
-    4, 18, 503, 31, 85, 86, 145, 101, 209, 
-  [614] =
-    3, 12, 417, 19, 505, 38, 417, 
-  [621] =
-    2, 12, 507, 38, 507, 
+    1, 1, 493, 
+  [530] =
+    1, 38, 495, 
+  [533] =
+    2, 12, 423, 38, 497, 
+  [538] =
+    1, 38, 499, 
+  [541] =
+    1, 501, 243, 0, 
+  [545] =
+    2, 505, 1, 10, 503, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [558] =
+    7, 1, 89, 15, 91, 31, 85, 38, 507, 71, 47, 72, 7, 86, 7, 
+  [573] =
+    5, 18, 83, 31, 85, 38, 509, 86, 135, 103, 135, 
+  [584] =
+    5, 18, 477, 31, 511, 38, 514, 86, 65535, 103, 65535, 
+  [595] =
+    4, 18, 517, 31, 85, 86, 150, 101, 213, 
+  [604] =
+    3, 12, 431, 19, 519, 38, 431, 
+  [611] =
+    2, 12, 521, 38, 521, 
+  [616] =
+    3, 32, 523, 34, 525, 94, 143, 
+  [623] =
+    1, 51, 527, 
   [626] =
-    3, 32, 509, 34, 511, 94, 138, 
-  [633] =
-    1, 51, 513, 
-  [636] =
-    1, 32, 515, 
-  [639] =
-    2, 12, 517, 38, 517, 
+    1, 32, 529, 
+  [629] =
+    2, 12, 531, 38, 531, 
+  [634] =
+    1, 38, 533, 
+  [637] =
+    3, 32, 479, 34, 481, 93, 154, 
   [644] =
-    1, 38, 519, 
-  [647] =
-    3, 32, 465, 34, 467, 93, 149, 
-  [654] =
-    3, 1, 521, 31, 85, 86, 141, 
+    3, 1, 535, 31, 85, 86, 146, 
+  [651] =
+    2, 12, 537, 38, 537, 
+  [656] =
+    2, 12, 539, 38, 541, 
   [661] =
-    2, 12, 523, 38, 523, 
-  [666] =
-    2, 12, 525, 38, 527, 
-  [671] =
-    1, 12, 529, 
-  [674] =
-    1, 531, 3, 17, 18, 38, 
-  [680] =
-    3, 18, 533, 31, 533, 38, 535, 
+    1, 12, 543, 
+  [664] =
+    1, 545, 3, 17, 18, 38, 
+  [670] =
+    3, 18, 547, 31, 547, 38, 549, 
+  [677] =
+    2, 17, 551, 18, 415, 
+  [682] =
+    2, 38, 553, 39, 555, 
   [687] =
-    2, 17, 537, 18, 401, 
-  [692] =
-    2, 38, 539, 39, 541, 
-  [697] =
-    1, 39, 543, 
+    1, 39, 557, 
+  [690] =
+    2, 12, 559, 38, 559, 
+  [695] =
+    2, 12, 539, 36, 561, 
   [700] =
-    2, 12, 545, 38, 545, 
-  [705] =
-    2, 12, 525, 36, 547, 
-  [710] =
-    1, 38, 549, 
-  [713] =
-    1, 38, 551, 
-  [716] =
-    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 45, 5, 
-    341, 7, 9, 553, 13, 155, 155, 155, 155, 21, 21, 21, 61, 61, 21, 155, 
-    21, 155, 
-  [750] =
-    1061, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 555, 45, 
-    5, 7, 9, 47, 13, 6, 6, 6, 6, 21, 21, 21, 61, 61, 21, 6, 
+    1, 38, 563, 
+  [703] =
+    1, 38, 565, 
+  [706] =
+    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 17, 5, 
+    341, 7, 9, 567, 13, 160, 160, 160, 160, 21, 21, 21, 62, 62, 21, 160, 
+    21, 160, 
+  [740] =
+    1061, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 569, 17, 
+    5, 7, 9, 19, 13, 6, 6, 6, 6, 21, 21, 21, 62, 62, 21, 6, 
     21, 6, 
-  [784] =
-    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 45, 5, 
-    557, 7, 9, 47, 13, 6, 6, 6, 6, 21, 21, 21, 61, 61, 21, 6, 
+  [774] =
+    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 17, 5, 
+    571, 7, 9, 19, 13, 6, 6, 6, 6, 21, 21, 21, 62, 62, 21, 6, 
     21, 6, 
-  [818] =
-    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 45, 5, 
-    557, 7, 9, 559, 13, 157, 157, 157, 157, 21, 21, 21, 61, 61, 21, 157, 
-    21, 157, 
-  [852] =
-    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 45, 5, 
-    561, 7, 9, 47, 13, 6, 6, 6, 6, 21, 21, 21, 61, 61, 21, 6, 
+  [808] =
+    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 17, 5, 
+    571, 7, 9, 573, 13, 162, 162, 162, 162, 21, 21, 21, 62, 62, 21, 162, 
+    21, 162, 
+  [842] =
+    1572, 0, 32768, 4, 64, 5, 36864, 6, 527, 8, 103, 13, 10, 18, 17, 5, 
+    575, 7, 9, 19, 13, 6, 6, 6, 6, 21, 21, 21, 62, 62, 21, 6, 
     21, 6, 
-  [886] =
-    1060, 0, 32768, 3, 64, 4, 36864, 5, 527, 7, 103, 12, 10, 17, 45, 5, 
-    7, 9, 563, 13, 154, 154, 154, 154, 21, 21, 21, 61, 61, 21, 154, 21, 
-    154, 
-  [919] =
-    5, 131, 1, 101, 145, 1, 86, 176, 1, 100, 71, 3, 19, 20, 21, 69, 
+  [876] =
+    1060, 0, 32768, 3, 64, 4, 36864, 5, 527, 7, 103, 12, 10, 17, 17, 5, 
+    7, 9, 577, 13, 159, 159, 159, 159, 21, 21, 21, 62, 62, 21, 159, 21, 
+    159, 
+  [909] =
+    5, 136, 1, 101, 150, 1, 86, 180, 1, 100, 71, 3, 19, 20, 21, 69, 
     5, 17, 18, 22, 31, 38, 
-  [941] =
-    1, 565, 253, 0, 
-  [945] =
-    1, 567, 253, 0, 
-  [949] =
-    8, 17, 81, 18, 83, 22, 81, 31, 85, 38, 87, 86, 90, 102, 168, 103, 
-    90, 
-  [966] =
-    2, 571, 1, 10, 569, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [979] =
-    2, 575, 1, 10, 573, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [992] =
-    2, 577, 1, 10, 121, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1005] =
-    2, 581, 1, 10, 579, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1018] =
+  [931] =
+    1, 579, 243, 0, 
+  [935] =
+    1, 581, 243, 0, 
+  [939] =
+    8, 17, 81, 18, 83, 22, 81, 31, 85, 38, 87, 86, 95, 102, 173, 103, 
+    95, 
+  [956] =
     2, 585, 1, 10, 583, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1031] =
-    8, 17, 81, 18, 355, 22, 81, 31, 85, 38, 587, 86, 198, 102, 9, 103, 
-    198, 
-  [1048] =
-    2, 591, 1, 10, 589, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1061] =
+  [969] =
+    2, 589, 1, 10, 587, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [982] =
+    2, 591, 1, 10, 121, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [995] =
     2, 595, 1, 10, 593, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1074] =
+  [1008] =
     2, 599, 1, 10, 597, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1087] =
-    2, 603, 1, 10, 601, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1100] =
-    2, 607, 1, 10, 605, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1113] =
-    2, 611, 1, 10, 609, 7, 0, 2, 5, 9, 31, 38, 60, 
-  [1126] =
-    7, 1, 89, 15, 91, 16, 613, 31, 85, 71, 162, 72, 7, 86, 159, 
-  [1141] =
-    7, 17, 279, 18, 397, 31, 85, 38, 615, 86, 145, 100, 62, 101, 211, 
-  [1156] =
-    7, 17, 279, 18, 445, 31, 85, 38, 617, 86, 145, 100, 176, 101, 131, 
-  [1171] =
-    6, 31, 85, 47, 333, 48, 619, 86, 283, 91, 268, 92, 268, 
-  [1184] =
-    2, 577, 2, 40, 41, 121, 4, 31, 34, 35, 43, 
-  [1195] =
-    2, 623, 1, 10, 621, 5, 2, 5, 31, 38, 60, 
-  [1206] =
-    2, 627, 2, 40, 41, 625, 4, 31, 32, 33, 43, 
-  [1217] =
-    2, 631, 2, 40, 41, 629, 4, 31, 32, 33, 43, 
-  [1228] =
-    2, 635, 1, 10, 633, 5, 2, 5, 31, 38, 60, 
-  [1239] =
-    6, 1, 89, 15, 91, 31, 85, 71, 162, 72, 7, 86, 7, 
-  [1252] =
-    6, 1, 637, 17, 639, 31, 85, 38, 641, 86, 256, 105, 187, 
-  [1265] =
-    6, 1, 643, 17, 639, 31, 85, 38, 641, 86, 260, 105, 188, 
-  [1278] =
-    6, 1, 643, 17, 639, 31, 85, 38, 641, 86, 260, 105, 199, 
-  [1291] =
-    6, 1, 645, 17, 639, 31, 85, 38, 641, 86, 265, 105, 199, 
-  [1304] =
-    2, 649, 2, 40, 41, 647, 4, 31, 32, 33, 43, 
-  [1315] =
-    2, 649, 2, 40, 41, 647, 4, 31, 34, 35, 43, 
-  [1326] =
-    2, 627, 2, 40, 41, 625, 4, 31, 34, 35, 43, 
-  [1337] =
-    2, 631, 2, 40, 41, 629, 4, 31, 34, 35, 43, 
-  [1348] =
-    2, 577, 2, 40, 41, 121, 4, 31, 32, 33, 43, 
-  [1359] =
-    2, 653, 1, 10, 651, 5, 2, 5, 31, 38, 60, 
-  [1370] =
-    5, 17, 395, 18, 655, 31, 85, 86, 145, 101, 215, 
-  [1381] =
-    5, 17, 395, 18, 503, 31, 85, 86, 145, 101, 212, 
-  [1392] =
-    5, 17, 353, 18, 657, 22, 353, 31, 85, 86, 117, 
-  [1403] =
-    5, 18, 657, 31, 85, 38, 659, 86, 130, 103, 130, 
-  [1414] =
-    5, 1, 661, 17, 663, 31, 661, 38, 666, 105, 65535, 
-  [1425] =
-    2, 649, 2, 40, 41, 647, 3, 32, 43, 45, 
-  [1435] =
-    2, 627, 2, 40, 41, 625, 3, 32, 43, 45, 
-  [1445] =
-    2, 631, 2, 40, 41, 629, 3, 32, 43, 45, 
-  [1455] =
-    2, 649, 2, 40, 41, 647, 3, 34, 43, 46, 
-  [1465] =
-    2, 627, 2, 40, 41, 625, 3, 34, 43, 46, 
-  [1475] =
-    2, 631, 2, 40, 41, 629, 3, 34, 43, 46, 
-  [1485] =
-    4, 1, 661, 17, 661, 31, 661, 38, 669, 
-  [1494] =
-    4, 18, 445, 31, 85, 86, 145, 101, 209, 
-  [1503] =
-    4, 18, 397, 31, 85, 86, 145, 101, 209, 
-  [1512] =
-    4, 18, 672, 31, 674, 86, 145, 101, 65535, 
-  [1521] =
-    1, 677, 4, 17, 18, 31, 38, 
-  [1528] =
-    4, 18, 655, 31, 85, 86, 145, 101, 209, 
-  [1537] =
-    4, 18, 679, 31, 85, 86, 145, 101, 209, 
-  [1546] =
-    4, 17, 399, 18, 401, 38, 403, 106, 216, 
-  [1555] =
-    4, 1, 681, 31, 85, 38, 683, 86, 185, 
-  [1564] =
-    4, 18, 685, 31, 85, 86, 145, 101, 209, 
-  [1573] =
-    4, 17, 399, 18, 687, 38, 689, 106, 116, 
-  [1582] =
-    4, 1, 691, 17, 691, 31, 691, 38, 693, 
+  [1021] =
+    8, 17, 81, 18, 355, 22, 81, 31, 85, 38, 601, 86, 202, 102, 9, 103, 
+    202, 
+  [1038] =
+    2, 605, 1, 10, 603, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [1051] =
+    2, 609, 1, 10, 607, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [1064] =
+    2, 613, 1, 10, 611, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [1077] =
+    2, 617, 1, 10, 615, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [1090] =
+    2, 621, 1, 10, 619, 7, 0, 2, 5, 9, 31, 38, 60, 
+  [1103] =
+    7, 1, 89, 15, 91, 16, 623, 31, 85, 71, 167, 72, 7, 86, 164, 
+  [1118] =
+    7, 17, 279, 18, 411, 31, 85, 38, 625, 86, 150, 100, 63, 101, 215, 
+  [1133] =
+    7, 17, 279, 18, 459, 31, 85, 38, 627, 86, 150, 100, 180, 101, 136, 
+  [1148] =
+    6, 31, 85, 47, 335, 48, 629, 86, 286, 91, 271, 92, 271, 
+  [1161] =
+    2, 591, 2, 40, 41, 121, 4, 31, 34, 35, 43, 
+  [1172] =
+    2, 633, 1, 10, 631, 5, 2, 5, 31, 38, 60, 
+  [1183] =
+    2, 637, 2, 40, 41, 635, 4, 31, 32, 33, 43, 
+  [1194] =
+    2, 641, 2, 40, 41, 639, 4, 31, 32, 33, 43, 
+  [1205] =
+    2, 645, 1, 10, 643, 5, 2, 5, 31, 38, 60, 
+  [1216] =
+    6, 1, 89, 15, 91, 31, 85, 71, 167, 72, 7, 86, 7, 
+  [1229] =
+    6, 1, 647, 17, 649, 31, 85, 38, 651, 86, 259, 105, 191, 
+  [1242] =
+    6, 1, 653, 17, 649, 31, 85, 38, 651, 86, 263, 105, 192, 
+  [1255] =
+    6, 1, 653, 17, 649, 31, 85, 38, 651, 86, 263, 105, 203, 
+  [1268] =
+    6, 1, 655, 17, 649, 31, 85, 38, 651, 86, 268, 105, 203, 
+  [1281] =
+    2, 659, 2, 40, 41, 657, 4, 31, 32, 33, 43, 
+  [1292] =
+    2, 659, 2, 40, 41, 657, 4, 31, 34, 35, 43, 
+  [1303] =
+    2, 637, 2, 40, 41, 635, 4, 31, 34, 35, 43, 
+  [1314] =
+    2, 641, 2, 40, 41, 639, 4, 31, 34, 35, 43, 
+  [1325] =
+    2, 591, 2, 40, 41, 121, 4, 31, 32, 33, 43, 
+  [1336] =
+    2, 663, 1, 10, 661, 5, 2, 5, 31, 38, 60, 
+  [1347] =
+    5, 17, 409, 18, 665, 31, 85, 86, 150, 101, 219, 
+  [1358] =
+    5, 17, 409, 18, 517, 31, 85, 86, 150, 101, 216, 
+  [1369] =
+    5, 17, 353, 18, 667, 22, 353, 31, 85, 86, 122, 
+  [1380] =
+    5, 18, 667, 31, 85, 38, 669, 86, 135, 103, 135, 
+  [1391] =
+    5, 1, 671, 17, 673, 31, 671, 38, 676, 105, 65535, 
+  [1402] =
+    2, 659, 2, 40, 41, 657, 3, 32, 43, 45, 
+  [1412] =
+    2, 637, 2, 40, 41, 635, 3, 32, 43, 45, 
+  [1422] =
+    2, 641, 2, 40, 41, 639, 3, 32, 43, 45, 
+  [1432] =
+    2, 659, 2, 40, 41, 657, 3, 34, 43, 46, 
+  [1442] =
+    2, 637, 2, 40, 41, 635, 3, 34, 43, 46, 
+  [1452] =
+    2, 641, 2, 40, 41, 639, 3, 34, 43, 46, 
+  [1462] =
+    4, 1, 671, 17, 671, 31, 671, 38, 679, 
+  [1471] =
+    4, 18, 459, 31, 85, 86, 150, 101, 213, 
+  [1480] =
+    4, 18, 411, 31, 85, 86, 150, 101, 213, 
+  [1489] =
+    4, 18, 682, 31, 684, 86, 150, 101, 65535, 
+  [1498] =
+    1, 687, 4, 17, 18, 31, 38, 
+  [1505] =
+    4, 18, 665, 31, 85, 86, 150, 101, 213, 
+  [1514] =
+    4, 18, 689, 31, 85, 86, 150, 101, 213, 
+  [1523] =
+    4, 17, 413, 18, 415, 38, 417, 106, 220, 
+  [1532] =
+    4, 1, 691, 31, 85, 38, 693, 86, 189, 
+  [1541] =
+    4, 18, 695, 31, 85, 86, 150, 101, 213, 
+  [1550] =
+    4, 17, 413, 18, 697, 38, 699, 106, 121, 
+  [1559] =
+    4, 1, 701, 17, 701, 31, 701, 38, 703, 
+  [1568] =
+    1, 671, 4, 1, 17, 31, 38, 
+  [1575] =
+    4, 6, 706, 7, 706, 31, 85, 86, 253, 
+  [1584] =
+    1, 708, 4, 1, 17, 31, 38, 
   [1591] =
-    1, 661, 4, 1, 17, 31, 38, 
+    3, 18, 667, 31, 85, 86, 122, 
   [1598] =
-    4, 6, 696, 7, 696, 31, 85, 86, 250, 
-  [1607] =
-    1, 698, 4, 1, 17, 31, 38, 
-  [1614] =
-    3, 18, 657, 31, 85, 86, 117, 
-  [1621] =
-    3, 12, 700, 19, 425, 38, 700, 
-  [1628] =
-    3, 38, 702, 57, 704, 98, 270, 
-  [1635] =
-    3, 4, 706, 38, 708, 96, 257, 
-  [1642] =
-    3, 18, 355, 31, 85, 86, 117, 
-  [1649] =
-    3, 32, 710, 34, 710, 38, 712, 
-  [1656] =
-    3, 1, 714, 31, 85, 86, 324, 
-  [1663] =
-    3, 12, 507, 19, 716, 38, 507, 
-  [1670] =
-    3, 18, 718, 31, 85, 86, 117, 
-  [1677] =
-    3, 1, 720, 31, 85, 86, 186, 
-  [1684] =
-    3, 38, 702, 57, 704, 98, 269, 
-  [1691] =
-    1, 722, 3, 17, 18, 38, 
-  [1697] =
-    3, 32, 724, 34, 724, 38, 726, 
-  [1704] =
-    3, 1, 369, 31, 85, 86, 210, 
-  [1711] =
+    3, 12, 710, 19, 439, 38, 710, 
+  [1605] =
+    3, 38, 712, 57, 714, 98, 273, 
+  [1612] =
+    3, 4, 716, 38, 718, 96, 260, 
+  [1619] =
+    3, 18, 355, 31, 85, 86, 122, 
+  [1626] =
+    3, 32, 720, 34, 720, 38, 722, 
+  [1633] =
+    3, 1, 724, 31, 85, 86, 324, 
+  [1640] =
+    3, 12, 521, 19, 726, 38, 521, 
+  [1647] =
+    3, 18, 728, 31, 85, 86, 122, 
+  [1654] =
+    3, 1, 730, 31, 85, 86, 190, 
+  [1661] =
+    3, 38, 712, 57, 714, 98, 272, 
+  [1668] =
+    1, 732, 3, 17, 18, 38, 
+  [1674] =
+    3, 32, 734, 34, 734, 38, 736, 
+  [1681] =
+    3, 1, 373, 31, 85, 86, 214, 
+  [1688] =
     3, 1, 190, 31, 85, 86, 41, 
-  [1718] =
-    3, 32, 509, 34, 511, 94, 242, 
-  [1725] =
-    3, 32, 509, 34, 511, 94, 244, 
-  [1732] =
-    2, 12, 728, 38, 728, 
-  [1737] =
-    2, 31, 85, 86, 117, 
-  [1742] =
-    2, 12, 730, 38, 730, 
-  [1747] =
-    2, 32, 732, 34, 732, 
-  [1752] =
-    2, 12, 734, 38, 519, 
-  [1757] =
-    2, 3, 736, 58, 738, 
-  [1762] =
-    2, 12, 734, 38, 734, 
-  [1767] =
-    2, 4, 740, 38, 740, 
-  [1772] =
-    2, 17, 537, 18, 687, 
-  [1777] =
-    2, 18, 672, 31, 672, 
-  [1782] =
-    2, 12, 742, 38, 742, 
-  [1787] =
-    2, 4, 744, 38, 746, 
-  [1792] =
-    2, 8, 748, 38, 750, 
-  [1797] =
-    2, 12, 752, 38, 752, 
-  [1802] =
-    2, 38, 754, 95, 224, 
-  [1807] =
-    2, 12, 700, 38, 700, 
-  [1812] =
+  [1695] =
+    3, 32, 523, 34, 525, 94, 246, 
+  [1702] =
+    3, 32, 523, 34, 525, 94, 248, 
+  [1709] =
+    2, 12, 738, 38, 738, 
+  [1714] =
+    2, 31, 85, 86, 122, 
+  [1719] =
+    2, 12, 740, 38, 740, 
+  [1724] =
+    2, 32, 742, 34, 742, 
+  [1729] =
+    2, 12, 744, 38, 533, 
+  [1734] =
+    2, 3, 746, 58, 401, 
+  [1739] =
+    2, 12, 744, 38, 744, 
+  [1744] =
+    2, 4, 748, 38, 748, 
+  [1749] =
+    2, 17, 551, 18, 697, 
+  [1754] =
+    2, 18, 682, 31, 682, 
+  [1759] =
+    2, 12, 750, 38, 750, 
+  [1764] =
+    2, 8, 752, 38, 754, 
+  [1769] =
+    2, 12, 756, 38, 756, 
+  [1774] =
+    2, 38, 758, 95, 228, 
+  [1779] =
+    2, 12, 710, 38, 710, 
+  [1784] =
     2, 17, 353, 22, 353, 
-  [1817] =
-    2, 4, 756, 55, 758, 
-  [1822] =
-    2, 18, 760, 38, 762, 
-  [1827] =
-    2, 4, 756, 38, 764, 
-  [1832] =
-    2, 12, 766, 38, 766, 
-  [1837] =
-    2, 12, 768, 38, 768, 
-  [1842] =
-    2, 18, 770, 38, 772, 
-  [1847] =
-    2, 32, 724, 34, 724, 
-  [1852] =
-    2, 4, 774, 38, 774, 
-  [1857] =
-    2, 12, 776, 38, 776, 
-  [1862] =
-    2, 12, 778, 38, 778, 
-  [1867] =
-    2, 18, 780, 38, 782, 
-  [1872] =
-    2, 12, 784, 38, 784, 
-  [1877] =
-    2, 12, 786, 38, 786, 
-  [1882] =
-    2, 12, 788, 38, 790, 
-  [1887] =
-    2, 32, 792, 34, 794, 
-  [1892] =
+  [1789] =
+    2, 4, 760, 55, 762, 
+  [1794] =
+    2, 18, 764, 38, 766, 
+  [1799] =
+    2, 4, 760, 38, 768, 
+  [1804] =
+    2, 12, 770, 38, 770, 
+  [1809] =
+    2, 12, 772, 38, 772, 
+  [1814] =
+    2, 18, 774, 38, 776, 
+  [1819] =
+    2, 32, 734, 34, 734, 
+  [1824] =
+    2, 4, 778, 38, 778, 
+  [1829] =
+    2, 12, 780, 38, 780, 
+  [1834] =
+    2, 12, 782, 38, 782, 
+  [1839] =
+    2, 18, 784, 38, 786, 
+  [1844] =
+    2, 12, 788, 38, 788, 
+  [1849] =
+    2, 12, 790, 38, 790, 
+  [1854] =
+    2, 12, 792, 38, 794, 
+  [1859] =
     2, 32, 796, 34, 798, 
+  [1864] =
+    2, 32, 800, 34, 802, 
+  [1869] =
+    2, 12, 804, 38, 804, 
+  [1874] =
+    2, 17, 551, 18, 806, 
+  [1879] =
+    1, 37, 808, 
+  [1882] =
+    1, 19, 726, 
+  [1885] =
+    1, 34, 810, 
+  [1888] =
+    1, 34, 435, 
+  [1891] =
+    1, 56, 812, 
+  [1894] =
+    1, 34, 529, 
   [1897] =
-    2, 12, 800, 38, 800, 
-  [1902] =
-    2, 17, 537, 18, 802, 
-  [1907] =
-    1, 37, 804, 
-  [1910] =
-    1, 19, 716, 
-  [1913] =
-    1, 34, 806, 
-  [1916] =
-    1, 34, 421, 
-  [1919] =
-    1, 56, 808, 
-  [1922] =
-    1, 34, 515, 
-  [1925] =
-    1, 57, 810, 
-  [1928] =
-    1, 39, 541, 
-  [1931] =
-    1, 38, 812, 
-  [1934] =
-    1, 56, 814, 
-  [1937] =
+    1, 57, 814, 
+  [1900] =
+    1, 39, 555, 
+  [1903] =
     1, 38, 816, 
-  [1940] =
-    1, 32, 818, 
-  [1943] =
+  [1906] =
+    1, 56, 818, 
+  [1909] =
     1, 38, 820, 
-  [1946] =
-    1, 4, 822, 
-  [1949] =
-    1, 34, 818, 
-  [1952] =
+  [1912] =
+    1, 32, 822, 
+  [1915] =
     1, 38, 824, 
-  [1955] =
-    1, 19, 826, 
-  [1958] =
-    1, 19, 505, 
-  [1961] =
-    1, 12, 525, 
-  [1964] =
-    1, 17, 395, 
-  [1967] =
-    1, 4, 828, 
-  [1970] =
-    1, 17, 537, 
-  [1973] =
-    1, 17, 830, 
-  [1976] =
-    1, 50, 832, 
-  [1979] =
-    1, 54, 834, 
-  [1982] =
+  [1918] =
+    1, 34, 822, 
+  [1921] =
+    1, 38, 826, 
+  [1924] =
+    1, 19, 828, 
+  [1927] =
+    1, 19, 519, 
+  [1930] =
+    1, 12, 539, 
+  [1933] =
+    1, 17, 409, 
+  [1936] =
+    1, 4, 830, 
+  [1939] =
+    1, 17, 551, 
+  [1942] =
+    1, 17, 832, 
+  [1945] =
+    1, 50, 834, 
+  [1948] =
     1, 54, 836, 
-  [1985] =
-    1, 52, 838, 
-  [1988] =
-    1, 53, 840, 
-  [1991] =
-    1, 37, 842, 
-  [1994] =
-    1, 1, 844, 
-  [1997] =
-    1, 58, 738, 
-  [2000] =
-    1, 8, 748, 
-  [2003] =
-    1, 18, 770, 
-  [2006] =
-    1, 15, 846, 
-  [2009] =
-    1, 18, 780, 
-  [2012] =
-    1, 37, 848, 
-  [2015] =
-    1, 18, 850, 
-  [2018] =
-    1, 37, 852, 
-  [2021] =
-    1, 59, 854, 
-  [2024] =
-    1, 32, 806, 
-  [2027] =
+  [1951] =
+    1, 54, 838, 
+  [1954] =
+    1, 52, 840, 
+  [1957] =
+    1, 53, 842, 
+  [1960] =
+    1, 37, 844, 
+  [1963] =
+    1, 1, 846, 
+  [1966] =
+    1, 8, 752, 
+  [1969] =
+    1, 18, 774, 
+  [1972] =
+    1, 15, 848, 
+  [1975] =
+    1, 18, 784, 
+  [1978] =
+    1, 37, 850, 
+  [1981] =
+    1, 18, 852, 
+  [1984] =
+    1, 37, 854, 
+  [1987] =
+    1, 32, 810, 
+  [1990] =
     1, 8, 856, 
-  [2030] =
+  [1993] =
     1, 12, 858, 
-  [2033] =
+  [1996] =
     1, 39, 860, 
-  [2036] =
+  [1999] =
     1, 1, 862, 
-  [2039] =
+  [2002] =
     1, 42, 864, 
-  [2042] =
+  [2005] =
     1, 44, 864, 
-  [2045] =
+  [2008] =
     1, 37, 866, 
-  [2048] =
+  [2011] =
     1, 37, 868, 
-  [2051] =
+  [2014] =
     1, 37, 870, 
-  [2054] =
+  [2017] =
     1, 37, 872, 
-  [2057] =
+  [2020] =
     1, 37, 874, 
-  [2060] =
+  [2023] =
     1, 38, 876, 
-  [2063] =
+  [2026] =
     1, 37, 878, 
-  [2066] =
+  [2029] =
     1, 37, 880, 
-  [2069] =
+  [2032] =
     1, 1, 882, 
-  [2072] =
+  [2035] =
     1, 42, 884, 
-  [2075] =
+  [2038] =
     1, 44, 884, 
-  [2078] =
+  [2041] =
     1, 1, 886, 
-  [2081] =
+  [2044] =
     1, 1, 888, 
-  [2084] =
+  [2047] =
     1, 42, 890, 
-  [2087] =
+  [2050] =
     1, 44, 890, 
-  [2090] =
+  [2053] =
     1, 1, 892, 
-  [2093] =
+  [2056] =
     1, 1, 894, 
-  [2096] =
+  [2059] =
     1, 42, 896, 
-  [2099] =
+  [2062] =
     1, 44, 896, 
 };
 
 static const uint32_t ts_small_parse_table_map[] = {
-  [SMALL_STATE(67)] = 2147483648,
-  [SMALL_STATE(68)] = 1073741827,
-  [SMALL_STATE(69)] = 37,
-  [SMALL_STATE(70)] = 50,
-  [SMALL_STATE(71)] = 2147483711,
-  [SMALL_STATE(72)] = 2147483726,
-  [SMALL_STATE(73)] = 2147483739,
-  [SMALL_STATE(74)] = 2147483750,
-  [SMALL_STATE(75)] = 111,
-  [SMALL_STATE(76)] = 2147483766,
-  [SMALL_STATE(77)] = 2147483769,
-  [SMALL_STATE(78)] = 2147483776,
-  [SMALL_STATE(79)] = 131,
-  [SMALL_STATE(80)] = 2147483792,
-  [SMALL_STATE(81)] = 2147483801,
-  [SMALL_STATE(82)] = 160,
-  [SMALL_STATE(83)] = 2147483815,
-  [SMALL_STATE(84)] = 2147483820,
-  [SMALL_STATE(85)] = 2147483825,
-  [SMALL_STATE(86)] = 180,
-  [SMALL_STATE(87)] = 193,
-  [SMALL_STATE(88)] = 2147483863,
-  [SMALL_STATE(89)] = 234,
-  [SMALL_STATE(90)] = 2147483890,
-  [SMALL_STATE(91)] = 3221225730,
-  [SMALL_STATE(92)] = 2147483910,
-  [SMALL_STATE(93)] = 2147483921,
-  [SMALL_STATE(94)] = 2147483930,
-  [SMALL_STATE(95)] = 2147483935,
-  [SMALL_STATE(96)] = 2147483940,
-  [SMALL_STATE(97)] = 2147483947,
-  [SMALL_STATE(98)] = 2147483952,
-  [SMALL_STATE(99)] = 2147483957,
-  [SMALL_STATE(100)] = 2147483962,
-  [SMALL_STATE(101)] = 2147483967,
-  [SMALL_STATE(102)] = 2147483970,
-  [SMALL_STATE(103)] = 2147483973,
-  [SMALL_STATE(104)] = 1073742152,
-  [SMALL_STATE(105)] = 2147484010,
-  [SMALL_STATE(106)] = 2147484033,
-  [SMALL_STATE(107)] = 408,
-  [SMALL_STATE(108)] = 421,
-  [SMALL_STATE(109)] = 2147484082,
-  [SMALL_STATE(110)] = 2147484095,
-  [SMALL_STATE(111)] = 2147484106,
-  [SMALL_STATE(112)] = 2147484117,
-  [SMALL_STATE(113)] = 2147484128,
-  [SMALL_STATE(114)] = 2147484137,
-  [SMALL_STATE(115)] = 494,
-  [SMALL_STATE(116)] = 2147484148,
-  [SMALL_STATE(117)] = 509,
-  [SMALL_STATE(118)] = 2147484163,
-  [SMALL_STATE(119)] = 2147484170,
-  [SMALL_STATE(120)] = 2147484175,
-  [SMALL_STATE(121)] = 2147484180,
-  [SMALL_STATE(122)] = 2147484185,
-  [SMALL_STATE(123)] = 2147484188,
-  [SMALL_STATE(124)] = 2147484191,
-  [SMALL_STATE(125)] = 2147484196,
-  [SMALL_STATE(126)] = 3221226023,
-  [SMALL_STATE(127)] = 555,
-  [SMALL_STATE(128)] = 2147484216,
-  [SMALL_STATE(129)] = 2147484231,
-  [SMALL_STATE(130)] = 2147484242,
-  [SMALL_STATE(131)] = 2147484253,
-  [SMALL_STATE(132)] = 2147484262,
-  [SMALL_STATE(133)] = 2147484269,
-  [SMALL_STATE(134)] = 2147484274,
-  [SMALL_STATE(135)] = 2147484281,
-  [SMALL_STATE(136)] = 2147484284,
-  [SMALL_STATE(137)] = 2147484287,
-  [SMALL_STATE(138)] = 2147484292,
-  [SMALL_STATE(139)] = 2147484295,
-  [SMALL_STATE(140)] = 2147484302,
-  [SMALL_STATE(141)] = 2147484309,
-  [SMALL_STATE(142)] = 2147484314,
-  [SMALL_STATE(143)] = 2147484319,
-  [SMALL_STATE(144)] = 674,
-  [SMALL_STATE(145)] = 2147484328,
-  [SMALL_STATE(146)] = 2147484335,
-  [SMALL_STATE(147)] = 2147484340,
-  [SMALL_STATE(148)] = 2147484345,
-  [SMALL_STATE(149)] = 2147484348,
-  [SMALL_STATE(150)] = 2147484353,
-  [SMALL_STATE(151)] = 2147484358,
-  [SMALL_STATE(152)] = 2147484361,
-  [SMALL_STATE(153)] = 1073742540,
-  [SMALL_STATE(154)] = 1073742574,
-  [SMALL_STATE(155)] = 1073742608,
-  [SMALL_STATE(156)] = 1073742642,
-  [SMALL_STATE(157)] = 1073742676,
-  [SMALL_STATE(158)] = 1073742710,
-  [SMALL_STATE(159)] = 919,
-  [SMALL_STATE(160)] = 3221226413,
-  [SMALL_STATE(161)] = 3221226417,
-  [SMALL_STATE(162)] = 2147484597,
-  [SMALL_STATE(163)] = 966,
-  [SMALL_STATE(164)] = 979,
-  [SMALL_STATE(165)] = 992,
-  [SMALL_STATE(166)] = 1005,
-  [SMALL_STATE(167)] = 1018,
-  [SMALL_STATE(168)] = 2147484679,
-  [SMALL_STATE(169)] = 1048,
-  [SMALL_STATE(170)] = 1061,
-  [SMALL_STATE(171)] = 1074,
-  [SMALL_STATE(172)] = 1087,
-  [SMALL_STATE(173)] = 1100,
-  [SMALL_STATE(174)] = 1113,
-  [SMALL_STATE(175)] = 2147484774,
-  [SMALL_STATE(176)] = 2147484789,
-  [SMALL_STATE(177)] = 2147484804,
-  [SMALL_STATE(178)] = 2147484819,
-  [SMALL_STATE(179)] = 1184,
-  [SMALL_STATE(180)] = 1195,
-  [SMALL_STATE(181)] = 1206,
-  [SMALL_STATE(182)] = 1217,
-  [SMALL_STATE(183)] = 1228,
-  [SMALL_STATE(184)] = 2147484887,
-  [SMALL_STATE(185)] = 2147484900,
-  [SMALL_STATE(186)] = 2147484913,
-  [SMALL_STATE(187)] = 2147484926,
-  [SMALL_STATE(188)] = 2147484939,
-  [SMALL_STATE(189)] = 1304,
-  [SMALL_STATE(190)] = 1315,
-  [SMALL_STATE(191)] = 1326,
-  [SMALL_STATE(192)] = 1337,
-  [SMALL_STATE(193)] = 1348,
-  [SMALL_STATE(194)] = 1359,
-  [SMALL_STATE(195)] = 2147485018,
-  [SMALL_STATE(196)] = 2147485029,
-  [SMALL_STATE(197)] = 2147485040,
-  [SMALL_STATE(198)] = 2147485051,
-  [SMALL_STATE(199)] = 2147485062,
-  [SMALL_STATE(200)] = 1425,
-  [SMALL_STATE(201)] = 1435,
-  [SMALL_STATE(202)] = 1445,
-  [SMALL_STATE(203)] = 1455,
-  [SMALL_STATE(204)] = 1465,
-  [SMALL_STATE(205)] = 1475,
-  [SMALL_STATE(206)] = 2147485133,
-  [SMALL_STATE(207)] = 2147485142,
-  [SMALL_STATE(208)] = 2147485151,
-  [SMALL_STATE(209)] = 2147485160,
-  [SMALL_STATE(210)] = 1521,
-  [SMALL_STATE(211)] = 2147485176,
-  [SMALL_STATE(212)] = 2147485185,
-  [SMALL_STATE(213)] = 2147485194,
-  [SMALL_STATE(214)] = 2147485203,
-  [SMALL_STATE(215)] = 2147485212,
-  [SMALL_STATE(216)] = 2147485221,
-  [SMALL_STATE(217)] = 2147485230,
-  [SMALL_STATE(218)] = 1591,
-  [SMALL_STATE(219)] = 2147485246,
-  [SMALL_STATE(220)] = 1607,
-  [SMALL_STATE(221)] = 2147485262,
-  [SMALL_STATE(222)] = 2147485269,
-  [SMALL_STATE(223)] = 2147485276,
-  [SMALL_STATE(224)] = 2147485283,
-  [SMALL_STATE(225)] = 2147485290,
-  [SMALL_STATE(226)] = 2147485297,
-  [SMALL_STATE(227)] = 2147485304,
-  [SMALL_STATE(228)] = 2147485311,
-  [SMALL_STATE(229)] = 2147485318,
-  [SMALL_STATE(230)] = 2147485325,
-  [SMALL_STATE(231)] = 2147485332,
-  [SMALL_STATE(232)] = 1691,
-  [SMALL_STATE(233)] = 2147485345,
-  [SMALL_STATE(234)] = 2147485352,
-  [SMALL_STATE(235)] = 2147485359,
-  [SMALL_STATE(236)] = 2147485366,
-  [SMALL_STATE(237)] = 2147485373,
-  [SMALL_STATE(238)] = 2147485380,
-  [SMALL_STATE(239)] = 2147485385,
-  [SMALL_STATE(240)] = 2147485390,
-  [SMALL_STATE(241)] = 2147485395,
-  [SMALL_STATE(242)] = 2147485400,
-  [SMALL_STATE(243)] = 2147485405,
-  [SMALL_STATE(244)] = 2147485410,
-  [SMALL_STATE(245)] = 2147485415,
-  [SMALL_STATE(246)] = 2147485420,
-  [SMALL_STATE(247)] = 2147485425,
-  [SMALL_STATE(248)] = 2147485430,
-  [SMALL_STATE(249)] = 2147485435,
-  [SMALL_STATE(250)] = 2147485440,
-  [SMALL_STATE(251)] = 2147485445,
-  [SMALL_STATE(252)] = 2147485450,
-  [SMALL_STATE(253)] = 2147485455,
-  [SMALL_STATE(254)] = 2147485460,
-  [SMALL_STATE(255)] = 2147485465,
-  [SMALL_STATE(256)] = 2147485470,
-  [SMALL_STATE(257)] = 2147485475,
-  [SMALL_STATE(258)] = 2147485480,
-  [SMALL_STATE(259)] = 2147485485,
-  [SMALL_STATE(260)] = 2147485490,
-  [SMALL_STATE(261)] = 2147485495,
-  [SMALL_STATE(262)] = 2147485500,
-  [SMALL_STATE(263)] = 2147485505,
-  [SMALL_STATE(264)] = 2147485510,
-  [SMALL_STATE(265)] = 2147485515,
-  [SMALL_STATE(266)] = 2147485520,
-  [SMALL_STATE(267)] = 2147485525,
-  [SMALL_STATE(268)] = 2147485530,
-  [SMALL_STATE(269)] = 2147485535,
-  [SMALL_STATE(270)] = 2147485540,
-  [SMALL_STATE(271)] = 2147485545,
-  [SMALL_STATE(272)] = 2147485550,
-  [SMALL_STATE(273)] = 2147485555,
-  [SMALL_STATE(274)] = 2147485558,
-  [SMALL_STATE(275)] = 2147485561,
-  [SMALL_STATE(276)] = 2147485564,
-  [SMALL_STATE(277)] = 2147485567,
-  [SMALL_STATE(278)] = 2147485570,
-  [SMALL_STATE(279)] = 2147485573,
-  [SMALL_STATE(280)] = 2147485576,
-  [SMALL_STATE(281)] = 2147485579,
-  [SMALL_STATE(282)] = 2147485582,
-  [SMALL_STATE(283)] = 2147485585,
-  [SMALL_STATE(284)] = 2147485588,
-  [SMALL_STATE(285)] = 2147485591,
-  [SMALL_STATE(286)] = 2147485594,
-  [SMALL_STATE(287)] = 2147485597,
-  [SMALL_STATE(288)] = 2147485600,
-  [SMALL_STATE(289)] = 2147485603,
-  [SMALL_STATE(290)] = 2147485606,
-  [SMALL_STATE(291)] = 2147485609,
-  [SMALL_STATE(292)] = 2147485612,
-  [SMALL_STATE(293)] = 2147485615,
-  [SMALL_STATE(294)] = 2147485618,
-  [SMALL_STATE(295)] = 2147485621,
-  [SMALL_STATE(296)] = 2147485624,
-  [SMALL_STATE(297)] = 2147485627,
-  [SMALL_STATE(298)] = 2147485630,
-  [SMALL_STATE(299)] = 2147485633,
-  [SMALL_STATE(300)] = 2147485636,
-  [SMALL_STATE(301)] = 2147485639,
-  [SMALL_STATE(302)] = 2147485642,
-  [SMALL_STATE(303)] = 2147485645,
-  [SMALL_STATE(304)] = 2147485648,
-  [SMALL_STATE(305)] = 2147485651,
-  [SMALL_STATE(306)] = 2147485654,
-  [SMALL_STATE(307)] = 2147485657,
-  [SMALL_STATE(308)] = 2147485660,
-  [SMALL_STATE(309)] = 2147485663,
-  [SMALL_STATE(310)] = 2147485666,
-  [SMALL_STATE(311)] = 2147485669,
-  [SMALL_STATE(312)] = 2147485672,
-  [SMALL_STATE(313)] = 2147485675,
-  [SMALL_STATE(314)] = 2147485678,
-  [SMALL_STATE(315)] = 2147485681,
-  [SMALL_STATE(316)] = 2147485684,
-  [SMALL_STATE(317)] = 2147485687,
-  [SMALL_STATE(318)] = 2147485690,
-  [SMALL_STATE(319)] = 2147485693,
-  [SMALL_STATE(320)] = 2147485696,
-  [SMALL_STATE(321)] = 2147485699,
-  [SMALL_STATE(322)] = 2147485702,
-  [SMALL_STATE(323)] = 2147485705,
-  [SMALL_STATE(324)] = 2147485708,
-  [SMALL_STATE(325)] = 2147485711,
-  [SMALL_STATE(326)] = 2147485714,
-  [SMALL_STATE(327)] = 2147485717,
-  [SMALL_STATE(328)] = 2147485720,
-  [SMALL_STATE(329)] = 2147485723,
-  [SMALL_STATE(330)] = 2147485726,
-  [SMALL_STATE(331)] = 2147485729,
-  [SMALL_STATE(332)] = 2147485732,
-  [SMALL_STATE(333)] = 2147485735,
-  [SMALL_STATE(334)] = 2147485738,
-  [SMALL_STATE(335)] = 2147485741,
-  [SMALL_STATE(336)] = 2147485744,
-  [SMALL_STATE(337)] = 2147485747,
+  [SMALL_STATE(69)] = 0,
+  [SMALL_STATE(70)] = 13,
+  [SMALL_STATE(71)] = 2147483674,
+  [SMALL_STATE(72)] = 2147483689,
+  [SMALL_STATE(73)] = 2147483702,
+  [SMALL_STATE(74)] = 2147483713,
+  [SMALL_STATE(75)] = 74,
+  [SMALL_STATE(76)] = 2147483729,
+  [SMALL_STATE(77)] = 2147483732,
+  [SMALL_STATE(78)] = 2147483739,
+  [SMALL_STATE(79)] = 94,
+  [SMALL_STATE(80)] = 107,
+  [SMALL_STATE(81)] = 2147483768,
+  [SMALL_STATE(82)] = 2147483777,
+  [SMALL_STATE(83)] = 136,
+  [SMALL_STATE(84)] = 2147483791,
+  [SMALL_STATE(85)] = 2147483796,
+  [SMALL_STATE(86)] = 2147483801,
+  [SMALL_STATE(87)] = 156,
+  [SMALL_STATE(88)] = 2147483817,
+  [SMALL_STATE(89)] = 2147483822,
+  [SMALL_STATE(90)] = 2147483825,
+  [SMALL_STATE(91)] = 2147483828,
+  [SMALL_STATE(92)] = 183,
+  [SMALL_STATE(93)] = 2147483853,
+  [SMALL_STATE(94)] = 224,
+  [SMALL_STATE(95)] = 2147483880,
+  [SMALL_STATE(96)] = 3221225720,
+  [SMALL_STATE(97)] = 2147483900,
+  [SMALL_STATE(98)] = 2147483911,
+  [SMALL_STATE(99)] = 2147483920,
+  [SMALL_STATE(100)] = 2147483925,
+  [SMALL_STATE(101)] = 2147483930,
+  [SMALL_STATE(102)] = 2147483937,
+  [SMALL_STATE(103)] = 2147483942,
+  [SMALL_STATE(104)] = 2147483947,
+  [SMALL_STATE(105)] = 2147483952,
+  [SMALL_STATE(106)] = 2147483957,
+  [SMALL_STATE(107)] = 2147483960,
+  [SMALL_STATE(108)] = 2147483963,
+  [SMALL_STATE(109)] = 1073742142,
+  [SMALL_STATE(110)] = 2147484000,
+  [SMALL_STATE(111)] = 2147484023,
+  [SMALL_STATE(112)] = 398,
+  [SMALL_STATE(113)] = 411,
+  [SMALL_STATE(114)] = 2147484072,
+  [SMALL_STATE(115)] = 2147484085,
+  [SMALL_STATE(116)] = 2147484096,
+  [SMALL_STATE(117)] = 2147484107,
+  [SMALL_STATE(118)] = 2147484118,
+  [SMALL_STATE(119)] = 2147484127,
+  [SMALL_STATE(120)] = 484,
+  [SMALL_STATE(121)] = 2147484138,
+  [SMALL_STATE(122)] = 499,
+  [SMALL_STATE(123)] = 2147484153,
+  [SMALL_STATE(124)] = 2147484160,
+  [SMALL_STATE(125)] = 2147484165,
+  [SMALL_STATE(126)] = 2147484170,
+  [SMALL_STATE(127)] = 2147484175,
+  [SMALL_STATE(128)] = 2147484178,
+  [SMALL_STATE(129)] = 2147484181,
+  [SMALL_STATE(130)] = 2147484186,
+  [SMALL_STATE(131)] = 3221226013,
+  [SMALL_STATE(132)] = 545,
+  [SMALL_STATE(133)] = 2147484206,
+  [SMALL_STATE(134)] = 2147484221,
+  [SMALL_STATE(135)] = 2147484232,
+  [SMALL_STATE(136)] = 2147484243,
+  [SMALL_STATE(137)] = 2147484252,
+  [SMALL_STATE(138)] = 2147484259,
+  [SMALL_STATE(139)] = 2147484264,
+  [SMALL_STATE(140)] = 2147484271,
+  [SMALL_STATE(141)] = 2147484274,
+  [SMALL_STATE(142)] = 2147484277,
+  [SMALL_STATE(143)] = 2147484282,
+  [SMALL_STATE(144)] = 2147484285,
+  [SMALL_STATE(145)] = 2147484292,
+  [SMALL_STATE(146)] = 2147484299,
+  [SMALL_STATE(147)] = 2147484304,
+  [SMALL_STATE(148)] = 2147484309,
+  [SMALL_STATE(149)] = 664,
+  [SMALL_STATE(150)] = 2147484318,
+  [SMALL_STATE(151)] = 2147484325,
+  [SMALL_STATE(152)] = 2147484330,
+  [SMALL_STATE(153)] = 2147484335,
+  [SMALL_STATE(154)] = 2147484338,
+  [SMALL_STATE(155)] = 2147484343,
+  [SMALL_STATE(156)] = 2147484348,
+  [SMALL_STATE(157)] = 2147484351,
+  [SMALL_STATE(158)] = 1073742530,
+  [SMALL_STATE(159)] = 1073742564,
+  [SMALL_STATE(160)] = 1073742598,
+  [SMALL_STATE(161)] = 1073742632,
+  [SMALL_STATE(162)] = 1073742666,
+  [SMALL_STATE(163)] = 1073742700,
+  [SMALL_STATE(164)] = 909,
+  [SMALL_STATE(165)] = 3221226403,
+  [SMALL_STATE(166)] = 3221226407,
+  [SMALL_STATE(167)] = 2147484587,
+  [SMALL_STATE(168)] = 956,
+  [SMALL_STATE(169)] = 969,
+  [SMALL_STATE(170)] = 982,
+  [SMALL_STATE(171)] = 995,
+  [SMALL_STATE(172)] = 1008,
+  [SMALL_STATE(173)] = 2147484669,
+  [SMALL_STATE(174)] = 1038,
+  [SMALL_STATE(175)] = 1051,
+  [SMALL_STATE(176)] = 1064,
+  [SMALL_STATE(177)] = 1077,
+  [SMALL_STATE(178)] = 1090,
+  [SMALL_STATE(179)] = 2147484751,
+  [SMALL_STATE(180)] = 2147484766,
+  [SMALL_STATE(181)] = 2147484781,
+  [SMALL_STATE(182)] = 2147484796,
+  [SMALL_STATE(183)] = 1161,
+  [SMALL_STATE(184)] = 1172,
+  [SMALL_STATE(185)] = 1183,
+  [SMALL_STATE(186)] = 1194,
+  [SMALL_STATE(187)] = 1205,
+  [SMALL_STATE(188)] = 2147484864,
+  [SMALL_STATE(189)] = 2147484877,
+  [SMALL_STATE(190)] = 2147484890,
+  [SMALL_STATE(191)] = 2147484903,
+  [SMALL_STATE(192)] = 2147484916,
+  [SMALL_STATE(193)] = 1281,
+  [SMALL_STATE(194)] = 1292,
+  [SMALL_STATE(195)] = 1303,
+  [SMALL_STATE(196)] = 1314,
+  [SMALL_STATE(197)] = 1325,
+  [SMALL_STATE(198)] = 1336,
+  [SMALL_STATE(199)] = 2147484995,
+  [SMALL_STATE(200)] = 2147485006,
+  [SMALL_STATE(201)] = 2147485017,
+  [SMALL_STATE(202)] = 2147485028,
+  [SMALL_STATE(203)] = 2147485039,
+  [SMALL_STATE(204)] = 1402,
+  [SMALL_STATE(205)] = 1412,
+  [SMALL_STATE(206)] = 1422,
+  [SMALL_STATE(207)] = 1432,
+  [SMALL_STATE(208)] = 1442,
+  [SMALL_STATE(209)] = 1452,
+  [SMALL_STATE(210)] = 2147485110,
+  [SMALL_STATE(211)] = 2147485119,
+  [SMALL_STATE(212)] = 2147485128,
+  [SMALL_STATE(213)] = 2147485137,
+  [SMALL_STATE(214)] = 1498,
+  [SMALL_STATE(215)] = 2147485153,
+  [SMALL_STATE(216)] = 2147485162,
+  [SMALL_STATE(217)] = 2147485171,
+  [SMALL_STATE(218)] = 2147485180,
+  [SMALL_STATE(219)] = 2147485189,
+  [SMALL_STATE(220)] = 2147485198,
+  [SMALL_STATE(221)] = 2147485207,
+  [SMALL_STATE(222)] = 1568,
+  [SMALL_STATE(223)] = 2147485223,
+  [SMALL_STATE(224)] = 1584,
+  [SMALL_STATE(225)] = 2147485239,
+  [SMALL_STATE(226)] = 2147485246,
+  [SMALL_STATE(227)] = 2147485253,
+  [SMALL_STATE(228)] = 2147485260,
+  [SMALL_STATE(229)] = 2147485267,
+  [SMALL_STATE(230)] = 2147485274,
+  [SMALL_STATE(231)] = 2147485281,
+  [SMALL_STATE(232)] = 2147485288,
+  [SMALL_STATE(233)] = 2147485295,
+  [SMALL_STATE(234)] = 2147485302,
+  [SMALL_STATE(235)] = 2147485309,
+  [SMALL_STATE(236)] = 1668,
+  [SMALL_STATE(237)] = 2147485322,
+  [SMALL_STATE(238)] = 2147485329,
+  [SMALL_STATE(239)] = 2147485336,
+  [SMALL_STATE(240)] = 2147485343,
+  [SMALL_STATE(241)] = 2147485350,
+  [SMALL_STATE(242)] = 2147485357,
+  [SMALL_STATE(243)] = 2147485362,
+  [SMALL_STATE(244)] = 2147485367,
+  [SMALL_STATE(245)] = 2147485372,
+  [SMALL_STATE(246)] = 2147485377,
+  [SMALL_STATE(247)] = 2147485382,
+  [SMALL_STATE(248)] = 2147485387,
+  [SMALL_STATE(249)] = 2147485392,
+  [SMALL_STATE(250)] = 2147485397,
+  [SMALL_STATE(251)] = 2147485402,
+  [SMALL_STATE(252)] = 2147485407,
+  [SMALL_STATE(253)] = 2147485412,
+  [SMALL_STATE(254)] = 2147485417,
+  [SMALL_STATE(255)] = 2147485422,
+  [SMALL_STATE(256)] = 2147485427,
+  [SMALL_STATE(257)] = 2147485432,
+  [SMALL_STATE(258)] = 2147485437,
+  [SMALL_STATE(259)] = 2147485442,
+  [SMALL_STATE(260)] = 2147485447,
+  [SMALL_STATE(261)] = 2147485452,
+  [SMALL_STATE(262)] = 2147485457,
+  [SMALL_STATE(263)] = 2147485462,
+  [SMALL_STATE(264)] = 2147485467,
+  [SMALL_STATE(265)] = 2147485472,
+  [SMALL_STATE(266)] = 2147485477,
+  [SMALL_STATE(267)] = 2147485482,
+  [SMALL_STATE(268)] = 2147485487,
+  [SMALL_STATE(269)] = 2147485492,
+  [SMALL_STATE(270)] = 2147485497,
+  [SMALL_STATE(271)] = 2147485502,
+  [SMALL_STATE(272)] = 2147485507,
+  [SMALL_STATE(273)] = 2147485512,
+  [SMALL_STATE(274)] = 2147485517,
+  [SMALL_STATE(275)] = 2147485522,
+  [SMALL_STATE(276)] = 2147485527,
+  [SMALL_STATE(277)] = 2147485530,
+  [SMALL_STATE(278)] = 2147485533,
+  [SMALL_STATE(279)] = 2147485536,
+  [SMALL_STATE(280)] = 2147485539,
+  [SMALL_STATE(281)] = 2147485542,
+  [SMALL_STATE(282)] = 2147485545,
+  [SMALL_STATE(283)] = 2147485548,
+  [SMALL_STATE(284)] = 2147485551,
+  [SMALL_STATE(285)] = 2147485554,
+  [SMALL_STATE(286)] = 2147485557,
+  [SMALL_STATE(287)] = 2147485560,
+  [SMALL_STATE(288)] = 2147485563,
+  [SMALL_STATE(289)] = 2147485566,
+  [SMALL_STATE(290)] = 2147485569,
+  [SMALL_STATE(291)] = 2147485572,
+  [SMALL_STATE(292)] = 2147485575,
+  [SMALL_STATE(293)] = 2147485578,
+  [SMALL_STATE(294)] = 2147485581,
+  [SMALL_STATE(295)] = 2147485584,
+  [SMALL_STATE(296)] = 2147485587,
+  [SMALL_STATE(297)] = 2147485590,
+  [SMALL_STATE(298)] = 2147485593,
+  [SMALL_STATE(299)] = 2147485596,
+  [SMALL_STATE(300)] = 2147485599,
+  [SMALL_STATE(301)] = 2147485602,
+  [SMALL_STATE(302)] = 2147485605,
+  [SMALL_STATE(303)] = 2147485608,
+  [SMALL_STATE(304)] = 2147485611,
+  [SMALL_STATE(305)] = 2147485614,
+  [SMALL_STATE(306)] = 2147485617,
+  [SMALL_STATE(307)] = 2147485620,
+  [SMALL_STATE(308)] = 2147485623,
+  [SMALL_STATE(309)] = 2147485626,
+  [SMALL_STATE(310)] = 2147485629,
+  [SMALL_STATE(311)] = 2147485632,
+  [SMALL_STATE(312)] = 2147485635,
+  [SMALL_STATE(313)] = 2147485638,
+  [SMALL_STATE(314)] = 2147485641,
+  [SMALL_STATE(315)] = 2147485644,
+  [SMALL_STATE(316)] = 2147485647,
+  [SMALL_STATE(317)] = 2147485650,
+  [SMALL_STATE(318)] = 2147485653,
+  [SMALL_STATE(319)] = 2147485656,
+  [SMALL_STATE(320)] = 2147485659,
+  [SMALL_STATE(321)] = 2147485662,
+  [SMALL_STATE(322)] = 2147485665,
+  [SMALL_STATE(323)] = 2147485668,
+  [SMALL_STATE(324)] = 2147485671,
+  [SMALL_STATE(325)] = 2147485674,
+  [SMALL_STATE(326)] = 2147485677,
+  [SMALL_STATE(327)] = 2147485680,
+  [SMALL_STATE(328)] = 2147485683,
+  [SMALL_STATE(329)] = 2147485686,
+  [SMALL_STATE(330)] = 2147485689,
+  [SMALL_STATE(331)] = 2147485692,
+  [SMALL_STATE(332)] = 2147485695,
+  [SMALL_STATE(333)] = 2147485698,
+  [SMALL_STATE(334)] = 2147485701,
+  [SMALL_STATE(335)] = 2147485704,
+  [SMALL_STATE(336)] = 2147485707,
+  [SMALL_STATE(337)] = 2147485710,
 };
 
 static const TSParseActionEntry ts_parse_actions[] = {
   [0] = {.entry = {.count = 0, .reusable = false}},
   [1] = {.entry = {.count = 1, .reusable = false}}, RECOVER(),
-  [3] = {.entry = {.count = 1, .reusable = true}}, SHIFT(243),
-  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(110),
+  [3] = {.entry = {.count = 1, .reusable = true}}, SHIFT(247),
+  [5] = {.entry = {.count = 1, .reusable = true}}, SHIFT(115),
   [7] = {.entry = {.count = 1, .reusable = false}}, SHIFT(22),
-  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(302),
-  [11] = {.entry = {.count = 1, .reusable = true}}, SHIFT(5),
+  [9] = {.entry = {.count = 1, .reusable = true}}, SHIFT(304),
+  [11] = {.entry = {.count = 1, .reusable = true}}, SHIFT(2),
   [13] = {.entry = {.count = 1, .reusable = true}}, SHIFT(21),
-  [15] = {.entry = {.count = 1, .reusable = true}}, SHIFT(50),
-  [17] = {.entry = {.count = 1, .reusable = false}}, SHIFT(331),
-  [19] = {.entry = {.count = 1, .reusable = false}}, SHIFT(332),
-  [21] = {.entry = {.count = 1, .reusable = true}}, SHIFT(333),
-  [23] = {.entry = {.count = 1, .reusable = true}}, SHIFT(3),
-  [25] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_AttValue_repeat1, 1, 0, 0),
-  [27] = {.entry = {.count = 1, .reusable = false}}, REDUCE(aux_sym_AttValue_repeat1, 1, 0, 0),
-  [29] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0),
-  [31] = {.entry = {.count = 2, .reusable = false}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0), SHIFT_REPEAT(331),
-  [34] = {.entry = {.count = 2, .reusable = false}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0), SHIFT_REPEAT(332),
-  [37] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0), SHIFT_REPEAT(333),
-  [40] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0), SHIFT_REPEAT(3),
-  [43] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_extSubset, 1, 0, 0),
-  [45] = {.entry = {.count = 1, .reusable = true}}, SHIFT(303),
-  [47] = {.entry = {.count = 1, .reusable = true}}, SHIFT(6),
+  [15] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_extSubset, 1, 0, 0),
+  [17] = {.entry = {.count = 1, .reusable = true}}, SHIFT(91),
+  [19] = {.entry = {.count = 1, .reusable = true}}, SHIFT(6),
+  [21] = {.entry = {.count = 1, .reusable = true}}, SHIFT(50),
+  [23] = {.entry = {.count = 1, .reusable = false}}, SHIFT(331),
+  [25] = {.entry = {.count = 1, .reusable = false}}, SHIFT(332),
+  [27] = {.entry = {.count = 1, .reusable = true}}, SHIFT(333),
+  [29] = {.entry = {.count = 1, .reusable = true}}, SHIFT(4),
+  [31] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_AttValue_repeat1, 1, 0, 0),
+  [33] = {.entry = {.count = 1, .reusable = false}}, REDUCE(aux_sym_AttValue_repeat1, 1, 0, 0),
+  [35] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0),
+  [37] = {.entry = {.count = 2, .reusable = false}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0), SHIFT_REPEAT(331),
+  [40] = {.entry = {.count = 2, .reusable = false}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0), SHIFT_REPEAT(332),
+  [43] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0), SHIFT_REPEAT(333),
+  [46] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_AttValue_repeat1, 2, 0, 0), SHIFT_REPEAT(4),
   [49] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0),
-  [51] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(303),
-  [54] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(110),
+  [51] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(91),
+  [54] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(115),
   [57] = {.entry = {.count = 2, .reusable = false}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(22),
-  [60] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(302),
+  [60] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(304),
   [63] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(6),
   [66] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_extSubset_repeat1, 2, 0, 0), SHIFT_REPEAT(21),
   [69] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__cp, 1, 0, 0),
   [71] = {.entry = {.count = 1, .reusable = true}}, SHIFT(55),
   [73] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym__choice_repeat1, 2, 0, 0),
   [75] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__choice_repeat1, 2, 0, 0), SHIFT_REPEAT(11),
-  [78] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__choice_repeat1, 2, 0, 0), SHIFT_REPEAT(254),
+  [78] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__choice_repeat1, 2, 0, 0), SHIFT_REPEAT(257),
   [81] = {.entry = {.count = 1, .reusable = true}}, SHIFT(11),
   [83] = {.entry = {.count = 1, .reusable = true}}, SHIFT(52),
   [85] = {.entry = {.count = 1, .reusable = true}}, SHIFT(17),
   [87] = {.entry = {.count = 1, .reusable = true}}, SHIFT(73),
   [89] = {.entry = {.count = 1, .reusable = true}}, SHIFT(7),
-  [91] = {.entry = {.count = 1, .reusable = true}}, SHIFT(128),
+  [91] = {.entry = {.count = 1, .reusable = true}}, SHIFT(133),
   [93] = {.entry = {.count = 1, .reusable = true}}, SHIFT(43),
   [95] = {.entry = {.count = 1, .reusable = false}}, SHIFT(335),
   [97] = {.entry = {.count = 1, .reusable = false}}, SHIFT(336),
@@ -4074,7 +4091,7 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [123] = {.entry = {.count = 1, .reusable = true}}, SHIFT(15),
   [125] = {.entry = {.count = 1, .reusable = true}}, SHIFT(16),
   [127] = {.entry = {.count = 1, .reusable = true}}, SHIFT(330),
-  [129] = {.entry = {.count = 1, .reusable = true}}, SHIFT(83),
+  [129] = {.entry = {.count = 1, .reusable = true}}, SHIFT(84),
   [131] = {.entry = {.count = 1, .reusable = true}}, SHIFT(19),
   [133] = {.entry = {.count = 1, .reusable = false}}, SHIFT(316),
   [135] = {.entry = {.count = 1, .reusable = false}}, SHIFT(317),
@@ -4090,33 +4107,33 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [160] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__markupdecl, 1, 0, 0),
   [162] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym__markupdecl, 1, 0, 0),
   [164] = {.entry = {.count = 1, .reusable = true}}, SHIFT(23),
-  [166] = {.entry = {.count = 1, .reusable = true}}, SHIFT(59),
-  [168] = {.entry = {.count = 1, .reusable = true}}, SHIFT(285),
-  [170] = {.entry = {.count = 1, .reusable = true}}, SHIFT(66),
+  [166] = {.entry = {.count = 1, .reusable = true}}, SHIFT(60),
+  [168] = {.entry = {.count = 1, .reusable = true}}, SHIFT(288),
+  [170] = {.entry = {.count = 1, .reusable = true}}, SHIFT(67),
   [172] = {.entry = {.count = 1, .reusable = true}}, SHIFT(24),
   [174] = {.entry = {.count = 1, .reusable = true}}, SHIFT(25),
   [176] = {.entry = {.count = 1, .reusable = true}}, SHIFT(26),
   [178] = {.entry = {.count = 1, .reusable = true}}, SHIFT(36),
   [180] = {.entry = {.count = 1, .reusable = true}}, SHIFT(27),
   [182] = {.entry = {.count = 1, .reusable = true}}, SHIFT(53),
-  [184] = {.entry = {.count = 1, .reusable = true}}, SHIFT(175),
+  [184] = {.entry = {.count = 1, .reusable = true}}, SHIFT(179),
   [186] = {.entry = {.count = 1, .reusable = true}}, SHIFT(70),
   [188] = {.entry = {.count = 1, .reusable = true}}, SHIFT(29),
   [190] = {.entry = {.count = 1, .reusable = true}}, SHIFT(30),
-  [192] = {.entry = {.count = 1, .reusable = true}}, SHIFT(107),
+  [192] = {.entry = {.count = 1, .reusable = true}}, SHIFT(112),
   [194] = {.entry = {.count = 1, .reusable = true}}, SHIFT(31),
-  [196] = {.entry = {.count = 1, .reusable = true}}, SHIFT(120),
+  [196] = {.entry = {.count = 1, .reusable = true}}, SHIFT(125),
   [198] = {.entry = {.count = 1, .reusable = true}}, SHIFT(34),
-  [200] = {.entry = {.count = 1, .reusable = true}}, SHIFT(288),
+  [200] = {.entry = {.count = 1, .reusable = true}}, SHIFT(290),
   [202] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttDef, 4, 0, 0),
   [204] = {.entry = {.count = 1, .reusable = true}}, SHIFT(33),
   [206] = {.entry = {.count = 1, .reusable = true}}, SHIFT(42),
   [208] = {.entry = {.count = 1, .reusable = true}}, SHIFT(78),
-  [210] = {.entry = {.count = 1, .reusable = true}}, SHIFT(60),
-  [212] = {.entry = {.count = 1, .reusable = true}}, SHIFT(88),
+  [210] = {.entry = {.count = 1, .reusable = true}}, SHIFT(61),
+  [212] = {.entry = {.count = 1, .reusable = true}}, SHIFT(93),
   [214] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__AttType, 1, 0, 0),
   [216] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_AttlistDecl_repeat1, 2, 0, 0),
-  [218] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_AttlistDecl_repeat1, 2, 0, 0), SHIFT_REPEAT(235),
+  [218] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_AttlistDecl_repeat1, 2, 0, 0), SHIFT_REPEAT(239),
   [221] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_contentspec, 1, 0, 0),
   [223] = {.entry = {.count = 1, .reusable = true}}, SHIFT(38),
   [225] = {.entry = {.count = 1, .reusable = true}}, SHIFT(76),
@@ -4139,312 +4156,312 @@ static const TSParseActionEntry ts_parse_actions[] = {
   [262] = {.entry = {.count = 2, .reusable = false}}, REDUCE(aux_sym_EntityValue_repeat2, 2, 0, 0), SHIFT_REPEAT(327),
   [265] = {.entry = {.count = 2, .reusable = false}}, REDUCE(aux_sym_EntityValue_repeat2, 2, 0, 0), SHIFT_REPEAT(328),
   [268] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_EntityValue_repeat2, 2, 0, 0), SHIFT_REPEAT(329),
-  [271] = {.entry = {.count = 1, .reusable = true}}, SHIFT(126),
-  [273] = {.entry = {.count = 1, .reusable = true}}, SHIFT(111),
+  [271] = {.entry = {.count = 1, .reusable = true}}, SHIFT(131),
+  [273] = {.entry = {.count = 1, .reusable = true}}, SHIFT(116),
   [275] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_children, 1, 0, 0),
-  [277] = {.entry = {.count = 1, .reusable = true}}, SHIFT(100),
+  [277] = {.entry = {.count = 1, .reusable = true}}, SHIFT(105),
   [279] = {.entry = {.count = 1, .reusable = true}}, SHIFT(74),
-  [281] = {.entry = {.count = 1, .reusable = true}}, SHIFT(103),
-  [283] = {.entry = {.count = 1, .reusable = true}}, SHIFT(92),
+  [281] = {.entry = {.count = 1, .reusable = true}}, SHIFT(108),
+  [283] = {.entry = {.count = 1, .reusable = true}}, SHIFT(97),
   [285] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttValue, 3, 0, 1),
   [287] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_DefaultDecl, 3, 0, 0),
   [289] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 4, 0, 0),
   [291] = {.entry = {.count = 1, .reusable = true}}, SHIFT(54),
-  [293] = {.entry = {.count = 1, .reusable = true}}, SHIFT(112),
+  [293] = {.entry = {.count = 1, .reusable = true}}, SHIFT(117),
   [295] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 3, 0, 0),
-  [297] = {.entry = {.count = 1, .reusable = true}}, SHIFT(253),
+  [297] = {.entry = {.count = 1, .reusable = true}}, SHIFT(256),
   [299] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__cp, 2, 0, 0),
-  [301] = {.entry = {.count = 1, .reusable = true}}, SHIFT(173),
+  [301] = {.entry = {.count = 1, .reusable = true}}, SHIFT(177),
   [303] = {.entry = {.count = 1, .reusable = true}}, SHIFT(57),
   [305] = {.entry = {.count = 1, .reusable = true}}, SHIFT(56),
-  [307] = {.entry = {.count = 1, .reusable = true}}, SHIFT(58),
-  [309] = {.entry = {.count = 1, .reusable = true}}, SHIFT(248),
-  [311] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__EntityDecl, 1, 0, 0),
-  [313] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym__EntityDecl, 1, 0, 0),
-  [315] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 2, 0, 0), SHIFT_REPEAT(74),
-  [318] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 2, 0, 0),
-  [320] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 2, 0, 0), SHIFT_REPEAT(292),
-  [323] = {.entry = {.count = 1, .reusable = true}}, SHIFT(64),
-  [325] = {.entry = {.count = 1, .reusable = true}}, SHIFT(121),
-  [327] = {.entry = {.count = 1, .reusable = true}}, SHIFT(65),
-  [329] = {.entry = {.count = 1, .reusable = true}}, SHIFT(105),
-  [331] = {.entry = {.count = 1, .reusable = true}}, SHIFT(106),
-  [333] = {.entry = {.count = 1, .reusable = true}}, SHIFT(125),
-  [335] = {.entry = {.count = 1, .reusable = true}}, SHIFT(152),
-  [337] = {.entry = {.count = 1, .reusable = true}}, SHIFT(63),
-  [339] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
-  [341] = {.entry = {.count = 1, .reusable = true}}, SHIFT(108),
+  [307] = {.entry = {.count = 1, .reusable = true}},  ACCEPT_INPUT(),
+  [309] = {.entry = {.count = 1, .reusable = true}}, SHIFT(58),
+  [311] = {.entry = {.count = 1, .reusable = true}}, SHIFT(252),
+  [313] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__EntityDecl, 1, 0, 0),
+  [315] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym__EntityDecl, 1, 0, 0),
+  [317] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 2, 0, 0), SHIFT_REPEAT(74),
+  [320] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 2, 0, 0),
+  [322] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 2, 0, 0), SHIFT_REPEAT(294),
+  [325] = {.entry = {.count = 1, .reusable = true}}, SHIFT(65),
+  [327] = {.entry = {.count = 1, .reusable = true}}, SHIFT(126),
+  [329] = {.entry = {.count = 1, .reusable = true}}, SHIFT(66),
+  [331] = {.entry = {.count = 1, .reusable = true}}, SHIFT(110),
+  [333] = {.entry = {.count = 1, .reusable = true}}, SHIFT(111),
+  [335] = {.entry = {.count = 1, .reusable = true}}, SHIFT(130),
+  [337] = {.entry = {.count = 1, .reusable = true}}, SHIFT(157),
+  [339] = {.entry = {.count = 1, .reusable = true}}, SHIFT(64),
+  [341] = {.entry = {.count = 1, .reusable = true}}, SHIFT(113),
   [343] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_elementdecl, 8, 0, 0),
   [345] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_elementdecl, 8, 0, 0),
   [347] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttlistDecl, 6, 0, 0),
   [349] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_AttlistDecl, 6, 0, 0),
   [351] = {.entry = {.count = 1, .reusable = true}}, SHIFT(72),
   [353] = {.entry = {.count = 1, .reusable = true}}, SHIFT(71),
-  [355] = {.entry = {.count = 1, .reusable = true}}, SHIFT(91),
+  [355] = {.entry = {.count = 1, .reusable = true}}, SHIFT(96),
   [357] = {.entry = {.count = 1, .reusable = true}}, SHIFT(75),
-  [359] = {.entry = {.count = 1, .reusable = true}}, SHIFT(234),
+  [359] = {.entry = {.count = 1, .reusable = true}}, SHIFT(238),
   [361] = {.entry = {.count = 1, .reusable = true}}, SHIFT(69),
   [363] = {.entry = {.count = 1, .reusable = true}}, SHIFT(77),
   [365] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_GEDecl, 7, 0, 0),
   [367] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_GEDecl, 7, 0, 0),
-  [369] = {.entry = {.count = 1, .reusable = true}}, SHIFT(210),
-  [371] = {.entry = {.count = 1, .reusable = true}}, SHIFT(81),
-  [373] = {.entry = {.count = 1, .reusable = true}}, SHIFT(82),
-  [375] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 4, 0, 0),
-  [377] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_EntityValue, 3, 0, 1),
-  [379] = {.entry = {.count = 1, .reusable = true}}, SHIFT(170),
-  [381] = {.entry = {.count = 1, .reusable = true}}, SHIFT(85),
-  [383] = {.entry = {.count = 1, .reusable = true}}, SHIFT(86),
-  [385] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PEDecl, 10, 0, 0),
-  [387] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PEDecl, 10, 0, 0),
-  [389] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym__choice_repeat1, 4, 0, 0),
-  [391] = {.entry = {.count = 1, .reusable = true}}, SHIFT(221),
-  [393] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 5, 0, 0),
-  [395] = {.entry = {.count = 1, .reusable = true}}, SHIFT(80),
-  [397] = {.entry = {.count = 1, .reusable = true}}, SHIFT(290),
-  [399] = {.entry = {.count = 1, .reusable = true}}, SHIFT(114),
-  [401] = {.entry = {.count = 1, .reusable = true}}, SHIFT(94),
-  [403] = {.entry = {.count = 1, .reusable = true}}, SHIFT(246),
-  [405] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Enumeration, 4, 0, 0),
-  [407] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__EnumeratedType, 1, 0, 0),
-  [409] = {.entry = {.count = 1, .reusable = true}}, SHIFT(79),
-  [411] = {.entry = {.count = 1, .reusable = true}}, SHIFT(150),
-  [413] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_SystemLiteral, 3, 0, 0),
-  [415] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_ExternalID, 3, 0, 0),
-  [417] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 5, 0, 0),
-  [419] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_children, 2, 0, 0),
-  [421] = {.entry = {.count = 1, .reusable = true}}, SHIFT(97),
-  [423] = {.entry = {.count = 1, .reusable = true}}, SHIFT(101),
-  [425] = {.entry = {.count = 1, .reusable = true}}, SHIFT(99),
-  [427] = {.entry = {.count = 1, .reusable = true}}, SHIFT(167),
-  [429] = {.entry = {.count = 1, .reusable = true}}, SHIFT(68),
-  [431] = {.entry = {.count = 1, .reusable = true}}, SHIFT(271),
-  [433] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttlistDecl, 7, 0, 0),
-  [435] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_AttlistDecl, 7, 0, 0),
-  [437] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_conditionalSect, 5, 0, 0),
-  [439] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_conditionalSect, 5, 0, 0),
-  [441] = {.entry = {.count = 1, .reusable = true}}, SHIFT(119),
-  [443] = {.entry = {.count = 1, .reusable = true}}, SHIFT(219),
-  [445] = {.entry = {.count = 1, .reusable = true}}, SHIFT(222),
-  [447] = {.entry = {.count = 1, .reusable = true}}, SHIFT(240),
-  [449] = {.entry = {.count = 1, .reusable = true}}, SHIFT(146),
-  [451] = {.entry = {.count = 1, .reusable = true}}, SHIFT(280),
-  [453] = {.entry = {.count = 1, .reusable = true}}, SHIFT(115),
-  [455] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 2, 0, 0),
-  [457] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 2, 0, 0), SHIFT_REPEAT(114),
-  [460] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 2, 0, 0), SHIFT_REPEAT(294),
-  [463] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym__choice_repeat2, 2, 0, 0),
-  [465] = {.entry = {.count = 1, .reusable = true}}, SHIFT(102),
-  [467] = {.entry = {.count = 1, .reusable = true}}, SHIFT(296),
-  [469] = {.entry = {.count = 1, .reusable = true}}, SHIFT(104),
-  [471] = {.entry = {.count = 1, .reusable = true}}, SHIFT(304),
-  [473] = {.entry = {.count = 1, .reusable = true}}, SHIFT(315),
-  [475] = {.entry = {.count = 1, .reusable = true}}, SHIFT(113),
-  [477] = {.entry = {.count = 1, .reusable = true}}, SHIFT(122),
-  [479] = {.entry = {.count = 1, .reusable = true}}, SHIFT(123),
-  [481] = {.entry = {.count = 1, .reusable = true}}, SHIFT(109),
-  [483] = {.entry = {.count = 1, .reusable = true}}, SHIFT(291),
-  [485] = {.entry = {.count = 1, .reusable = true}}, SHIFT(118),
-  [487] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 3, 0, 0),
-  [489] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_GEDecl, 9, 0, 0),
-  [491] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_GEDecl, 9, 0, 0),
-  [493] = {.entry = {.count = 1, .reusable = true}}, SHIFT(184),
-  [495] = {.entry = {.count = 1, .reusable = true}}, SHIFT(225),
-  [497] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__choice_repeat2, 2, 0, 0), SHIFT_REPEAT(17),
-  [500] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__choice_repeat2, 2, 0, 0), SHIFT_REPEAT(239),
-  [503] = {.entry = {.count = 1, .reusable = true}}, SHIFT(132),
-  [505] = {.entry = {.count = 1, .reusable = true}}, SHIFT(133),
-  [507] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 6, 0, 0),
-  [509] = {.entry = {.count = 1, .reusable = true}}, SHIFT(135),
-  [511] = {.entry = {.count = 1, .reusable = true}}, SHIFT(299),
-  [513] = {.entry = {.count = 1, .reusable = true}}, SHIFT(136),
-  [515] = {.entry = {.count = 1, .reusable = true}}, SHIFT(137),
-  [517] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PubidLiteral, 3, 0, 0),
-  [519] = {.entry = {.count = 1, .reusable = true}}, SHIFT(139),
-  [521] = {.entry = {.count = 1, .reusable = true}}, SHIFT(141),
-  [523] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NDataDecl, 4, 0, 0),
-  [525] = {.entry = {.count = 1, .reusable = true}}, SHIFT(174),
-  [527] = {.entry = {.count = 1, .reusable = true}}, SHIFT(143),
-  [529] = {.entry = {.count = 1, .reusable = true}}, SHIFT(127),
-  [531] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 4, 0, 0),
-  [533] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat2, 1, 0, 0),
-  [535] = {.entry = {.count = 1, .reusable = true}}, SHIFT(247),
-  [537] = {.entry = {.count = 1, .reusable = true}}, SHIFT(147),
-  [539] = {.entry = {.count = 1, .reusable = true}}, SHIFT(148),
-  [541] = {.entry = {.count = 1, .reusable = true}}, SHIFT(232),
-  [543] = {.entry = {.count = 1, .reusable = true}}, SHIFT(144),
-  [545] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_ExternalID, 5, 0, 0),
-  [547] = {.entry = {.count = 1, .reusable = true}}, SHIFT(151),
-  [549] = {.entry = {.count = 1, .reusable = true}}, SHIFT(140),
-  [551] = {.entry = {.count = 1, .reusable = true}}, SHIFT(134),
-  [553] = {.entry = {.count = 1, .reusable = true}}, SHIFT(155),
-  [555] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_extSubset, 2, 0, 0),
-  [557] = {.entry = {.count = 1, .reusable = true}}, SHIFT(166),
-  [559] = {.entry = {.count = 1, .reusable = true}}, SHIFT(157),
-  [561] = {.entry = {.count = 1, .reusable = true}}, SHIFT(169),
-  [563] = {.entry = {.count = 1, .reusable = true}}, SHIFT(154),
-  [565] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 6, 0, 0),
-  [567] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 7, 0, 0),
-  [569] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationDecl, 7, 0, 0),
-  [571] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_NotationDecl, 7, 0, 0),
-  [573] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationDecl, 8, 0, 0),
-  [575] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_NotationDecl, 8, 0, 0),
-  [577] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PEReference, 3, 0, 0),
-  [579] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_conditionalSect, 6, 0, 0),
-  [581] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_conditionalSect, 6, 0, 0),
-  [583] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_conditionalSect, 4, 0, 0),
-  [585] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_conditionalSect, 4, 0, 0),
-  [587] = {.entry = {.count = 1, .reusable = true}}, SHIFT(197),
-  [589] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_conditionalSect, 7, 0, 0),
-  [591] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_conditionalSect, 7, 0, 0),
-  [593] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PEDecl, 9, 0, 0),
-  [595] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PEDecl, 9, 0, 0),
-  [597] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PI, 3, 0, 0),
-  [599] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PI, 3, 0, 0),
-  [601] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PI, 5, 0, 0),
-  [603] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PI, 5, 0, 0),
-  [605] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttlistDecl, 5, 0, 0),
-  [607] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_AttlistDecl, 5, 0, 0),
-  [609] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_GEDecl, 8, 0, 0),
-  [611] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_GEDecl, 8, 0, 0),
-  [613] = {.entry = {.count = 1, .reusable = true}}, SHIFT(177),
-  [615] = {.entry = {.count = 1, .reusable = true}}, SHIFT(195),
-  [617] = {.entry = {.count = 1, .reusable = true}}, SHIFT(196),
-  [619] = {.entry = {.count = 1, .reusable = true}}, SHIFT(281),
-  [621] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_TextDecl, 5, 0, 0),
-  [623] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_TextDecl, 5, 0, 0),
-  [625] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_EntityRef, 3, 0, 0),
-  [627] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_EntityRef, 3, 0, 0),
-  [629] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_CharRef, 3, 0, 0),
-  [631] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_CharRef, 3, 0, 0),
-  [633] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_TextDecl, 4, 0, 0),
-  [635] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_TextDecl, 4, 0, 0),
-  [637] = {.entry = {.count = 1, .reusable = true}}, SHIFT(256),
-  [639] = {.entry = {.count = 1, .reusable = true}}, SHIFT(217),
-  [641] = {.entry = {.count = 1, .reusable = true}}, SHIFT(295),
-  [643] = {.entry = {.count = 1, .reusable = true}}, SHIFT(260),
-  [645] = {.entry = {.count = 1, .reusable = true}}, SHIFT(265),
-  [647] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__Reference, 1, 0, 0),
-  [649] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym__Reference, 1, 0, 0),
-  [651] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_TextDecl, 6, 0, 0),
-  [653] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_TextDecl, 6, 0, 0),
-  [655] = {.entry = {.count = 1, .reusable = true}}, SHIFT(274),
-  [657] = {.entry = {.count = 1, .reusable = true}}, SHIFT(160),
-  [659] = {.entry = {.count = 1, .reusable = true}}, SHIFT(229),
-  [661] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 2, 0, 0),
-  [663] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 2, 0, 0), SHIFT_REPEAT(217),
-  [666] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 2, 0, 0), SHIFT_REPEAT(295),
-  [669] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 2, 0, 0), SHIFT_REPEAT(220),
-  [672] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat2, 2, 0, 0),
-  [674] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat2, 2, 0, 0), SHIFT_REPEAT(17),
-  [677] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 3, 0, 0),
-  [679] = {.entry = {.count = 1, .reusable = true}}, SHIFT(228),
-  [681] = {.entry = {.count = 1, .reusable = true}}, SHIFT(185),
-  [683] = {.entry = {.count = 1, .reusable = true}}, SHIFT(230),
-  [685] = {.entry = {.count = 1, .reusable = true}}, SHIFT(289),
-  [687] = {.entry = {.count = 1, .reusable = true}}, SHIFT(238),
-  [689] = {.entry = {.count = 1, .reusable = true}}, SHIFT(272),
-  [691] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 1, 0, 0),
-  [693] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 1, 0, 0), SHIFT_REPEAT(218),
-  [696] = {.entry = {.count = 1, .reusable = true}}, SHIFT(250),
-  [698] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 3, 0, 0),
-  [700] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 4, 0, 0),
-  [702] = {.entry = {.count = 1, .reusable = true}}, SHIFT(279),
-  [704] = {.entry = {.count = 1, .reusable = true}}, SHIFT(226),
-  [706] = {.entry = {.count = 1, .reusable = true}}, SHIFT(183),
-  [708] = {.entry = {.count = 1, .reusable = true}}, SHIFT(255),
-  [710] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__Eq, 1, 0, 0),
-  [712] = {.entry = {.count = 1, .reusable = true}}, SHIFT(261),
-  [714] = {.entry = {.count = 1, .reusable = true}}, SHIFT(324),
-  [716] = {.entry = {.count = 1, .reusable = true}}, SHIFT(251),
-  [718] = {.entry = {.count = 1, .reusable = true}}, SHIFT(161),
-  [720] = {.entry = {.count = 1, .reusable = true}}, SHIFT(186),
-  [722] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 3, 0, 0),
-  [724] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__Eq, 2, 0, 0),
-  [726] = {.entry = {.count = 1, .reusable = true}}, SHIFT(241),
-  [728] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Enumeration, 5, 0, 0),
-  [730] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Enumeration, 3, 0, 0),
-  [732] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__Eq, 3, 0, 0),
-  [734] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PublicID, 3, 0, 0),
-  [736] = {.entry = {.count = 1, .reusable = true}}, SHIFT(252),
-  [738] = {.entry = {.count = 1, .reusable = true}}, SHIFT(249),
-  [740] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__VersionInfo, 6, 0, 0),
-  [742] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttValue, 2, 0, 0),
-  [744] = {.entry = {.count = 1, .reusable = true}}, SHIFT(171),
-  [746] = {.entry = {.count = 1, .reusable = true}}, SHIFT(311),
-  [748] = {.entry = {.count = 1, .reusable = true}}, SHIFT(153),
-  [750] = {.entry = {.count = 1, .reusable = true}}, SHIFT(313),
-  [752] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 7, 0, 0),
-  [754] = {.entry = {.count = 1, .reusable = true}}, SHIFT(300),
-  [756] = {.entry = {.count = 1, .reusable = true}}, SHIFT(180),
-  [758] = {.entry = {.count = 1, .reusable = true}}, SHIFT(223),
-  [760] = {.entry = {.count = 1, .reusable = true}}, SHIFT(263),
-  [762] = {.entry = {.count = 1, .reusable = true}}, SHIFT(305),
-  [764] = {.entry = {.count = 1, .reusable = true}}, SHIFT(293),
-  [766] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 8, 0, 0),
-  [768] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Enumeration, 6, 0, 0),
-  [770] = {.entry = {.count = 1, .reusable = true}}, SHIFT(264),
-  [772] = {.entry = {.count = 1, .reusable = true}}, SHIFT(307),
-  [774] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__EncodingDecl, 6, 0, 0),
-  [776] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationType, 6, 0, 0),
-  [778] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationType, 7, 0, 0),
-  [780] = {.entry = {.count = 1, .reusable = true}}, SHIFT(266),
-  [782] = {.entry = {.count = 1, .reusable = true}}, SHIFT(309),
-  [784] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationType, 8, 0, 0),
-  [786] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationType, 9, 0, 0),
-  [788] = {.entry = {.count = 1, .reusable = true}}, SHIFT(163),
-  [790] = {.entry = {.count = 1, .reusable = true}}, SHIFT(314),
-  [792] = {.entry = {.count = 1, .reusable = true}}, SHIFT(297),
-  [794] = {.entry = {.count = 1, .reusable = true}}, SHIFT(298),
-  [796] = {.entry = {.count = 1, .reusable = true}}, SHIFT(277),
-  [798] = {.entry = {.count = 1, .reusable = true}}, SHIFT(282),
-  [800] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_EntityValue, 2, 0, 0),
-  [802] = {.entry = {.count = 1, .reusable = true}}, SHIFT(259),
-  [804] = {.entry = {.count = 1, .reusable = true}}, SHIFT(179),
-  [806] = {.entry = {.count = 1, .reusable = true}}, SHIFT(245),
-  [808] = {.entry = {.count = 1, .reusable = true}}, SHIFT(284),
-  [810] = {.entry = {.count = 1, .reusable = true}}, SHIFT(233),
-  [812] = {.entry = {.count = 1, .reusable = true}}, SHIFT(236),
-  [814] = {.entry = {.count = 1, .reusable = true}}, SHIFT(287),
-  [816] = {.entry = {.count = 1, .reusable = true}}, SHIFT(237),
-  [818] = {.entry = {.count = 1, .reusable = true}}, SHIFT(262),
-  [820] = {.entry = {.count = 1, .reusable = true}}, SHIFT(227),
-  [822] = {.entry = {.count = 1, .reusable = true}}, SHIFT(172),
-  [824] = {.entry = {.count = 1, .reusable = true}}, SHIFT(306),
-  [826] = {.entry = {.count = 1, .reusable = true}}, SHIFT(258),
-  [828] = {.entry = {.count = 1, .reusable = true}}, SHIFT(194),
-  [830] = {.entry = {.count = 1, .reusable = true}}, SHIFT(206),
-  [832] = {.entry = {.count = 1, .reusable = true}}, SHIFT(276),
-  [834] = {.entry = {.count = 1, .reusable = true}}, SHIFT(312),
-  [836] = {.entry = {.count = 1, .reusable = true}}, SHIFT(275),
+  [369] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PI, 5, 0, 0),
+  [371] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PI, 5, 0, 0),
+  [373] = {.entry = {.count = 1, .reusable = true}}, SHIFT(214),
+  [375] = {.entry = {.count = 1, .reusable = true}}, SHIFT(82),
+  [377] = {.entry = {.count = 1, .reusable = true}}, SHIFT(83),
+  [379] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 4, 0, 0),
+  [381] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_EntityValue, 3, 0, 1),
+  [383] = {.entry = {.count = 1, .reusable = true}}, SHIFT(175),
+  [385] = {.entry = {.count = 1, .reusable = true}}, SHIFT(86),
+  [387] = {.entry = {.count = 1, .reusable = true}}, SHIFT(87),
+  [389] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PEDecl, 10, 0, 0),
+  [391] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PEDecl, 10, 0, 0),
+  [393] = {.entry = {.count = 1, .reusable = true}}, SHIFT(176),
+  [395] = {.entry = {.count = 1, .reusable = true}}, SHIFT(89),
+  [397] = {.entry = {.count = 1, .reusable = true}}, SHIFT(90),
+  [399] = {.entry = {.count = 1, .reusable = true}}, SHIFT(80),
+  [401] = {.entry = {.count = 1, .reusable = true}}, SHIFT(88),
+  [403] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym__choice_repeat1, 4, 0, 0),
+  [405] = {.entry = {.count = 1, .reusable = true}}, SHIFT(225),
+  [407] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 5, 0, 0),
+  [409] = {.entry = {.count = 1, .reusable = true}}, SHIFT(81),
+  [411] = {.entry = {.count = 1, .reusable = true}}, SHIFT(292),
+  [413] = {.entry = {.count = 1, .reusable = true}}, SHIFT(119),
+  [415] = {.entry = {.count = 1, .reusable = true}}, SHIFT(99),
+  [417] = {.entry = {.count = 1, .reusable = true}}, SHIFT(250),
+  [419] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Enumeration, 4, 0, 0),
+  [421] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__EnumeratedType, 1, 0, 0),
+  [423] = {.entry = {.count = 1, .reusable = true}}, SHIFT(79),
+  [425] = {.entry = {.count = 1, .reusable = true}}, SHIFT(155),
+  [427] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_SystemLiteral, 3, 0, 0),
+  [429] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_ExternalID, 3, 0, 0),
+  [431] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 5, 0, 0),
+  [433] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_children, 2, 0, 0),
+  [435] = {.entry = {.count = 1, .reusable = true}}, SHIFT(102),
+  [437] = {.entry = {.count = 1, .reusable = true}}, SHIFT(106),
+  [439] = {.entry = {.count = 1, .reusable = true}}, SHIFT(104),
+  [441] = {.entry = {.count = 1, .reusable = true}}, SHIFT(172),
+  [443] = {.entry = {.count = 1, .reusable = true}}, SHIFT(68),
+  [445] = {.entry = {.count = 1, .reusable = true}}, SHIFT(274),
+  [447] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttlistDecl, 7, 0, 0),
+  [449] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_AttlistDecl, 7, 0, 0),
+  [451] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_conditionalSect, 5, 0, 0),
+  [453] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_conditionalSect, 5, 0, 0),
+  [455] = {.entry = {.count = 1, .reusable = true}}, SHIFT(124),
+  [457] = {.entry = {.count = 1, .reusable = true}}, SHIFT(223),
+  [459] = {.entry = {.count = 1, .reusable = true}}, SHIFT(226),
+  [461] = {.entry = {.count = 1, .reusable = true}}, SHIFT(244),
+  [463] = {.entry = {.count = 1, .reusable = true}}, SHIFT(151),
+  [465] = {.entry = {.count = 1, .reusable = true}}, SHIFT(283),
+  [467] = {.entry = {.count = 1, .reusable = true}}, SHIFT(120),
+  [469] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 2, 0, 0),
+  [471] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 2, 0, 0), SHIFT_REPEAT(119),
+  [474] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 2, 0, 0), SHIFT_REPEAT(296),
+  [477] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym__choice_repeat2, 2, 0, 0),
+  [479] = {.entry = {.count = 1, .reusable = true}}, SHIFT(107),
+  [481] = {.entry = {.count = 1, .reusable = true}}, SHIFT(298),
+  [483] = {.entry = {.count = 1, .reusable = true}}, SHIFT(109),
+  [485] = {.entry = {.count = 1, .reusable = true}}, SHIFT(305),
+  [487] = {.entry = {.count = 1, .reusable = true}}, SHIFT(315),
+  [489] = {.entry = {.count = 1, .reusable = true}}, SHIFT(118),
+  [491] = {.entry = {.count = 1, .reusable = true}}, SHIFT(127),
+  [493] = {.entry = {.count = 1, .reusable = true}}, SHIFT(128),
+  [495] = {.entry = {.count = 1, .reusable = true}}, SHIFT(114),
+  [497] = {.entry = {.count = 1, .reusable = true}}, SHIFT(293),
+  [499] = {.entry = {.count = 1, .reusable = true}}, SHIFT(123),
+  [501] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 3, 0, 0),
+  [503] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_GEDecl, 9, 0, 0),
+  [505] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_GEDecl, 9, 0, 0),
+  [507] = {.entry = {.count = 1, .reusable = true}}, SHIFT(188),
+  [509] = {.entry = {.count = 1, .reusable = true}}, SHIFT(229),
+  [511] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__choice_repeat2, 2, 0, 0), SHIFT_REPEAT(17),
+  [514] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym__choice_repeat2, 2, 0, 0), SHIFT_REPEAT(243),
+  [517] = {.entry = {.count = 1, .reusable = true}}, SHIFT(137),
+  [519] = {.entry = {.count = 1, .reusable = true}}, SHIFT(138),
+  [521] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 6, 0, 0),
+  [523] = {.entry = {.count = 1, .reusable = true}}, SHIFT(140),
+  [525] = {.entry = {.count = 1, .reusable = true}}, SHIFT(301),
+  [527] = {.entry = {.count = 1, .reusable = true}}, SHIFT(141),
+  [529] = {.entry = {.count = 1, .reusable = true}}, SHIFT(142),
+  [531] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PubidLiteral, 3, 0, 0),
+  [533] = {.entry = {.count = 1, .reusable = true}}, SHIFT(144),
+  [535] = {.entry = {.count = 1, .reusable = true}}, SHIFT(146),
+  [537] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NDataDecl, 4, 0, 0),
+  [539] = {.entry = {.count = 1, .reusable = true}}, SHIFT(178),
+  [541] = {.entry = {.count = 1, .reusable = true}}, SHIFT(148),
+  [543] = {.entry = {.count = 1, .reusable = true}}, SHIFT(132),
+  [545] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 4, 0, 0),
+  [547] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat2, 1, 0, 0),
+  [549] = {.entry = {.count = 1, .reusable = true}}, SHIFT(251),
+  [551] = {.entry = {.count = 1, .reusable = true}}, SHIFT(152),
+  [553] = {.entry = {.count = 1, .reusable = true}}, SHIFT(153),
+  [555] = {.entry = {.count = 1, .reusable = true}}, SHIFT(236),
+  [557] = {.entry = {.count = 1, .reusable = true}}, SHIFT(149),
+  [559] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_ExternalID, 5, 0, 0),
+  [561] = {.entry = {.count = 1, .reusable = true}}, SHIFT(156),
+  [563] = {.entry = {.count = 1, .reusable = true}}, SHIFT(145),
+  [565] = {.entry = {.count = 1, .reusable = true}}, SHIFT(139),
+  [567] = {.entry = {.count = 1, .reusable = true}}, SHIFT(160),
+  [569] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_extSubset, 2, 0, 0),
+  [571] = {.entry = {.count = 1, .reusable = true}}, SHIFT(171),
+  [573] = {.entry = {.count = 1, .reusable = true}}, SHIFT(162),
+  [575] = {.entry = {.count = 1, .reusable = true}}, SHIFT(174),
+  [577] = {.entry = {.count = 1, .reusable = true}}, SHIFT(159),
+  [579] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 6, 0, 0),
+  [581] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__choice, 7, 0, 0),
+  [583] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationDecl, 7, 0, 0),
+  [585] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_NotationDecl, 7, 0, 0),
+  [587] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationDecl, 8, 0, 0),
+  [589] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_NotationDecl, 8, 0, 0),
+  [591] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PEReference, 3, 0, 0),
+  [593] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_conditionalSect, 6, 0, 0),
+  [595] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_conditionalSect, 6, 0, 0),
+  [597] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_conditionalSect, 4, 0, 0),
+  [599] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_conditionalSect, 4, 0, 0),
+  [601] = {.entry = {.count = 1, .reusable = true}}, SHIFT(201),
+  [603] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_conditionalSect, 7, 0, 0),
+  [605] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_conditionalSect, 7, 0, 0),
+  [607] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PEDecl, 9, 0, 0),
+  [609] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PEDecl, 9, 0, 0),
+  [611] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PI, 3, 0, 0),
+  [613] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_PI, 3, 0, 0),
+  [615] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttlistDecl, 5, 0, 0),
+  [617] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_AttlistDecl, 5, 0, 0),
+  [619] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_GEDecl, 8, 0, 0),
+  [621] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_GEDecl, 8, 0, 0),
+  [623] = {.entry = {.count = 1, .reusable = true}}, SHIFT(181),
+  [625] = {.entry = {.count = 1, .reusable = true}}, SHIFT(199),
+  [627] = {.entry = {.count = 1, .reusable = true}}, SHIFT(200),
+  [629] = {.entry = {.count = 1, .reusable = true}}, SHIFT(284),
+  [631] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_TextDecl, 5, 0, 0),
+  [633] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_TextDecl, 5, 0, 0),
+  [635] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_EntityRef, 3, 0, 0),
+  [637] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_EntityRef, 3, 0, 0),
+  [639] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_CharRef, 3, 0, 0),
+  [641] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_CharRef, 3, 0, 0),
+  [643] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_TextDecl, 4, 0, 0),
+  [645] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_TextDecl, 4, 0, 0),
+  [647] = {.entry = {.count = 1, .reusable = true}}, SHIFT(259),
+  [649] = {.entry = {.count = 1, .reusable = true}}, SHIFT(221),
+  [651] = {.entry = {.count = 1, .reusable = true}}, SHIFT(297),
+  [653] = {.entry = {.count = 1, .reusable = true}}, SHIFT(263),
+  [655] = {.entry = {.count = 1, .reusable = true}}, SHIFT(268),
+  [657] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__Reference, 1, 0, 0),
+  [659] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym__Reference, 1, 0, 0),
+  [661] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_TextDecl, 6, 0, 0),
+  [663] = {.entry = {.count = 1, .reusable = false}}, REDUCE(sym_TextDecl, 6, 0, 0),
+  [665] = {.entry = {.count = 1, .reusable = true}}, SHIFT(277),
+  [667] = {.entry = {.count = 1, .reusable = true}}, SHIFT(165),
+  [669] = {.entry = {.count = 1, .reusable = true}}, SHIFT(233),
+  [671] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 2, 0, 0),
+  [673] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 2, 0, 0), SHIFT_REPEAT(221),
+  [676] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 2, 0, 0), SHIFT_REPEAT(297),
+  [679] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 2, 0, 0), SHIFT_REPEAT(224),
+  [682] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat2, 2, 0, 0),
+  [684] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat2, 2, 0, 0), SHIFT_REPEAT(17),
+  [687] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Mixed_repeat1, 3, 0, 0),
+  [689] = {.entry = {.count = 1, .reusable = true}}, SHIFT(232),
+  [691] = {.entry = {.count = 1, .reusable = true}}, SHIFT(189),
+  [693] = {.entry = {.count = 1, .reusable = true}}, SHIFT(234),
+  [695] = {.entry = {.count = 1, .reusable = true}}, SHIFT(291),
+  [697] = {.entry = {.count = 1, .reusable = true}}, SHIFT(242),
+  [699] = {.entry = {.count = 1, .reusable = true}}, SHIFT(275),
+  [701] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 1, 0, 0),
+  [703] = {.entry = {.count = 2, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 1, 0, 0), SHIFT_REPEAT(222),
+  [706] = {.entry = {.count = 1, .reusable = true}}, SHIFT(253),
+  [708] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_NotationType_repeat1, 3, 0, 0),
+  [710] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 4, 0, 0),
+  [712] = {.entry = {.count = 1, .reusable = true}}, SHIFT(282),
+  [714] = {.entry = {.count = 1, .reusable = true}}, SHIFT(230),
+  [716] = {.entry = {.count = 1, .reusable = true}}, SHIFT(187),
+  [718] = {.entry = {.count = 1, .reusable = true}}, SHIFT(258),
+  [720] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__Eq, 1, 0, 0),
+  [722] = {.entry = {.count = 1, .reusable = true}}, SHIFT(264),
+  [724] = {.entry = {.count = 1, .reusable = true}}, SHIFT(324),
+  [726] = {.entry = {.count = 1, .reusable = true}}, SHIFT(254),
+  [728] = {.entry = {.count = 1, .reusable = true}}, SHIFT(166),
+  [730] = {.entry = {.count = 1, .reusable = true}}, SHIFT(190),
+  [732] = {.entry = {.count = 1, .reusable = true}}, REDUCE(aux_sym_Enumeration_repeat1, 3, 0, 0),
+  [734] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__Eq, 2, 0, 0),
+  [736] = {.entry = {.count = 1, .reusable = true}}, SHIFT(245),
+  [738] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Enumeration, 5, 0, 0),
+  [740] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Enumeration, 3, 0, 0),
+  [742] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__Eq, 3, 0, 0),
+  [744] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_PublicID, 3, 0, 0),
+  [746] = {.entry = {.count = 1, .reusable = true}}, SHIFT(255),
+  [748] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__VersionInfo, 6, 0, 0),
+  [750] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_AttValue, 2, 0, 0),
+  [752] = {.entry = {.count = 1, .reusable = true}}, SHIFT(158),
+  [754] = {.entry = {.count = 1, .reusable = true}}, SHIFT(313),
+  [756] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 7, 0, 0),
+  [758] = {.entry = {.count = 1, .reusable = true}}, SHIFT(302),
+  [760] = {.entry = {.count = 1, .reusable = true}}, SHIFT(184),
+  [762] = {.entry = {.count = 1, .reusable = true}}, SHIFT(227),
+  [764] = {.entry = {.count = 1, .reusable = true}}, SHIFT(266),
+  [766] = {.entry = {.count = 1, .reusable = true}}, SHIFT(306),
+  [768] = {.entry = {.count = 1, .reusable = true}}, SHIFT(295),
+  [770] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Mixed, 8, 0, 0),
+  [772] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_Enumeration, 6, 0, 0),
+  [774] = {.entry = {.count = 1, .reusable = true}}, SHIFT(267),
+  [776] = {.entry = {.count = 1, .reusable = true}}, SHIFT(308),
+  [778] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym__EncodingDecl, 6, 0, 0),
+  [780] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationType, 6, 0, 0),
+  [782] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationType, 7, 0, 0),
+  [784] = {.entry = {.count = 1, .reusable = true}}, SHIFT(269),
+  [786] = {.entry = {.count = 1, .reusable = true}}, SHIFT(310),
+  [788] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationType, 8, 0, 0),
+  [790] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_NotationType, 9, 0, 0),
+  [792] = {.entry = {.count = 1, .reusable = true}}, SHIFT(168),
+  [794] = {.entry = {.count = 1, .reusable = true}}, SHIFT(314),
+  [796] = {.entry = {.count = 1, .reusable = true}}, SHIFT(299),
+  [798] = {.entry = {.count = 1, .reusable = true}}, SHIFT(300),
+  [800] = {.entry = {.count = 1, .reusable = true}}, SHIFT(280),
+  [802] = {.entry = {.count = 1, .reusable = true}}, SHIFT(285),
+  [804] = {.entry = {.count = 1, .reusable = true}}, REDUCE(sym_EntityValue, 2, 0, 0),
+  [806] = {.entry = {.count = 1, .reusable = true}}, SHIFT(262),
+  [808] = {.entry = {.count = 1, .reusable = true}}, SHIFT(183),
+  [810] = {.entry = {.count = 1, .reusable = true}}, SHIFT(249),
+  [812] = {.entry = {.count = 1, .reusable = true}}, SHIFT(287),
+  [814] = {.entry = {.count = 1, .reusable = true}}, SHIFT(237),
+  [816] = {.entry = {.count = 1, .reusable = true}}, SHIFT(240),
+  [818] = {.entry = {.count = 1, .reusable = true}}, SHIFT(289),
+  [820] = {.entry = {.count = 1, .reusable = true}}, SHIFT(241),
+  [822] = {.entry = {.count = 1, .reusable = true}}, SHIFT(265),
+  [824] = {.entry = {.count = 1, .reusable = true}}, SHIFT(231),
+  [826] = {.entry = {.count = 1, .reusable = true}}, SHIFT(307),
+  [828] = {.entry = {.count = 1, .reusable = true}}, SHIFT(261),
+  [830] = {.entry = {.count = 1, .reusable = true}}, SHIFT(198),
+  [832] = {.entry = {.count = 1, .reusable = true}}, SHIFT(210),
+  [834] = {.entry = {.count = 1, .reusable = true}}, SHIFT(279),
+  [836] = {.entry = {.count = 1, .reusable = true}}, SHIFT(312),
   [838] = {.entry = {.count = 1, .reusable = true}}, SHIFT(278),
-  [840] = {.entry = {.count = 1, .reusable = true}}, SHIFT(231),
-  [842] = {.entry = {.count = 1, .reusable = true}}, SHIFT(165),
-  [844] = {.entry = {.count = 1, .reusable = true}}, SHIFT(301),
-  [846] = {.entry = {.count = 1, .reusable = true}}, SHIFT(214),
-  [848] = {.entry = {.count = 1, .reusable = true}}, SHIFT(181),
-  [850] = {.entry = {.count = 1, .reusable = true}}, SHIFT(267),
-  [852] = {.entry = {.count = 1, .reusable = true}}, SHIFT(182),
-  [854] = {.entry = {.count = 1, .reusable = true}}, SHIFT(286),
-  [856] = {.entry = {.count = 1, .reusable = true}}, SHIFT(156),
-  [858] = {.entry = {.count = 1, .reusable = true}}, SHIFT(164),
-  [860] = {.entry = {.count = 1, .reusable = true}}, SHIFT(213),
-  [862] = {.entry = {.count = 1, .reusable = true}}, SHIFT(308),
-  [864] = {.entry = {.count = 1, .reusable = true}}, SHIFT(310),
-  [866] = {.entry = {.count = 1, .reusable = true}}, SHIFT(191),
-  [868] = {.entry = {.count = 1, .reusable = true}}, SHIFT(192),
-  [870] = {.entry = {.count = 1, .reusable = true}}, SHIFT(193),
-  [872] = {.entry = {.count = 1, .reusable = true}}, SHIFT(201),
-  [874] = {.entry = {.count = 1, .reusable = true}}, SHIFT(202),
-  [876] = {.entry = {.count = 1, .reusable = true}}, SHIFT(178),
-  [878] = {.entry = {.count = 1, .reusable = true}}, SHIFT(204),
-  [880] = {.entry = {.count = 1, .reusable = true}}, SHIFT(205),
+  [840] = {.entry = {.count = 1, .reusable = true}}, SHIFT(281),
+  [842] = {.entry = {.count = 1, .reusable = true}}, SHIFT(235),
+  [844] = {.entry = {.count = 1, .reusable = true}}, SHIFT(170),
+  [846] = {.entry = {.count = 1, .reusable = true}}, SHIFT(303),
+  [848] = {.entry = {.count = 1, .reusable = true}}, SHIFT(218),
+  [850] = {.entry = {.count = 1, .reusable = true}}, SHIFT(185),
+  [852] = {.entry = {.count = 1, .reusable = true}}, SHIFT(270),
+  [854] = {.entry = {.count = 1, .reusable = true}}, SHIFT(186),
+  [856] = {.entry = {.count = 1, .reusable = true}}, SHIFT(161),
+  [858] = {.entry = {.count = 1, .reusable = true}}, SHIFT(169),
+  [860] = {.entry = {.count = 1, .reusable = true}}, SHIFT(217),
+  [862] = {.entry = {.count = 1, .reusable = true}}, SHIFT(309),
+  [864] = {.entry = {.count = 1, .reusable = true}}, SHIFT(311),
+  [866] = {.entry = {.count = 1, .reusable = true}}, SHIFT(195),
+  [868] = {.entry = {.count = 1, .reusable = true}}, SHIFT(196),
+  [870] = {.entry = {.count = 1, .reusable = true}}, SHIFT(197),
+  [872] = {.entry = {.count = 1, .reusable = true}}, SHIFT(205),
+  [874] = {.entry = {.count = 1, .reusable = true}}, SHIFT(206),
+  [876] = {.entry = {.count = 1, .reusable = true}}, SHIFT(182),
+  [878] = {.entry = {.count = 1, .reusable = true}}, SHIFT(208),
+  [880] = {.entry = {.count = 1, .reusable = true}}, SHIFT(209),
   [882] = {.entry = {.count = 1, .reusable = true}}, SHIFT(319),
   [884] = {.entry = {.count = 1, .reusable = true}}, SHIFT(320),
   [886] = {.entry = {.count = 1, .reusable = true}}, SHIFT(321),
   [888] = {.entry = {.count = 1, .reusable = true}}, SHIFT(322),
   [890] = {.entry = {.count = 1, .reusable = true}}, SHIFT(323),
-  [892] = {.entry = {.count = 1, .reusable = true}}, SHIFT(273),
+  [892] = {.entry = {.count = 1, .reusable = true}}, SHIFT(276),
   [894] = {.entry = {.count = 1, .reusable = true}}, SHIFT(325),
   [896] = {.entry = {.count = 1, .reusable = true}}, SHIFT(326),
 };
