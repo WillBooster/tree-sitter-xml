@@ -77,11 +77,18 @@ for (const [grammar, errorSource] of Object.entries(ErrorSources)) {
 
 function parseCpuTime(parser: Parser, source: string): number {
   const start = process.threadCpuUsage();
-  const tree = parser.parse(source);
-  const { system, user } = process.threadCpuUsage(start);
-  if (!tree) throw new Error('The parser returned no tree');
-  const { hasError } = tree.rootNode;
-  tree.delete();
-  expect(hasError).toBe(true);
-  return system + user;
+  let parses = 0;
+  let elapsed = 0;
+  // A single fast parse can fall below the OS thread CPU clock's resolution.
+  do {
+    const tree = parser.parse(source);
+    if (!tree) throw new Error('The parser returned no tree');
+    const { hasError } = tree.rootNode;
+    tree.delete();
+    expect(hasError).toBe(true);
+    parses++;
+    const { system, user } = process.threadCpuUsage(start);
+    elapsed = system + user;
+  } while (elapsed < 10_000);
+  return elapsed / parses;
 }
