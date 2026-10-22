@@ -50,9 +50,18 @@ for (const [grammar, errorSource] of Object.entries(ErrorSources)) {
     // the engine's background threads, which compile the Wasm build and collect garbage during the parses. 2,000 and
     // 20,000 lines are measured after warm-up parses and in alternation, each keeping its fastest run; their ratio is
     // about 10 locally, and 18 leaves a margin over that while failing for growth faster than about n^1.25.
-    test('recovers from an error on each line in linear time', { timeout: 60_000 }, () => {
-      const small = errorSource(2000);
-      const large = errorSource(20_000);
+    test.each([
+      { name: 'invalid markup', source: errorSource },
+      {
+        name: 'unterminated processing instructions',
+        source: (lines: number): string => {
+          const instructions = '<?target data\n'.repeat(lines);
+          return grammar === 'xml' ? `<root>${instructions}</root>` : instructions;
+        },
+      },
+    ])('recovers from $name in linear time', { timeout: 60_000 }, ({ source }) => {
+      const small = source(2000);
+      const large = source(20_000);
       parseCpuTime(parser, large);
       parseCpuTime(parser, large);
       let smallFastest = Infinity;

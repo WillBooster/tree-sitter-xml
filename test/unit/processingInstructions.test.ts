@@ -43,6 +43,37 @@ for (const grammar of ['xml', 'dtd']) {
     tree.delete();
   });
 
+  test(`${grammar} completes an unfinished processing instruction after an edit at EOF`, () => {
+    const source = '<?target first?\nsecond';
+    const tree = parser.parse(source)!;
+    expect(tree.rootNode.hasError).toBe(true);
+    const insertion = `?>${suffix}`;
+    const column = 'second'.length;
+    tree.edit(
+      new Edit({
+        startIndex: source.length,
+        oldEndIndex: source.length,
+        newEndIndex: source.length + insertion.length,
+        startPosition: { row: 1, column },
+        oldEndPosition: { row: 1, column },
+        newEndPosition: { row: 1, column: column + insertion.length },
+      })
+    );
+    const edited = source + insertion;
+    const incremental = parser.parse(edited, tree)!;
+    const fresh = parser.parse(edited)!;
+    try {
+      expect(incremental.rootNode.hasError).toBe(false);
+      expect(incremental.rootNode.toString()).toBe(fresh.rootNode.toString());
+      expect(incremental.rootNode.descendantsOfType('PI').map((node) => node.text)).toEqual([`${source}?>`]);
+      expect(incremental.rootNode.namedChildren.at(-1)?.text).toBe(suffix);
+    } finally {
+      incremental.delete();
+      fresh.delete();
+      tree.delete();
+    }
+  });
+
   test(`${grammar} reparses edits that create an earlier processing-instruction terminator`, () => {
     const prefix = grammar === 'xml' ? '<root>' : '';
     const closing = grammar === 'xml' ? '</root>' : '';

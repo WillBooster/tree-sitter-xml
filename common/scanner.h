@@ -117,7 +117,9 @@ static bool scan_pi_content(TSLexer *lexer) {
             advance(lexer);
         }
     }
-    return false;
+    lexer->mark_end(lexer);
+    lexer->result_symbol = PI_CONTENT;
+    return true;
 }
 
 static bool scan_comment(TSLexer *lexer) {
