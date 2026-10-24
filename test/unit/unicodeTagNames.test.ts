@@ -1,6 +1,5 @@
-import { afterAll, expect, test } from 'vitest';
-
 import { Edit, Language, Parser } from '@willbooster/web-tree-sitter';
+import { afterAll, expect, test } from 'vitest';
 
 await Parser.init();
 const parser = new Parser();
