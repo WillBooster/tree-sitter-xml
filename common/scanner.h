@@ -2,6 +2,9 @@
 
 #include "tree_sitter/parser.h"
 
+#include <string.h>
+#include <wctype.h>
+
 enum TokenType {
     PI_TARGET,
     PI_CONTENT,
@@ -46,62 +49,36 @@ static inline bool is_valid_name_char(int32_t chr) {
            (chr >= 0x300 && chr <= 0x36F) || (chr >= 0x203F && chr <= 0x2040);
 }
 
-static inline bool check_word(TSLexer *lexer, const char *const word, unsigned length) {
-    for (unsigned j = 0; j < length; ++j) {
-        advance_if_eq(lexer, word[j]);
-    }
-    return true;
-}
-
 static bool scan_pi_target(TSLexer *lexer, const bool *valid_symbols) {
-    bool advanced_once = false, found_x_first = false;
-#ifndef TS_XML
+    if (!is_valid_name_start_char(lexer->lookahead)) {
+        return false;
+    }
+
+    char ascii_target[sizeof("xml-stylesheet") + 1] = {0};
+    unsigned length = 0;
+    do {
+        if (length < sizeof(ascii_target) - 1) {
+            ascii_target[length++] = lexer->lookahead < 0x80 ? (char)lexer->lookahead : 0x7F;
+        }
+        advance(lexer);
+    } while (is_valid_name_char(lexer->lookahead));
+
+    if (length == 3 && towlower(ascii_target[0]) == 'x' &&
+        towlower(ascii_target[1]) == 'm' && towlower(ascii_target[2]) == 'l') {
+        return false;
+    }
+#ifdef TS_XML
+    if ((valid_symbols[XML_MODEL] && strcmp(ascii_target, "xml-model") == 0) ||
+        (valid_symbols[XML_STYLESHEET] && strcmp(ascii_target, "xml-stylesheet") == 0)) {
+        return false;
+    }
+#else
     (void)valid_symbols;
 #endif
 
-    if (is_valid_name_start_char(lexer->lookahead)) {
-        if (lexer->lookahead == 'x' || lexer->lookahead == 'X') {
-            found_x_first = true;
-            lexer->mark_end(lexer);
-        }
-        advanced_once = true;
-        advance(lexer);
-    }
-
-    if (advanced_once) {
-        while (is_valid_name_char(lexer->lookahead)) {
-            if (found_x_first && (lexer->lookahead == 'm' || lexer->lookahead == 'M')) {
-                advance(lexer);
-                if (lexer->lookahead == 'l' || lexer->lookahead == 'L') {
-                    advance(lexer);
-                    if (is_valid_name_char(lexer->lookahead)) {
-#ifdef TS_XML
-                        found_x_first = false;
-                        bool last_char_hyphen = lexer->lookahead == '-';
-                        advance(lexer);
-                        if (last_char_hyphen) {
-                            if (valid_symbols[XML_MODEL] && check_word(lexer, "model", 5))
-                                return false;
-                            if (valid_symbols[XML_STYLESHEET] && check_word(lexer, "stylesheet", 10))
-                                return false;
-                        }
-#endif
-                    } else {
-                        return false;
-                    }
-                }
-            }
-
-            found_x_first = false;
-            advance(lexer);
-        }
-
-        lexer->mark_end(lexer);
-        lexer->result_symbol = PI_TARGET;
-        return true;
-    }
-
-    return false;
+    lexer->mark_end(lexer);
+    lexer->result_symbol = PI_TARGET;
+    return true;
 }
 
 static bool scan_pi_content(TSLexer *lexer) {
