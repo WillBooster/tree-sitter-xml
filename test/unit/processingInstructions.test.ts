@@ -36,6 +36,51 @@ for (const grammar of ['xml', 'dtd']) {
     }
   });
 
+  test(`${grammar} preserves complete processing-instruction target names and adjacent markup`, () => {
+    const targets = [
+      'x',
+      'xm',
+      'xM',
+      'xmla',
+      'XMLa',
+      'xml-',
+      'xml-modeling',
+      'xml-stylesheeting',
+      'XML-model',
+      'Xml-stylesheet',
+      'xml-model:custom',
+      'xml-stylesheet𠀀',
+      'xmélève',
+      'xm𠀀',
+      'xŭl',
+      'xōl',
+      'xmŬ',
+    ];
+    const instructions = targets.map((target) => `<?${target}?>`);
+    const source = instructions.join('') + suffix;
+    const tree = parser.parse(source)!;
+    try {
+      expect(tree.rootNode.hasError).toBe(false);
+      expect(tree.rootNode.descendantsOfType('PITarget').map((node) => node.text)).toEqual(targets);
+      expect(tree.rootNode.descendantsOfType('PI').map((node) => node.text)).toEqual(instructions);
+      expect(tree.rootNode.namedChildren.at(-1)?.text).toBe(suffix);
+    } finally {
+      tree.delete();
+    }
+  });
+
+  test(`${grammar} reserves only the exact case-insensitive xml processing-instruction target`, () => {
+    for (const target of ['xml', 'xmL', 'xMl', 'xML', 'Xml', 'XmL', 'XMl', 'XML']) {
+      const tree = parser.parse(`<?${target}?>${suffix}`)!;
+      try {
+        expect(tree.rootNode.hasError, target).toBe(true);
+        expect(tree.rootNode.descendantsOfType('PITarget').map((node) => node.text)).not.toContain(target);
+      } finally {
+        tree.delete();
+      }
+    }
+  });
+
   test(`${grammar} reports a processing instruction without a closing delimiter`, () => {
     const tree = parser.parse(`<?target first?second\n${suffix}`)!;
     expect(tree.rootNode.hasError).toBe(true);
