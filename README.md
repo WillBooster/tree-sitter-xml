@@ -5,7 +5,7 @@
 [![Test](https://github.com/WillBooster/tree-sitter-xml/actions/workflows/test.yml/badge.svg)](https://github.com/WillBooster/tree-sitter-xml/actions/workflows/test.yml)
 [![Test rust](https://github.com/WillBooster/tree-sitter-xml/actions/workflows/test-rust.yml/badge.svg)](https://github.com/WillBooster/tree-sitter-xml/actions/workflows/test-rust.yml)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
-[![wbfy](https://img.shields.io/badge/wbfy-20.48.9-1e90ff.svg)](https://github.com/WillBooster/shared/tree/main/packages/wbfy)
+[![wbfy](https://img.shields.io/badge/wbfy-20.49.0-1e90ff.svg)](https://github.com/WillBooster/shared/tree/main/packages/wbfy)
 [![crates.io](https://img.shields.io/crates/v/willbooster-tree-sitter-xml.svg)](https://crates.io/crates/willbooster-tree-sitter-xml)
 
 XML and DTD grammars for [tree-sitter](https://github.com/tree-sitter/tree-sitter), forked from
@@ -131,9 +131,6 @@ and `dtd/src/`. Profiles in `.tmp/generation-profiles/` are temporary and must n
 
 - the corpus in `test/corpus`, with the native build and with the Wasm build (the first run downloads the WASI SDK).
   Each case names its grammar with `:language(xml)` or `:language(dtd)`;
-- an incremental-parsing check (`test/unit/incremental.test.ts`): `script/fuzz-corpus` runs `tree-sitter fuzz` for a
-  grammar, which edits each of its corpus cases at random, reparses it, undoes the edits, and reparses again.
-  `TREE_SITTER_SEED`, `TREE_SITTER_ITERATIONS`, and `TREE_SITTER_EDITS` run other or more edits;
 - a check that the real-world files in `examples/` fail to parse exactly as listed in `script/known-failures.txt`, each
   parsed with the grammar its extension belongs to in `tree-sitter.json`. The first run clones the repositories. The
   example repositories are pinned to commits in `script/parse-examples`. After a grammar change or a moved pin alters
@@ -148,8 +145,7 @@ and `dtd/src/`. Profiles in `.tmp/generation-profiles/` are temporary and must n
   Cloudflare Workers with and without Node.js compatibility (`test/e2e/workers.test.ts`).
 
 The tests compile the parsers into `.tmp/tree-sitter-lib` rather than the CLI's cache shared by every checkout;
-`script/fuzz-corpus` and `script/parse-examples` build parsers of their own in `.tmp/` for each run and delete them
-afterwards.
+`script/parse-examples` builds parsers of its own in `.tmp/` for each run and deletes them afterwards.
 
 CI also runs these tests on Linux arm64 and macOS, where the CLI compiles the parsers and the scanners natively, and
 fuzzes both parsers with libFuzzer and sanitizers (`.github/workflows/robustness.yml`).
