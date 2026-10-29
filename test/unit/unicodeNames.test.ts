@@ -70,4 +70,14 @@ for (const grammar of ['xml', 'dtd'] as const) {
       tree.delete();
     }
   });
+
+  test(`${grammar} parses a non-ASCII name before following markup`, () => {
+    const tree = parser.parse(
+      grammar === 'xml'
+        ? '<root donnée="value"><following/></root>'
+        : '<!ATTLIST root donnée CDATA #IMPLIED><!ELEMENT following EMPTY>'
+    )!;
+    expect(tree.rootNode.hasError).toBe(false);
+    tree.delete();
+  });
 }

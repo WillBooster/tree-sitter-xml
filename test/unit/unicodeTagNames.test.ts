@@ -6,12 +6,22 @@ const parser = new Parser();
 parser.setLanguage(await Language.load(`${import.meta.dirname}/../../tree-sitter-xml.wasm`));
 afterAll(() => parser.delete());
 
-for (const name of ['é', 'Ā', '𠀀', '漢', 'à']) {
-  test(`parses a ${name} element and its following markup`, () => {
-    const tree = parser.parse(`<root><${name}></${name}><following/></root>`)!;
+for (const [opening, closing] of [
+  ['é', 'ǩ'],
+  ['Ā', 'Ȁ'],
+  ['𠀀', '𠄀'],
+  ['漢', '瀢'],
+  ['à', 'á'],
+] as const) {
+  test(`distinguishes ${opening} from ${closing} in closing tags`, () => {
+    const tree = parser.parse(`<root><${opening}></${opening}><following/></root>`)!;
     expect(tree.rootNode.hasError).toBe(false);
     expect(tree.rootNode.descendantsOfType('EmptyElemTag').map((node) => node.text)).toContain('<following/>');
     tree.delete();
+
+    const mismatched = parser.parse(`<root><${opening}></${closing}><following/></root>`)!;
+    expect(mismatched.rootNode.hasError).toBe(true);
+    mismatched.delete();
   });
 }
 

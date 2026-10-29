@@ -82,8 +82,18 @@ for (const grammar of ['xml', 'dtd']) {
   });
 
   test(`${grammar} reports a processing instruction without a closing delimiter`, () => {
-    const tree = parser.parse(`<?target first?second\n${suffix}`)!;
-    expect(tree.rootNode.hasError).toBe(true);
+    for (const source of [`<?target first?second\n${suffix}`, '<?target first?\nsecond']) {
+      const tree = parser.parse(source)!;
+      expect(tree.rootNode.hasError, source).toBe(true);
+      tree.delete();
+    }
+  });
+
+  test(`${grammar} accepts a greater-than sign inside a processing instruction`, () => {
+    const source =
+      grammar === 'xml' ? `<root><?target first>second?>${suffix}</root>` : `<?target first>second?>${suffix}`;
+    const tree = parser.parse(source)!;
+    expect(tree.rootNode.hasError).toBe(false);
     tree.delete();
   });
 }
