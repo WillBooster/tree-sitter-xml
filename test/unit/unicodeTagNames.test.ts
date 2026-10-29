@@ -11,7 +11,7 @@ for (const [opening, closing] of [
   ['Ā', 'Ȁ'],
   ['𠀀', '𠄀'],
   ['漢', '瀢'],
-  ['à', 'á'],
+  ['a\u0300', 'a\u0301'],
 ] as const) {
   test(`distinguishes ${opening} from ${closing} in closing tags`, () => {
     const tree = parser.parse(`<root><${opening}></${opening}><following/></root>`)!;
