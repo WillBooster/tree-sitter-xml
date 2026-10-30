@@ -44,12 +44,6 @@ pub const LANGUAGE_DTD: LanguageFn = unsafe { LanguageFn::from_raw(tree_sitter_d
 /// The tree-sitter [`LanguageFn`] for the XML grammar.
 pub const LANGUAGE_XML: LanguageFn = unsafe { LanguageFn::from_raw(tree_sitter_xml) };
 
-/// The syntax highlighting queries for XML.
-pub const XML_HIGHLIGHT_QUERY: &str = include_str!("../../queries/xml/highlights.scm");
-
-/// The syntax highlighting queries for DTD.
-pub const DTD_HIGHLIGHT_QUERY: &str = include_str!("../../queries/dtd/highlights.scm");
-
 /// The content of the [`node-types.json`] file for XML.
 ///
 /// [`node-types.json`]: https://tree-sitter.github.io/tree-sitter/using-parsers/6-static-node-types

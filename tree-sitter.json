@@ -8,7 +8,6 @@
       "path": "xml",
       "external-files": ["common/scanner.h"],
       "file-types": ["xml", "svg", "xsd", "xslt", "xsl", "rng"],
-      "highlights": "queries/xml/highlights.scm",
       "injection-regex": "^(xml|svg|xsd|xslt|xsl|rng)$"
     },
     {
@@ -18,7 +17,6 @@
       "path": "dtd",
       "external-files": ["common/scanner.h"],
       "file-types": ["dtd"],
-      "highlights": "queries/dtd/highlights.scm",
       "injection-regex": "^dtd$"
     }
   ],
