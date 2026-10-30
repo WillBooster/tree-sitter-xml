@@ -23,7 +23,6 @@ include = [
   "/dtd/src/*",
   "!/dtd/src/.gitattributes",
   "!/dtd/src/.editorconfig",
-  "/queries/*",
   "/tree-sitter.json",
   "/LICENSE",
 ]
