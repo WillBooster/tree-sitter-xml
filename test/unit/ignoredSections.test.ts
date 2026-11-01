@@ -185,3 +185,27 @@ test('parameter-selected declarations retain delimiter text inside literals and 
     }
   }
 });
+
+test('deep parameter-selected INCLUDE sections retain nested declarations with linear reads', () => {
+  const reads: number[] = [];
+  for (const count of [200, 2000]) {
+    const source = `<!ENTITY % mode "INCLUDE">${'<![%mode;['.repeat(count)}<!ELEMENT root EMPTY>${']]>'.repeat(count)}`;
+    let total = 0;
+    const tree = dtd.parse((index) => {
+      total++;
+      return source.slice(index, index + 64);
+    })!;
+    try {
+      expect(tree.rootNode.hasError).toBe(false);
+      expect(tree.rootNode.endIndex).toBe(source.length);
+      expect(tree.rootNode.descendantsOfType('conditionalSect')).toHaveLength(count);
+      expect(tree.rootNode.descendantsOfType('elementdecl').map((node) => node.text)).toEqual([
+        '<!ELEMENT root EMPTY>',
+      ]);
+    } finally {
+      tree.delete();
+    }
+    reads.push(total);
+  }
+  expect(reads[1]! / reads[0]!).toBeLessThan(18);
+});
