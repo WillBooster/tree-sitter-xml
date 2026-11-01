@@ -1,0 +1,20 @@
+==================
+Empty external subset
+:language(dtd)
+==================
+
+---
+
+(extSubset)
+
+==================
+Header-only external subset
+:language(dtd)
+==================
+<?xml version="1.0" encoding="UTF-8"?>
+---
+
+(extSubset
+  (TextDecl
+    (VersionNum)
+    (EncName)))

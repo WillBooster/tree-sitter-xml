@@ -34,6 +34,7 @@ upstream's 0.7.0 packages in these ways:
   inside internal declarations, including entity values.
 - NOTATION attribute types accept one or more names separated by single pipes.
 - Attribute definitions with literal types require a default declaration.
+- External DTD subsets may be empty or end immediately after a text declaration.
 - Nonempty attribute values (`AttValue` and `PseudoAttValue`) and entity values (`EntityValue`) expose their full
   unquoted value through the `content` field. This field points to an anonymous `content` node wrapping text and
   references. Access references through this wrapper using the node API; references are not direct children of the
