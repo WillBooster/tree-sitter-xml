@@ -714,7 +714,8 @@
         "members": [
           {
             "type": "PATTERN",
-            "value": "[^\\]]+"
+            "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{5c}\\u{5e}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]+",
+            "flags": "u"
           },
           {
             "type": "STRING",
@@ -855,7 +856,8 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[^<&\"]"
+                            "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{21}\\u{23}-\\u{25}\\u{27}-\\u{3b}\\u{3d}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]",
+                            "flags": "u"
                           },
                           {
                             "type": "SYMBOL",
@@ -901,7 +903,8 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[^<&']"
+                            "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{25}\\u{28}-\\u{3b}\\u{3d}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]",
+                            "flags": "u"
                           },
                           {
                             "type": "SYMBOL",
@@ -1963,7 +1966,8 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[^%&\"]"
+                            "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{21}\\u{23}-\\u{24}\\u{27}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]",
+                            "flags": "u"
                           },
                           {
                             "type": "SYMBOL",
@@ -2009,7 +2013,8 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[^%&']"
+                            "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{24}\\u{28}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]",
+                            "flags": "u"
                           },
                           {
                             "type": "SYMBOL",
@@ -2171,45 +2176,6 @@
         }
       ]
     },
-    "CharRef": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "&#"
-            },
-            {
-              "type": "PATTERN",
-              "value": "[0-9]+"
-            },
-            {
-              "type": "STRING",
-              "value": ";"
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "&#x"
-            },
-            {
-              "type": "PATTERN",
-              "value": "[0-9a-fA-F]+"
-            },
-            {
-              "type": "STRING",
-              "value": ";"
-            }
-          ]
-        }
-      ]
-    },
     "AttValue": {
       "type": "CHOICE",
       "members": [
@@ -2235,7 +2201,8 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[^<&\"]"
+                            "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{21}\\u{23}-\\u{25}\\u{27}-\\u{3b}\\u{3d}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]",
+                            "flags": "u"
                           },
                           {
                             "type": "SYMBOL",
@@ -2281,7 +2248,8 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[^<&']"
+                            "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{25}\\u{28}-\\u{3b}\\u{3d}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]",
+                            "flags": "u"
                           },
                           {
                             "type": "SYMBOL",
@@ -2389,7 +2357,8 @@
               "type": "ALIAS",
               "content": {
                 "type": "PATTERN",
-                "value": "[^\"]*"
+                "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{21}\\u{23}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]*",
+                "flags": "u"
               },
               "named": true,
               "value": "URI"
@@ -2411,7 +2380,8 @@
               "type": "ALIAS",
               "content": {
                 "type": "PATTERN",
-                "value": "[^']*"
+                "value": "[\\u{9}-\\u{a}\\u{d}\\u{20}-\\u{26}\\u{28}-\\u{d7ff}\\u{e000}-\\u{fffd}\\u{10000}-\\u{10ffff}]*",
+                "flags": "u"
               },
               "named": true,
               "value": "URI"
@@ -2670,6 +2640,10 @@
     {
       "type": "SYMBOL",
       "name": "Comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "CharRef"
     },
     {
       "type": "SYMBOL",

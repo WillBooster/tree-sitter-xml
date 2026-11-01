@@ -18,6 +18,7 @@ export default grammar({
     $.PITarget,
     $._pi_content,
     $.Comment,
+    $.CharRef,
   ],
 
   extras: _ => [],

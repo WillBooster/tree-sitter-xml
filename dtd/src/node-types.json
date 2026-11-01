@@ -156,11 +156,6 @@
     }
   },
   {
-    "type": "CharRef",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "DefaultDecl",
     "named": true,
     "fields": {},
@@ -634,14 +629,6 @@
     "named": false
   },
   {
-    "type": "&#",
-    "named": false
-  },
-  {
-    "type": "&#x",
-    "named": false
-  },
-  {
     "type": "'",
     "named": false
   },
@@ -704,6 +691,10 @@
   {
     "type": "ATTLIST",
     "named": false
+  },
+  {
+    "type": "CharRef",
+    "named": true
   },
   {
     "type": "Comment",

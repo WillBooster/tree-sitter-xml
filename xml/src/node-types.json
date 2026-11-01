@@ -196,11 +196,6 @@
     "fields": {}
   },
   {
-    "type": "CharRef",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "DefaultDecl",
     "named": true,
     "fields": {},
@@ -869,14 +864,6 @@
     "named": false
   },
   {
-    "type": "&#",
-    "named": false
-  },
-  {
-    "type": "&#x",
-    "named": false
-  },
-  {
     "type": "'",
     "named": false
   },
@@ -958,6 +945,10 @@
   },
   {
     "type": "CharData",
+    "named": true
+  },
+  {
+    "type": "CharRef",
     "named": true
   },
   {

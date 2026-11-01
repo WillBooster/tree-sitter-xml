@@ -91,12 +91,12 @@ static bool scan_self_closing_tag_delimiter(Vector *tags, TSLexer *lexer) {
 }
 
 static inline bool in_error_recovery(const bool *valid_symbols) {
-    return valid_symbols[PI_TARGET] && valid_symbols[PI_CONTENT] && valid_symbols[COMMENT] &&
+    return valid_symbols[PI_TARGET] && valid_symbols[PI_CONTENT] && valid_symbols[COMMENT] && valid_symbols[CHAR_REF] &&
            valid_symbols[CHAR_DATA];
 }
 
 static inline bool in_char_data(TSLexer *lexer) {
-    return !lexer->eof(lexer) && lexer->lookahead != '<' && lexer->lookahead != '&';
+    return !lexer->eof(lexer) && is_valid_xml_char(lexer->lookahead) && lexer->lookahead != '<' && lexer->lookahead != '&';
 }
 
 static bool scan_char_data(TSLexer *lexer) {
@@ -146,6 +146,8 @@ bool tree_sitter_xml_external_scanner_scan(void *payload, TSLexer *lexer, const 
     }
 
     switch (lexer->lookahead) {
+        case '&':
+            return valid_symbols[CHAR_REF] && scan_char_ref(lexer);
         case '<':
             lexer->mark_end(lexer);
             advance(lexer);
@@ -158,8 +160,6 @@ bool tree_sitter_xml_external_scanner_scan(void *payload, TSLexer *lexer, const 
             if (valid_symbols[SELF_CLOSING_TAG_DELIMITER]) {
                 return scan_self_closing_tag_delimiter(tags, lexer);
             }
-            break;
-        case '\0':
             break;
         default:
             if (valid_symbols[START_TAG_NAME]) {
