@@ -31,6 +31,7 @@ upstream's 0.7.0 packages in these ways:
 - Ordinary character data rejects `]]>` while preserving bracket runs beside markup and references.
 - Entity replacement values accept literal markup, including opening angle brackets.
 - NOTATION attribute types accept one or more names separated by single pipes.
+- External DTD text declarations require encoding and permit an omitted version.
 - Attribute definitions with literal types require a default declaration.
 - Nonempty attribute values (`AttValue` and `PseudoAttValue`) and entity values (`EntityValue`) expose their full
   unquoted value through the `content` field. This field points to an anonymous `content` node wrapping text and
