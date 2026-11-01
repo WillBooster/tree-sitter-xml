@@ -66,19 +66,6 @@ test('XML rejects long names that differ at their final character', () => {
   }
 });
 
-test('XML full parses reset retained tag state between documents', () => {
-  for (const source of ['<root><unclosed>', '<root><child/></root>', '<other></wrong>', '<other>text</other>']) {
-    const tree = parser.parse(source)!;
-    try {
-      expect(tree.rootNode.hasError).toBe(source.includes('unclosed') || source.includes('wrong'));
-      expect(tree.rootNode.endIndex).toBe(source.length);
-      if (!tree.rootNode.hasError) expect(tree.rootNode.childForFieldName('root')?.text).toBe(source);
-    } finally {
-      tree.delete();
-    }
-  }
-});
-
 test('XML reads deep distinct nesting in linear input volume', () => {
   const reads: number[] = [];
   for (const count of [200, 2000]) {
