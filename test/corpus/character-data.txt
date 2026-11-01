@@ -1,0 +1,31 @@
+================================================================================
+CDATA closing delimiter cannot start ordinary character data
+:error
+:language(xml)
+================================================================================
+<root>]]><following/></root>
+--------------------------------------------------------------------------------
+
+================================================================================
+CDATA closing delimiter after an overlapping bracket run is invalid character data
+:error
+:language(xml)
+================================================================================
+<root>text]]]><following/></root>
+--------------------------------------------------------------------------------
+
+================================================================================
+Bracket text preserves markup and reference boundaries
+:language(xml)
+================================================================================
+<root>]]]&amp;]]<following/></root>
+--------------------------------------------------------------------------------
+(document
+  (element
+    (STag (Name))
+    (content
+      (CharData)
+      (EntityRef (Name))
+      (CharData)
+      (element (EmptyElemTag (Name))))
+    (ETag (Name))))

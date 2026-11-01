@@ -107,28 +107,23 @@ static bool scan_char_data(TSLexer *lexer) {
             lexer->mark_end(lexer);
             advance(lexer);
             if (lexer->lookahead == ']') {
-                advance(lexer);
-                if (lexer->lookahead == '>') {
+                do {
                     advance(lexer);
-                    if (advanced_once) {
-                        lexer->result_symbol = CHAR_DATA;
-                        return false;
-                    }
+                } while (lexer->lookahead == ']');
+                if (lexer->lookahead == '>') {
+                    lexer->result_symbol = CHAR_DATA;
+                    return advanced_once;
                 }
             }
-        }
-        advanced_once = true;
-        if (in_char_data(lexer)) {
+        } else {
             advance(lexer);
         }
+        advanced_once = true;
     }
 
-    if (advanced_once) {
-        lexer->mark_end(lexer);
-        lexer->result_symbol = CHAR_DATA;
-        return true;
-    }
-    return false;
+    lexer->mark_end(lexer);
+    lexer->result_symbol = CHAR_DATA;
+    return advanced_once;
 }
 
 bool tree_sitter_xml_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
