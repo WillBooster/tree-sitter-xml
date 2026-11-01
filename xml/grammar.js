@@ -22,7 +22,6 @@ export default grammar({
 
     // XML
     $.CharData,
-    $.CData,
     'xml-model',
     'xml-stylesheet',
     $._start_tag_name,
@@ -167,6 +166,8 @@ export default grammar({
     ),
 
     CDStart: _ => seq('<![', 'CDATA', '['),
+
+    CData: _ => repeat1(choice(/[^\]]+/, ']')),
 
     StyleSheetPI: $ => seq(
       '<?',

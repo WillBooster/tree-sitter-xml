@@ -707,6 +707,22 @@
         }
       ]
     },
+    "CData": {
+      "type": "REPEAT1",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "[^\\]]+"
+          },
+          {
+            "type": "STRING",
+            "value": "]"
+          }
+        ]
+      }
+    },
     "StyleSheetPI": {
       "type": "SEQ",
       "members": [
@@ -2811,10 +2827,6 @@
     {
       "type": "SYMBOL",
       "name": "CharData"
-    },
-    {
-      "type": "SYMBOL",
-      "name": "CData"
     },
     {
       "type": "STRING",
