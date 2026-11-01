@@ -27,6 +27,7 @@ test('an empty external DTD subset has an empty complete root', () => {
 
 test('external subsets may end after a text declaration or contain only separators', () => {
   for (const source of [
+    '<?xml encoding="UTF-8"?>',
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<?xml version="1.0" encoding="UTF-8"?>\n\t',
     ' \t\r\n',

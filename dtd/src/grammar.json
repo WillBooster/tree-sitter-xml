@@ -19,7 +19,7 @@
           ]
         },
         {
-          "type": "REPEAT1",
+          "type": "REPEAT",
           "content": {
             "type": "SYMBOL",
             "name": "_extSubsetDecl"
@@ -39,20 +39,20 @@
           "value": "xml"
         },
         {
-          "type": "SYMBOL",
-          "name": "_VersionInfo"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_EncodingDecl"
+              "name": "_VersionInfo"
             },
             {
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_EncodingDecl"
         },
         {
           "type": "CHOICE",

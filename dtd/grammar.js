@@ -45,8 +45,8 @@ export default grammar({
     TextDecl: $ => seq(
       '<?',
       'xml',
-      $._VersionInfo,
-      O($._EncodingDecl),
+      O($._VersionInfo),
+      $._EncodingDecl,
       O($._S),
       '?>'
     ),
