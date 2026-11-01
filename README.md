@@ -34,6 +34,7 @@ upstream's 0.7.0 packages in these ways:
 - Parameter references are accepted between internal declarations and within external DTD declarations, but rejected
   inside internal declarations, including entity values.
 - NOTATION attribute types accept one or more names separated by single pipes.
+- Content-model groups reject mixed pipe/comma separators; nested groups choose separators independently.
 - External DTD text declarations require encoding and permit an omitted version.
 - Attribute definitions with literal types require a default declaration.
 - Nonempty attribute values (`AttValue` and `PseudoAttValue`) and entity values (`EntityValue`) expose their full
