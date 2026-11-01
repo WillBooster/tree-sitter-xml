@@ -84,9 +84,10 @@ export const rules = (allowParameterReferences) => {
    * @param {RuleOrLiteral} first
    * @param {RuleOrLiteral[]} rest
    */
-  const reference = ($, first, ...rest) => allowParameterReferences || rest.length
-    ? choice(first, ...rest, ...parameterReferences($))
-    : first;
+  const reference = ($, first, ...rest) => {
+    const alternatives = [first, ...rest, ...parameterReferences($)];
+    return alternatives.length > 1 ? choice(...alternatives) : first;
+  };
   return {
     _markupdecl: $ => choice(
       $.elementdecl,
@@ -154,20 +155,20 @@ export const rules = (allowParameterReferences) => {
       O(choice('?', '*', '+'))
     )),
 
-    _choice: $ => seq(
+    _choice: $ => choice(...['|', ','].map(separator => seq(
       '(',
       O($._S),
       $._cp,
       rseq(
         O($._S),
-        choice('|', ','),
+        separator,
         O($._S),
         $._cp
       ),
       ...(allowParameterReferences ? [rseq(O($._S), $.PEReference)] : []),
       O($._S),
       ')'
-    ),
+    ))),
 
     AttlistDecl: $ => seq(
       '<!',
