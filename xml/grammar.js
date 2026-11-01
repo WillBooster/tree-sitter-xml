@@ -98,20 +98,11 @@ export default grammar({
       O($._S),
       O(seq(
         '[',
-        O(choice(
-          $._intSubset,
-          $._S
-        )),
+        repeat(choice($._markupdecl, $._DeclSep)),
         ']',
         O($._S)
       )),
       '>'
-    ),
-
-    _intSubset: $ => c.rseq1(
-      O($._S),
-      $._markupdecl,
-      $._DeclSep
     ),
 
     element: $ => choice(

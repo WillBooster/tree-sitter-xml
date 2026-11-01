@@ -333,25 +333,20 @@
                   "value": "["
                 },
                 {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "_intSubset"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "_S"
-                        }
-                      ]
-                    },
-                    {
-                      "type": "BLANK"
-                    }
-                  ]
+                  "type": "REPEAT",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "_markupdecl"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "_DeclSep"
+                      }
+                    ]
+                  }
                 },
                 {
                   "type": "STRING",
@@ -381,34 +376,6 @@
           "value": ">"
         }
       ]
-    },
-    "_intSubset": {
-      "type": "REPEAT1",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_S"
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_markupdecl"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "_DeclSep"
-          }
-        ]
-      }
     },
     "element": {
       "type": "CHOICE",
