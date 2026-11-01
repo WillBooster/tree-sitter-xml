@@ -159,13 +159,7 @@ bool tree_sitter_xml_external_scanner_scan(void *payload, TSLexer *lexer, const 
         case '&':
             return valid_symbols[CHAR_REF] && scan_char_ref(lexer);
         case '<':
-            lexer->mark_end(lexer);
-            advance(lexer);
-            if (lexer->lookahead == '!') {
-                advance(lexer);
-                return scan_comment(lexer);
-            }
-            break;
+            return valid_symbols[COMMENT] && scan_comment(lexer);
         case '/':
             if (valid_symbols[SELF_CLOSING_TAG_DELIMITER]) {
                 return scan_self_closing_tag_delimiter(scanner, lexer);

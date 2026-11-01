@@ -1,0 +1,13 @@
+================================================================================
+Adjacent XML internal subset declarations need no separator
+:language(xml)
+================================================================================
+<!DOCTYPE root [<!ELEMENT root EMPTY><!ELEMENT child EMPTY>]><root/>
+--------------------------------------------------------------------------------
+(document
+  (prolog
+    (doctypedecl
+      (Name)
+      (elementdecl (Name) (contentspec))
+      (elementdecl (Name) (contentspec))))
+  (element (EmptyElemTag (Name))))

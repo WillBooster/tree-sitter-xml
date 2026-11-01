@@ -136,6 +136,8 @@ static bool scan_pi_content(TSLexer *lexer) {
 }
 
 static bool scan_comment(TSLexer *lexer) {
+    advance_if_eq(lexer, '<');
+    advance_if_eq(lexer, '!');
     advance_if_eq(lexer, '-');
     advance_if_eq(lexer, '-');
 

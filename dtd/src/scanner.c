@@ -28,8 +28,6 @@ bool tree_sitter_dtd_external_scanner_scan(void *payload, TSLexer *lexer, const 
         return scan_pi_content(lexer);
 
     if (valid_symbols[COMMENT]) {
-        advance_if_eq(lexer, '<');
-        advance_if_eq(lexer, '!');
         return scan_comment(lexer);
     }
 

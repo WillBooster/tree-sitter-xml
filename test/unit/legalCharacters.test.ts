@@ -198,3 +198,32 @@ test('forbidden characters and overflowing numeric references have linear input 
     }
   }
 });
+
+test('entity replacement text preserves markup-looking literals and character references', () => {
+  for (const quote of ['"', "'"]) {
+    for (const content of ['<!---->', '<!--literal--><?data text?>', '&#37;word;<!---->']) {
+      const declaration = `<!ENTITY e ${quote}${content}${quote}>`;
+      for (const [parser, source] of [
+        [xml, `<!DOCTYPE root [${declaration}]><root/>`],
+        [dtd, declaration],
+      ] as const) {
+        const tree = parser.parse(source)!;
+        try {
+          expect(tree.rootNode.hasError, source).toBe(false);
+          expect(tree.rootNode.endIndex).toBe(source.length);
+          const value = tree.rootNode.descendantsOfType('EntityValue')[0]!;
+          const literal = value.childForFieldName('content')!;
+          expect(literal.text).toBe(content);
+          expect(literal.startIndex).toBe(source.indexOf(quote) + 1);
+          expect(literal.endIndex).toBe(source.indexOf(quote) + 1 + content.length);
+          expect(value.descendantsOfType(['Comment', 'PI'])).toHaveLength(0);
+          expect(value.descendantsOfType('CharRef').map((node) => node.text)).toEqual(
+            content.startsWith('&#37;') ? ['&#37;'] : []
+          );
+        } finally {
+          tree.delete();
+        }
+      }
+    }
+  }
+});
