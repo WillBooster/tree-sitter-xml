@@ -194,8 +194,8 @@ BookStore.dtd
 <!ELEMENT first-name (#PCDATA)>
 <!ELEMENT last-name (#PCDATA)>
 <!ATTLIST book price CDATA #REQUIRED>
-<!ATTLIST book publicationdate CDATA>
-<!ATTLIST book IBSN CDATA>
+<!ATTLIST book publicationdate CDATA #IMPLIED>
+<!ATTLIST book IBSN CDATA #IMPLIED>
 
 --------------------------------------------------------------------------------
 
@@ -244,9 +244,11 @@ BookStore.dtd
     (Name)
     (AttDef
       (Name)
-      (StringType)))
+      (StringType)
+      (DefaultDecl)))
   (AttlistDecl
     (Name)
     (AttDef
       (Name)
-      (StringType))))
+      (StringType)
+      (DefaultDecl))))

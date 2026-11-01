@@ -184,15 +184,16 @@ export const rules = {
       $._S,
       ref($, $.Name),
       $._S,
-      $._AttType,
-      O(seq($._S, $.DefaultDecl))
+      choice(
+        seq($._AttType, $._S, $.DefaultDecl),
+        seq($.PEReference, O(seq($._S, $.DefaultDecl)))
+      )
     )),
 
     _AttType: $ => choice(
       $.StringType,
       $.TokenizedType,
-      $._EnumeratedType,
-      $.PEReference
+      $._EnumeratedType
     ),
 
     StringType: _ => 'CDATA',
