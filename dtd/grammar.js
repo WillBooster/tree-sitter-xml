@@ -32,7 +32,8 @@ export default grammar({
   ],
 
   conflicts: $ => [
-    [$.AttlistDecl, $.AttDef]
+    [$.AttlistDecl, $.AttDef],
+    [$._parameterInclude, $._parameterIgnore]
   ],
 
   word: $ => $.Name,
@@ -62,12 +63,16 @@ export default grammar({
       '<![',
       O($._S),
       choice(
-        seq('INCLUDE', O($._S), '[', repeat($._extSubsetDecl)),
+        seq(choice('INCLUDE', $._parameterInclude), O($._S), '[', repeat($._extSubsetDecl)),
         seq('IGNORE', O($._S), '[', O($.Ignore)),
-        seq($.PEReference, O($._S), '[', O(alias($.Ignore, $.ConditionalContent)))
+        seq($._parameterIgnore, O($._S), '[', O(alias($.Ignore, $.ConditionalContent)))
       ),
       ']]>'
     ),
+
+    _parameterInclude: $ => prec.dynamic(1, $.PEReference),
+
+    _parameterIgnore: $ => $.PEReference,
 
     Ignore: $ => repeat1($._ignore_content),
 

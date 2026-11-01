@@ -115,8 +115,17 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "STRING",
-                  "value": "INCLUDE"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "INCLUDE"
+                    },
+                    {
+                      "type": "SYMBOL",
+                      "name": "_parameterInclude"
+                    }
+                  ]
                 },
                 {
                   "type": "CHOICE",
@@ -185,7 +194,7 @@
               "members": [
                 {
                   "type": "SYMBOL",
-                  "name": "PEReference"
+                  "name": "_parameterIgnore"
                 },
                 {
                   "type": "CHOICE",
@@ -229,6 +238,18 @@
           "value": "]]>"
         }
       ]
+    },
+    "_parameterInclude": {
+      "type": "PREC_DYNAMIC",
+      "value": 1,
+      "content": {
+        "type": "SYMBOL",
+        "name": "PEReference"
+      }
+    },
+    "_parameterIgnore": {
+      "type": "SYMBOL",
+      "name": "PEReference"
     },
     "Ignore": {
       "type": "REPEAT1",
@@ -2242,6 +2263,10 @@
     [
       "AttlistDecl",
       "AttDef"
+    ],
+    [
+      "_parameterInclude",
+      "_parameterIgnore"
     ]
   ],
   "precedences": [],

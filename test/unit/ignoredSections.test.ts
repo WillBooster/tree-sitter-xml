@@ -97,7 +97,9 @@ test('parameter-selected conditional sections accept either included declaration
       expect(tree.rootNode.endIndex).toBe(source.length);
       const section = tree.rootNode.descendantsOfType('conditionalSect')[0]!;
       const reference = section.descendantsOfType('PEReference')[0]!;
-      expect(section.descendantsOfType('ConditionalContent')[0]?.text).toBe(content);
+      expect(section.descendantsOfType(mode === 'IGNORE' ? 'ConditionalContent' : 'elementdecl')[0]?.text).toBe(
+        content
+      );
       expect(reference.text).toBe('%mode;');
       expect(reference.startIndex).toBe(source.indexOf('%mode;'));
       expect(reference.endIndex).toBe(source.indexOf('%mode;') + '%mode;'.length);
@@ -153,5 +155,33 @@ test('ignored text, closing-bracket runs, and unterminated nesting have linear i
       reads.push(total);
     }
     expect(reads[1]! / reads[0]!, form).toBeLessThan(18);
+  }
+});
+
+test('parameter-selected declarations retain delimiter text inside literals and comments', () => {
+  for (const body of [
+    '<!ENTITY e "]]><![["><!ELEMENT root EMPTY>',
+    '<!-- <![ --><!ELEMENT root EMPTY>',
+    '<!ATTLIST root value CDATA "]]>">',
+    '<!-- ]]> --><!ELEMENT root EMPTY>',
+  ]) {
+    const source = `<!ENTITY % mode "INCLUDE"><![%mode;[${body}]]>`;
+    const tree = dtd.parse(source)!;
+    try {
+      expect(tree.rootNode.hasError, body).toBe(false);
+      expect(tree.rootNode.endIndex).toBe(source.length);
+      const section = tree.rootNode.descendantsOfType('conditionalSect')[0]!;
+      expect(section.text).toBe(`<![%mode;[${body}]]>`);
+      expect(
+        section.namedChildren
+          .slice(1)
+          .map((node) => node.text)
+          .join('')
+      ).toBe(body);
+      expect(section.startIndex).toBe(source.indexOf('<![%mode;['));
+      expect(section.endIndex).toBe(source.length);
+    } finally {
+      tree.delete();
+    }
   }
 });
