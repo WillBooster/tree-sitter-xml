@@ -23,6 +23,7 @@ upstream's 0.7.0 packages in these ways:
 - Where a NUL character cannot be part of any token, the `ERROR` node covers it as it covers any other unexpected
   character, without the unexpected-character node that upstream's parsers put inside it.
 
+- The XML scanner retains paired tag names and nesting state without truncating either to the snapshot buffer's capacity.
 - Names and enumeration tokens use the [XML 1.0 Unicode character ranges](https://www.w3.org/TR/xml/#NT-NameStartChar),
   including supplementary characters, in attributes, references, and DTD declarations.
 - Generic processing instructions accept multiline content and question marks up to the closing `?>`, including
@@ -48,9 +49,9 @@ parses external DTD files.
 ## Support Scope
 
 This fork maintains only full parsing: valid input yields a correct tree, and invalid input yields `ERROR` or `MISSING`
-nodes without crashing, hanging, or taking more than linear time. Incremental parsing works as in upstream tree-sitter
-but is not tested here, and no queries (highlights, locals, injections, tags) are shipped. Node types, field names, and
-the trees that error recovery produces may change; such changes are released as new major versions.
+nodes without crashing, hanging, or taking more than linear time. No queries (highlights, locals, injections, tags) are
+shipped. Node types, field names, and the trees that error recovery produces may change; such changes are released as
+new major versions.
 
 ## Usage
 
