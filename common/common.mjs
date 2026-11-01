@@ -149,13 +149,13 @@ export const rules = {
       O(choice('?', '*', '+'))
     )),
 
-    _choice: $ => seq(
+    _choice: $ => choice(...['|', ','].map(separator => seq(
       '(',
       O($._S),
       $._cp,
       rseq(
         O($._S),
-        choice('|', ','),
+        separator,
         O($._S),
         $._cp
       ),
@@ -165,7 +165,7 @@ export const rules = {
       ),
       O($._S),
       ')'
-    ),
+    ))),
 
     AttlistDecl: $ => seq(
       '<!',
