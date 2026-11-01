@@ -960,22 +960,22 @@
                     "type": "BLANK"
                   }
                 ]
+              },
+              {
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "Name"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "PEReference"
+                  }
+                ]
               }
             ]
           }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "Name"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "PEReference"
-            }
-          ]
         },
         {
           "type": "CHOICE",
