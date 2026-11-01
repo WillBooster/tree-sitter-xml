@@ -18,7 +18,9 @@ number (`0x5742000b`) and load with that fork's runtime, version 15.0.0 or later
 adapts to the generated array API with the change upstream itself made after 0.7.0. The parsers differ from
 upstream's 0.7.0 packages in these ways:
 
-- Literal text and numeric character references follow the XML 1.0 Char ranges; forbidden controls and invalid scalar references report errors.
+- Decoded literal text and numeric character references follow the XML 1.0 Char ranges; forbidden controls and invalid
+  scalar references report errors. Malformed UTF-16 strings containing isolated surrogates are not rejected in every
+  context.
 - The XML scanner retains paired tag names and nesting state without truncating either to the snapshot buffer's capacity.
 - Names and enumeration tokens use the [XML 1.0 Unicode character ranges](https://www.w3.org/TR/xml/#NT-NameStartChar),
   including supplementary characters, in attributes, references, and DTD declarations.
