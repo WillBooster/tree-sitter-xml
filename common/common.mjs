@@ -221,9 +221,9 @@ export const rules = {
       rseq(
         O($._S),
         '|',
-        O($._S)
+        O($._S),
+        ref($, $.Name)
       ),
-      ref($, $.Name),
       O($._S),
       ')'
     ),

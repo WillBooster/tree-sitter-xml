@@ -1,0 +1,39 @@
+================================================================================
+One XML notation name
+:language(xml)
+================================================================================
+<!DOCTYPE root [<!ELEMENT root ANY> <!ATTLIST root choice NOTATION (first) #IMPLIED> <!NOTATION first SYSTEM "first"> ]><root/>
+--------------------------------------------------------------------------------
+(document
+  (prolog
+    (doctypedecl
+      (Name)
+      (elementdecl (Name) (contentspec))
+      (AttlistDecl
+        (Name)
+        (AttDef (Name) (NotationType (Name)) (DefaultDecl)))
+      (NotationDecl (Name) (ExternalID (SystemLiteral (URI))))))
+  (element (EmptyElemTag (Name))))
+
+================================================================================
+Several DTD notation names
+:language(dtd)
+================================================================================
+<!ELEMENT root ANY> <!ATTLIST root choice NOTATION (first|second|third) #IMPLIED> <!NOTATION first SYSTEM "first"> <!NOTATION second SYSTEM "second"> <!NOTATION third SYSTEM "third">
+--------------------------------------------------------------------------------
+(extSubset
+  (elementdecl (Name) (contentspec))
+  (AttlistDecl
+    (Name)
+    (AttDef (Name) (NotationType (Name) (Name) (Name)) (DefaultDecl)))
+  (NotationDecl (Name) (ExternalID (SystemLiteral (URI))))
+  (NotationDecl (Name) (ExternalID (SystemLiteral (URI))))
+  (NotationDecl (Name) (ExternalID (SystemLiteral (URI)))))
+
+================================================================================
+Notation names require exactly one pipe between names
+:error
+:language(dtd)
+================================================================================
+<!ATTLIST root choice NOTATION (first||second) #IMPLIED>
+--------------------------------------------------------------------------------
