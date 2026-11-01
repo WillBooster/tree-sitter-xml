@@ -1,0 +1,29 @@
+==================
+Ignored raw text and nested delimiters
+:language(dtd)
+==================
+<![IGNORE[raw < > & %unexpanded; <![nested]]> tail]]>
+<!ELEMENT root EMPTY>
+---
+
+(extSubset
+  (conditionalSect
+    (Ignore))
+  (elementdecl
+    (Name)
+    (contentspec)))
+
+==================
+Included declarations beside ignored raw text
+:language(dtd)
+==================
+<![INCLUDE[<!ELEMENT root EMPTY><![IGNORE[raw %unexpanded; &]]>]]>
+---
+
+(extSubset
+  (conditionalSect
+    (elementdecl
+      (Name)
+      (contentspec))
+    (conditionalSect
+      (Ignore))))

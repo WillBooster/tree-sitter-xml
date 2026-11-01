@@ -18,6 +18,7 @@ export default grammar({
     $.PITarget,
     $._pi_content,
     $.Comment,
+    $._ignore_content,
   ],
 
   extras: _ => [],
@@ -60,12 +61,15 @@ export default grammar({
     conditionalSect: $ => seq(
       '<![',
       O($._S),
-      c.ref($, 'IGNORE', 'INCLUDE'),
-      O($._S),
-      '[',
-      repeat($._extSubsetDecl),
+      choice(
+        seq('INCLUDE', O($._S), '[', repeat($._extSubsetDecl)),
+        seq('IGNORE', O($._S), '[', O($.Ignore)),
+        seq($.PEReference, O($._S), '[', choice(repeat($._extSubsetDecl), $.Ignore))
+      ),
       ']]>'
     ),
+
+    Ignore: $ => repeat1($._ignore_content),
 
     ...c.rules(true)
   }
