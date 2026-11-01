@@ -7,9 +7,6 @@ import { describe, expect, test } from 'vitest';
 import { generationInputMtime } from '../helpers/generationInputs.js';
 
 const Root = path.join(import.meta.dirname, '../..');
-// For each grammar, a source of the given number of lines with an error on each line. The XML elements are closed:
-// the scanner restores its stack of open element names before each token, so its cost grows with the nesting depth,
-// as it does with upstream's scanner, whatever the error recovery.
 const ErrorSources = {
   xml: (lines: number): string => `<r>\n${'<a b=c/>\n'.repeat(lines)}</r>\n`,
   dtd: (lines: number): string => '<!ELEMENT a (b>\n'.repeat(lines),
