@@ -2076,7 +2076,7 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[^<%&\"]"
+                            "value": "[^%&\"]"
                           },
                           {
                             "type": "SYMBOL",
@@ -2126,7 +2126,7 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[^<%&']"
+                            "value": "[^%&']"
                           },
                           {
                             "type": "SYMBOL",

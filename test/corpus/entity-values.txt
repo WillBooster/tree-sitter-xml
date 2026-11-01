@@ -1,0 +1,29 @@
+================================================================================
+Literal markup in XML entity replacement text
+:language(xml)
+================================================================================
+<!DOCTYPE root [<!ENTITY fragment "<child>first &amp; last</child>"> ]><root/>
+--------------------------------------------------------------------------------
+(document
+  (prolog
+    (doctypedecl
+      (Name)
+      (GEDecl
+        (Name)
+        (EntityValue
+          (EntityRef (Name))))))
+  (element (EmptyElemTag (Name))))
+
+================================================================================
+Literal markup and both quote styles in DTD entity values
+:language(dtd)
+================================================================================
+<!ENTITY first "<child attr='value'>&amp;</child>"> <!ENTITY second '<child attr="value">&#60;</child>'>
+--------------------------------------------------------------------------------
+(extSubset
+  (GEDecl
+    (Name)
+    (EntityValue (EntityRef (Name))))
+  (GEDecl
+    (Name)
+    (EntityValue (CharRef))))
