@@ -44,9 +44,9 @@ parses external DTD files.
 ## Support Scope
 
 This fork maintains only full parsing: valid input yields a correct tree, and invalid input yields `ERROR` or `MISSING`
-nodes without crashing, hanging, or taking more than linear time. Incremental parsing works as in upstream tree-sitter
-but is not tested here, and no queries (highlights, locals, injections, tags) are shipped. Node types, field names, and
-the trees that error recovery produces may change; such changes are released as new major versions.
+nodes without crashing, hanging, or taking more than linear time. No queries (highlights, locals, injections, tags) are
+shipped. Node types, field names, and the trees that error recovery produces may change; such changes are released as
+new major versions.
 
 ## Usage
 
