@@ -67,6 +67,6 @@ export default grammar({
       ']]>'
     ),
 
-    ...c.rules
+    ...c.rules(true)
   }
 });

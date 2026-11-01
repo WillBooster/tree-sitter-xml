@@ -30,6 +30,8 @@ upstream's 0.7.0 packages in these ways:
 - CDATA sections preserve closing-bracket runs as content and end at the first `]]>` delimiter.
 - Ordinary character data rejects `]]>` while preserving bracket runs beside markup and references.
 - Entity replacement values accept literal markup, including opening angle brackets.
+- Parameter references are accepted between internal declarations and within external DTD declarations, but rejected
+  inside internal declarations, including entity values.
 - NOTATION attribute types accept one or more names separated by single pipes.
 - External DTD text declarations require encoding and permit an omitted version.
 - Attribute definitions with literal types require a default declaration.

@@ -106,10 +106,6 @@
           "named": true
         },
         {
-          "type": "PEReference",
-          "named": true
-        },
-        {
           "type": "_AttType",
           "named": true
         }
@@ -146,10 +142,6 @@
         },
         {
           "type": "Name",
-          "named": true
-        },
-        {
-          "type": "PEReference",
           "named": true
         }
       ]
@@ -218,10 +210,6 @@
       "types": [
         {
           "type": "AttValue",
-          "named": true
-        },
-        {
-          "type": "PEReference",
           "named": true
         }
       ]
@@ -349,10 +337,6 @@
         {
           "type": "Name",
           "named": true
-        },
-        {
-          "type": "PEReference",
-          "named": true
         }
       ]
     }
@@ -368,10 +352,6 @@
         {
           "type": "Name",
           "named": true
-        },
-        {
-          "type": "PEReference",
-          "named": true
         }
       ]
     }
@@ -386,10 +366,6 @@
       "types": [
         {
           "type": "Name",
-          "named": true
-        },
-        {
-          "type": "PEReference",
           "named": true
         }
       ]
@@ -412,10 +388,6 @@
           "named": true
         },
         {
-          "type": "PEReference",
-          "named": true
-        },
-        {
           "type": "PublicID",
           "named": true
         }
@@ -432,10 +404,6 @@
       "types": [
         {
           "type": "Name",
-          "named": true
-        },
-        {
-          "type": "PEReference",
           "named": true
         }
       ]
@@ -539,13 +507,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
-        {
-          "type": "PEReference",
-          "named": true
-        },
         {
           "type": "PubidLiteral",
           "named": true
@@ -652,10 +616,6 @@
         {
           "type": "Name",
           "named": true
-        },
-        {
-          "type": "PEReference",
-          "named": true
         }
       ]
     }
@@ -668,10 +628,6 @@
       "multiple": true,
       "required": false,
       "types": [
-        {
-          "type": "PEReference",
-          "named": true
-        },
         {
           "type": "_Reference",
           "named": true
@@ -724,10 +680,6 @@
       "types": [
         {
           "type": "Mixed",
-          "named": true
-        },
-        {
-          "type": "PEReference",
           "named": true
         },
         {
@@ -844,10 +796,6 @@
       "types": [
         {
           "type": "Name",
-          "named": true
-        },
-        {
-          "type": "PEReference",
           "named": true
         },
         {
