@@ -40,10 +40,6 @@ export default grammar({
     $._Reference,
   ],
 
-  conflicts: $ => [
-    [$.AttlistDecl, $.AttDef]
-  ],
-
   word: $ => $.Name,
 
   rules: {
@@ -192,6 +188,6 @@ export default grammar({
       c.att_value($, "'")
     ),
 
-    ...c.rules
+    ...c.rules(false)
   }
 });
