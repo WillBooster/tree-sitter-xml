@@ -1,0 +1,15 @@
+================================================================================
+CDATA closing brackets and adjacent markup
+:language(xml)
+================================================================================
+<root><![CDATA[]]]><![CDATA[a]]]]><![CDATA[]]]x]]><following/></root>
+--------------------------------------------------------------------------------
+(document
+  (element
+    (STag (Name))
+    (content
+      (CDSect (CDStart) (CData))
+      (CDSect (CDStart) (CData))
+      (CDSect (CDStart) (CData))
+      (element (EmptyElemTag (Name))))
+    (ETag (Name))))

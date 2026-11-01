@@ -199,6 +199,11 @@
     "fields": {}
   },
   {
+    "type": "CData",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "CharRef",
     "named": true,
     "fields": {}
@@ -1002,10 +1007,6 @@
   {
     "type": "CDATA",
     "named": false
-  },
-  {
-    "type": "CData",
-    "named": true
   },
   {
     "type": "CharData",

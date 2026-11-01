@@ -92,7 +92,7 @@ static bool scan_self_closing_tag_delimiter(Vector *tags, TSLexer *lexer) {
 
 static inline bool in_error_recovery(const bool *valid_symbols) {
     return valid_symbols[PI_TARGET] && valid_symbols[PI_CONTENT] && valid_symbols[COMMENT] &&
-           valid_symbols[CHAR_DATA] && valid_symbols[CDATA];
+           valid_symbols[CHAR_DATA];
 }
 
 static inline bool in_char_data(TSLexer *lexer) {
@@ -131,28 +131,6 @@ static bool scan_char_data(TSLexer *lexer) {
     return false;
 }
 
-static bool scan_cdata(TSLexer *lexer) {
-    bool advanced_once = false;
-
-    while (!lexer->eof(lexer)) {
-        if (lexer->lookahead == ']') {
-            lexer->mark_end(lexer);
-            advance(lexer);
-            if (lexer->lookahead == ']') {
-                advance(lexer);
-                if (lexer->lookahead == '>' && advanced_once) {
-                    lexer->result_symbol = CDATA;
-                    return true;
-                }
-            }
-        }
-        advanced_once = true;
-        advance(lexer);
-    }
-
-    return false;
-}
-
 bool tree_sitter_xml_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     Vector *tags = (Vector *)payload;
 
@@ -169,10 +147,6 @@ bool tree_sitter_xml_external_scanner_scan(void *payload, TSLexer *lexer, const 
     }
 
     if (valid_symbols[CHAR_DATA] && scan_char_data(lexer)) {
-        return true;
-    }
-
-    if (valid_symbols[CDATA] && scan_cdata(lexer)) {
         return true;
     }
 

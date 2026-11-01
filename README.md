@@ -27,6 +27,7 @@ upstream's 0.7.0 packages in these ways:
   including supplementary characters, in attributes, references, and DTD declarations.
 - Generic processing instructions accept multiline content and question marks up to the closing `?>`, including
   when another instruction or markup immediately follows.
+- CDATA sections preserve closing-bracket runs as content and end at the first `]]>` delimiter.
 - Nonempty attribute values (`AttValue` and `PseudoAttValue`) and entity values (`EntityValue`) expose their full
   unquoted value through the `content` field. This field points to an anonymous `content` node wrapping text and
   references. Access references through this wrapper using the node API; references are not direct children of the

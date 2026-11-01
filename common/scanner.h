@@ -12,7 +12,6 @@ enum TokenType {
 
 #ifdef TS_XML
     CHAR_DATA,
-    CDATA,
     XML_MODEL,
     XML_STYLESHEET,
     START_TAG_NAME,
