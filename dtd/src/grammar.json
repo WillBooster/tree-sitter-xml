@@ -787,15 +787,15 @@
             "name": "_S"
           },
           {
-            "type": "SYMBOL",
-            "name": "_AttType"
-          },
-          {
             "type": "CHOICE",
             "members": [
               {
                 "type": "SEQ",
                 "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_AttType"
+                  },
                   {
                     "type": "SYMBOL",
                     "name": "_S"
@@ -807,7 +807,34 @@
                 ]
               },
               {
-                "type": "BLANK"
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "PEReference"
+                  },
+                  {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SEQ",
+                        "members": [
+                          {
+                            "type": "SYMBOL",
+                            "name": "_S"
+                          },
+                          {
+                            "type": "SYMBOL",
+                            "name": "DefaultDecl"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "BLANK"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
@@ -828,10 +855,6 @@
         {
           "type": "SYMBOL",
           "name": "_EnumeratedType"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "PEReference"
         }
       ]
     },

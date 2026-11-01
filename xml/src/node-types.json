@@ -4,10 +4,6 @@
     "named": true,
     "subtypes": [
       {
-        "type": "PEReference",
-        "named": true
-      },
-      {
         "type": "StringType",
         "named": true
       },
@@ -107,6 +103,10 @@
         },
         {
           "type": "Name",
+          "named": true
+        },
+        {
+          "type": "PEReference",
           "named": true
         },
         {
