@@ -39,20 +39,20 @@
           "value": "xml"
         },
         {
-          "type": "SYMBOL",
-          "name": "_VersionInfo"
-        },
-        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_EncodingDecl"
+              "name": "_VersionInfo"
             },
             {
               "type": "BLANK"
             }
           ]
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_EncodingDecl"
         },
         {
           "type": "CHOICE",
