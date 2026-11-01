@@ -40,7 +40,7 @@ export default grammar({
   rules: {
     extSubset: $ => seq(
       O($.TextDecl),
-      repeat1($._extSubsetDecl)
+      repeat($._extSubsetDecl)
     ),
 
     TextDecl: $ => seq(
