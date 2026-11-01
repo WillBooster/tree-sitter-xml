@@ -1,0 +1,28 @@
+================================================================================
+XML attribute definition requires a default declaration
+:error
+:language(xml)
+================================================================================
+<!DOCTYPE root [<!ATTLIST root value CDATA> ]><root/>
+--------------------------------------------------------------------------------
+
+================================================================================
+Missing DTD attribute default before another attribute
+:error
+:language(dtd)
+================================================================================
+<!ATTLIST root first CDATA second ID #IMPLIED>
+--------------------------------------------------------------------------------
+
+================================================================================
+External parameter entity may supply the type and default together
+:language(dtd)
+================================================================================
+<!ELEMENT root ANY> <!ENTITY % tail "CDATA #IMPLIED"> <!ATTLIST root value %tail;>
+--------------------------------------------------------------------------------
+(extSubset
+  (elementdecl (Name) (contentspec))
+  (PEDecl (Name) (EntityValue))
+  (AttlistDecl
+    (Name)
+    (AttDef (Name) (PEReference (Name)))))
