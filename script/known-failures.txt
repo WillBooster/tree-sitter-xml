@@ -1,15 +1,11 @@
 examples/lemminx/org.eclipse.lemminx/src/test/resources/dtd/foo-invalid.dtd
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/NestedA/NestedB/nestedXSD.xsd
-examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderA/dtdA1.dtd
-examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderA/dtdA2.dtd
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderA/xsdA1.xsd
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderA/xsdA2.xsd
-examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderB/dtdB1.dtd
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderB/xmlB1.xml
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderB/xsdB1.xsd
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderC/a@b/foo.xml
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/folderC/with spaces/foo.xml
-examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/main.dtd
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/main.xml
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/main.xsd
 examples/lemminx/org.eclipse.lemminx/src/test/resources/filePathCompletion/main.xsl
