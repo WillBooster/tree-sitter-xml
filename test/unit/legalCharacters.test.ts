@@ -13,7 +13,7 @@ const xmlLiteralSources = (char: string): string[] => [
   `<root>x${char}y</root>`,
   `<root value="x${char}y"/>`,
   `<root><![CDATA[x${char}y]]></root>`,
-  `<root><?data x${char}y?></root>`,
+  `<root><?data ${char}y?></root>`,
   `<root><!--x${char}y--></root>`,
   `<!DOCTYPE root SYSTEM "x${char}y"><root/>`,
   `<!DOCTYPE root [<!ENTITY e "x${char}y"> ]><root/>`,
@@ -22,7 +22,7 @@ const dtdLiteralSources = (char: string): string[] => [
   `<!ENTITY e "x${char}y">`,
   `<!ATTLIST root value CDATA "x${char}y">`,
   `<!NOTATION n SYSTEM "x${char}y">`,
-  `<?data x${char}y?>`,
+  `<?data ${char}y?>`,
   `<!--x${char}y-->`,
 ];
 
@@ -173,7 +173,7 @@ test('forbidden characters and overflowing numeric references have linear input 
             : form === 'digits'
               ? `&#${'9'.repeat(count)};`
               : form === 'instruction'
-                ? `<?data ${'x'.repeat(count)}\0?>`
+                ? `${'<?data '.repeat(count)}\0?>`
                 : `<!--${'x'.repeat(count)}\0-->`;
         const source =
           parser === xml

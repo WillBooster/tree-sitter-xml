@@ -118,8 +118,7 @@ static bool scan_pi_target(TSLexer *lexer, const bool *valid_symbols) {
 }
 
 static bool scan_pi_content(TSLexer *lexer) {
-    while (!lexer->eof(lexer)) {
-        if (!is_valid_xml_char(lexer->lookahead)) return false;
+    while (!lexer->eof(lexer) && is_valid_xml_char(lexer->lookahead)) {
         if (lexer->lookahead == '?') {
             lexer->mark_end(lexer);
             advance(lexer);
