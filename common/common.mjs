@@ -41,7 +41,7 @@ export const entity_value = ($, q) =>
     optional(field(
       'content',
       alias(repeat1(choice(
-        new RegExp(`[^<%&${q}]`),
+        new RegExp(`[^%&${q}]`),
         $.PEReference,
         $._Reference
       )), 'content')
