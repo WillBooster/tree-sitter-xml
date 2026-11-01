@@ -97,6 +97,7 @@ test('parameter-selected conditional sections accept either included declaration
       expect(tree.rootNode.endIndex).toBe(source.length);
       const section = tree.rootNode.descendantsOfType('conditionalSect')[0]!;
       const reference = section.descendantsOfType('PEReference')[0]!;
+      expect(section.descendantsOfType('ConditionalContent')[0]?.text).toBe(content);
       expect(reference.text).toBe('%mode;');
       expect(reference.startIndex).toBe(source.indexOf('%mode;'));
       expect(reference.endIndex).toBe(source.indexOf('%mode;') + '%mode;'.length);

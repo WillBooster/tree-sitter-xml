@@ -320,21 +320,8 @@ Conditional Sections
   (conditionalSect
     (PEReference
       (Name))
-    (elementdecl
-      (Name)
-      (contentspec
-        (children
-          (Name)
-          (Name)
-          (Name)
-          (Name)))))
+    (ConditionalContent))
   (conditionalSect
     (PEReference
       (Name))
-    (elementdecl
-      (Name)
-      (contentspec
-        (children
-          (Name)
-          (Name)
-          (Name))))))
+    (ConditionalContent)))

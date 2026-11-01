@@ -64,7 +64,7 @@ export default grammar({
       choice(
         seq('INCLUDE', O($._S), '[', repeat($._extSubsetDecl)),
         seq('IGNORE', O($._S), '[', O($.Ignore)),
-        seq($.PEReference, O($._S), '[', choice(repeat($._extSubsetDecl), $.Ignore))
+        seq($.PEReference, O($._S), '[', O(alias($.Ignore, $.ConditionalContent)))
       ),
       ']]>'
     ),
