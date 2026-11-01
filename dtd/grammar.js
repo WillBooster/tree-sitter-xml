@@ -19,6 +19,7 @@ export default grammar({
     $._pi_content,
     $.Comment,
     $.CharRef,
+    $._ignore_content,
   ],
 
   extras: _ => [],
@@ -32,7 +33,8 @@ export default grammar({
   ],
 
   conflicts: $ => [
-    [$.AttlistDecl, $.AttDef]
+    [$.AttlistDecl, $.AttDef],
+    [$._parameterInclude, $._parameterIgnore]
   ],
 
   word: $ => $.Name,
@@ -61,12 +63,19 @@ export default grammar({
     conditionalSect: $ => seq(
       '<![',
       O($._S),
-      c.ref($, 'IGNORE', 'INCLUDE'),
-      O($._S),
-      '[',
-      repeat($._extSubsetDecl),
+      choice(
+        seq(choice('INCLUDE', $._parameterInclude), O($._S), '[', repeat($._extSubsetDecl)),
+        seq('IGNORE', O($._S), '[', O($.Ignore)),
+        seq($._parameterIgnore, O($._S), '[', O(alias($.Ignore, $.ConditionalContent)))
+      ),
       ']]>'
     ),
+
+    _parameterInclude: $ => prec.dynamic(1, $.PEReference),
+
+    _parameterIgnore: $ => $.PEReference,
+
+    Ignore: $ => repeat1($._ignore_content),
 
     ...c.rules(true)
   }

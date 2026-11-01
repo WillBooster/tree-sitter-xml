@@ -156,6 +156,11 @@
     }
   },
   {
+    "type": "ConditionalContent",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "DefaultDecl",
     "named": true,
     "fields": {},
@@ -269,6 +274,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "Ignore",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "Mixed",
@@ -492,6 +502,14 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "ConditionalContent",
+          "named": true
+        },
+        {
+          "type": "Ignore",
+          "named": true
+        },
         {
           "type": "PEReference",
           "named": true

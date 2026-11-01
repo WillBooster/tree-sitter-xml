@@ -35,6 +35,7 @@ upstream's 0.7.0 packages in these ways:
 - NOTATION attribute types accept one or more names separated by single pipes.
 - Content-model groups reject mixed pipe/comma separators; nested groups choose separators independently.
 - External DTD text declarations require encoding and permit an omitted version.
+- Ignored DTD conditional sections preserve opaque text and nested section delimiters without parsing declarations.
 - Attribute definitions with literal types require a default declaration.
 - External DTD subsets may be empty or end immediately after a text declaration.
 - Nonempty attribute values (`AttValue` and `PseudoAttValue`) and entity values (`EntityValue`) expose their full

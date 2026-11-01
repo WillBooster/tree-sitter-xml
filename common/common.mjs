@@ -87,13 +87,6 @@ export const str = (...choices) =>
     seq('"', ...choices, '"')
   );
 
-/**
- * @param {GrammarSymbols<any>} $
- * @param {RuleOrLiteral[]} choices
- */
-export const ref = ($, ...choices) =>
-  choice(...choices, $.PEReference);
-
 /** @param {RuleOrLiteral[]} rules */
 export const rseq = (...rules) => repeat(seq(...rules));
 

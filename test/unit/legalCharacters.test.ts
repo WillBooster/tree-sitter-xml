@@ -227,3 +227,77 @@ test('entity replacement text preserves markup-looking literals and character re
     }
   }
 });
+
+test('ignored conditional text rejects forbidden characters without interpreting references', () => {
+  for (const codePoint of [0, 1, 8, 0xb, 0xc, 0xe, 0x1f, 0xff_fe, 0xff_ff]) {
+    const char = String.fromCodePoint(codePoint);
+    for (const source of [
+      `<![IGNORE[x${char}y]]>`,
+      `<![IGNORE[<![nested x${char}y]]>]]>`,
+      `<!ENTITY % mode "IGNORE"><![%mode;[x${char}y]]>`,
+    ]) {
+      const tree = dtd.parse(source)!;
+      try {
+        expect(tree.rootNode.hasError, source).toBe(true);
+        expect(tree.rootNode.endIndex).toBe(source.length);
+      } finally {
+        tree.delete();
+      }
+    }
+  }
+  const content = '&#0;<!--&#xD800;--><?data &#x110000;?>%raw;';
+  const source = `<![IGNORE[${content}]]>`;
+  const tree = dtd.parse(source)!;
+  try {
+    expect(tree.rootNode.hasError).toBe(false);
+    expect(tree.rootNode.endIndex).toBe(source.length);
+    const ignored = tree.rootNode.descendantsOfType('Ignore')[0]!;
+    expect(ignored.text).toBe(content);
+    expect(ignored.startIndex).toBe('<![IGNORE['.length);
+    expect(ignored.endIndex).toBe('<![IGNORE['.length + content.length);
+    expect(ignored.descendantsOfType(['CharRef', 'PEReference', 'Comment', 'PI'])).toHaveLength(0);
+  } finally {
+    tree.delete();
+  }
+});
+
+test('ignored text retains legal boundary scalars and exact content ranges', () => {
+  for (const codePoint of [9, 10, 13, 0x20, 0xd7_ff, 0xe0_00, 0xff_fd, 0x1_00_00, 0x10_ff_ff]) {
+    const content = `x${String.fromCodePoint(codePoint)}y`;
+    const source = `<![IGNORE[${content}]]>`;
+    const tree = dtd.parse(source)!;
+    try {
+      expect(tree.rootNode.hasError).toBe(false);
+      expect(tree.rootNode.endIndex).toBe(source.length);
+      const ignored = tree.rootNode.descendantsOfType('Ignore')[0]!;
+      expect(ignored.text).toBe(content);
+      expect(ignored.startIndex).toBe('<![IGNORE['.length);
+      expect(ignored.endIndex).toBe('<![IGNORE['.length + content.length);
+    } finally {
+      tree.delete();
+    }
+  }
+});
+
+test('forbidden characters after nested ignored prefixes have linear input reads', () => {
+  for (const selectedByParameter of [false, true]) {
+    const reads: number[] = [];
+    for (const count of [200, 2000]) {
+      const prefix = selectedByParameter ? '<!ENTITY % mode "IGNORE"><![%mode;[' : '<![IGNORE[';
+      const source = `${prefix}${'<![nested '.repeat(count)}\0${']]>'.repeat(count)}]]>`;
+      let total = 0;
+      const tree = dtd.parse((index) => {
+        total++;
+        return source.slice(index, index + 64);
+      })!;
+      try {
+        expect(tree.rootNode.hasError).toBe(true);
+        expect(tree.rootNode.endIndex).toBe(source.length);
+      } finally {
+        tree.delete();
+      }
+      reads.push(total);
+    }
+    expect(reads[1]! / reads[0]!).toBeLessThan(18);
+  }
+});

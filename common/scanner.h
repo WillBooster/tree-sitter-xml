@@ -19,6 +19,8 @@ enum TokenType {
     END_TAG_NAME,
     ERRONEOUS_END_NAME,
     SELF_CLOSING_TAG_DELIMITER,
+#else
+    IGNORE_CONTENT,
 #endif
 };
 
