@@ -9,6 +9,7 @@ enum TokenType {
     PI_TARGET,
     PI_CONTENT,
     COMMENT,
+    CHAR_REF,
 
 #ifdef TS_XML
     CHAR_DATA,
@@ -32,6 +33,42 @@ enum TokenType {
 #endif
 
 static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
+
+static inline bool is_valid_xml_char(int32_t chr) {
+    return chr == 0x9 || chr == 0xA || chr == 0xD ||
+           (chr >= 0x20 && chr <= 0xD7FF) || (chr >= 0xE000 && chr <= 0xFFFD) ||
+           (chr >= 0x10000 && chr <= 0x10FFFF);
+}
+
+static int char_ref_digit(int32_t chr) {
+    if (chr >= '0' && chr <= '9') return chr - '0';
+    if (chr >= 'a' && chr <= 'f') return chr - 'a' + 10;
+    if (chr >= 'A' && chr <= 'F') return chr - 'A' + 10;
+    return -1;
+}
+
+static bool scan_char_ref(TSLexer *lexer) {
+    advance_if_eq(lexer, '&');
+    advance_if_eq(lexer, '#');
+    unsigned base = 10;
+    if (lexer->lookahead == 'x') {
+        base = 16;
+        advance(lexer);
+    }
+    uint32_t value = 0;
+    bool has_digit = false;
+    int digit;
+    while ((digit = char_ref_digit(lexer->lookahead)) >= 0 && (unsigned)digit < base) {
+        has_digit = true;
+        value = value <= 0x10FFFF / base ? value * base + (unsigned)digit : 0x110000;
+        advance(lexer);
+    }
+    if (!has_digit || !is_valid_xml_char((int32_t)value)) return false;
+    advance_if_eq(lexer, ';');
+    lexer->mark_end(lexer);
+    lexer->result_symbol = CHAR_REF;
+    return true;
+}
 
 static inline bool is_valid_name_start_char(int32_t chr) {
     return chr == ':' || chr == '_' || (chr >= 'A' && chr <= 'Z') ||
@@ -83,7 +120,7 @@ static bool scan_pi_target(TSLexer *lexer, const bool *valid_symbols) {
 }
 
 static bool scan_pi_content(TSLexer *lexer) {
-    while (!lexer->eof(lexer)) {
+    while (!lexer->eof(lexer) && is_valid_xml_char(lexer->lookahead)) {
         if (lexer->lookahead == '?') {
             lexer->mark_end(lexer);
             advance(lexer);
@@ -101,10 +138,13 @@ static bool scan_pi_content(TSLexer *lexer) {
 }
 
 static bool scan_comment(TSLexer *lexer) {
+    advance_if_eq(lexer, '<');
+    advance_if_eq(lexer, '!');
     advance_if_eq(lexer, '-');
     advance_if_eq(lexer, '-');
 
     while (!lexer->eof(lexer)) {
+        if (!is_valid_xml_char(lexer->lookahead)) return false;
         if (lexer->lookahead == '-') {
             advance(lexer);
             if (lexer->lookahead == '-') {

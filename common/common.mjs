@@ -7,6 +7,36 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
+const xmlCharRanges = [[9, 10], [13, 13], [0x20, 0xD7FF], [0xE000, 0xFFFD], [0x10000, 0x10FFFF]];
+
+/**
+ * @param {string} excluded
+ * @param {'' | '+' | '*'} repetitions
+ */
+export const xmlChars = (excluded, repetitions = '') => {
+  const omitted = Array.from(excluded, char => char.codePointAt(0) ?? 0).sort((a, b) => a - b);
+  const ranges = xmlCharRanges.flatMap(([start, end]) => subtractXmlRange(start, end, omitted));
+  /** @param {number} point */
+  const escape = (point) => `\\u{${point.toString(16)}}`;
+  return new RegExp(`[${ranges.map(([start, end]) => start === end ? escape(start) : `${escape(start)}-${escape(end)}`).join('')}]${repetitions}`, 'u');
+};
+
+/**
+ * @param {number} start
+ * @param {number} end
+ * @param {number[]} omitted
+ */
+const subtractXmlRange = (start, end, omitted) => {
+  const ranges = [];
+  for (const point of omitted) {
+    if (point < start || point > end) continue;
+    if (point > start) ranges.push([start, point - 1]);
+    start = point + 1;
+  }
+  if (start <= end) ranges.push([start, end]);
+  return ranges;
+};
+
 /**
  * @param {"'" | ''} q
  * @see {@link https://www.w3.org/TR/xml/#NT-PubidChar}
@@ -24,7 +54,7 @@ export const att_value = ($, q) =>
     optional(field(
       'content',
       alias(repeat1(choice(
-        new RegExp(`[^<&${q}]`),
+        xmlChars(`<&${q}`),
         $._Reference
       )), 'content')
     )),
@@ -41,7 +71,7 @@ export const entity_value = ($, q, allowParameterReferences = true) =>
     optional(field(
       'content',
       alias(repeat1(choice(
-        new RegExp(`[^%&${q}]`),
+        xmlChars(`%&${q}`),
         ...(allowParameterReferences ? [$.PEReference] : []),
         $._Reference
       )), 'content')
@@ -319,10 +349,6 @@ export const rules = (allowParameterReferences) => {
 
     EntityRef: $ => seq('&', $.Name, ';'),
 
-    CharRef: _ => choice(
-      seq('&#', /[0-9]+/, ';'),
-      seq('&#x', /[0-9a-fA-F]+/, ';')
-    ),
 
     AttValue: $ => choice(
       att_value($, '"'),
@@ -339,8 +365,8 @@ export const rules = (allowParameterReferences) => {
     ),
 
     SystemLiteral: $ => choice(
-      seq('"', alias(/[^"]*/, $.URI), '"'),
-      seq("'", alias(/[^']*/, $.URI), "'")
+      seq('"', alias(xmlChars('"', '*'), $.URI), '"'),
+      seq("'", alias(xmlChars("'", '*'), $.URI), "'")
     ),
 
     PubidLiteral: _ => choice(

@@ -8,9 +8,8 @@
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #endif
 
-/// Check if the lexer is in error recovery mode
 static inline bool in_error_recovery(const bool *valid_symbols) {
-    return valid_symbols[PI_TARGET] && valid_symbols[PI_CONTENT] && valid_symbols[COMMENT] &&
+    return valid_symbols[PI_TARGET] && valid_symbols[PI_CONTENT] && valid_symbols[COMMENT] && valid_symbols[CHAR_REF] &&
            valid_symbols[IGNORE_CONTENT];
 }
 
@@ -20,7 +19,7 @@ static void scan_ignore_delimiter(TSLexer *lexer, unsigned *depth);
 static bool scan_ignore_content(TSLexer *lexer) {
     unsigned depth = 0;
     bool has_content = false;
-    while (!lexer->eof(lexer)) {
+    while (!lexer->eof(lexer) && is_valid_xml_char(lexer->lookahead)) {
         if (lexer->lookahead == ']' && depth == 0) {
             if (has_content) break;
             return scan_ignore_bracket(lexer);
@@ -77,6 +76,9 @@ bool tree_sitter_dtd_external_scanner_scan(void *payload, TSLexer *lexer, const 
     if (valid_symbols[IGNORE_CONTENT])
         return scan_ignore_content(lexer);
 
+    if (valid_symbols[CHAR_REF] && lexer->lookahead == '&')
+        return scan_char_ref(lexer);
+
     if (valid_symbols[PI_TARGET])
         return scan_pi_target(lexer, valid_symbols);
 
@@ -84,8 +86,6 @@ bool tree_sitter_dtd_external_scanner_scan(void *payload, TSLexer *lexer, const 
         return scan_pi_content(lexer);
 
     if (valid_symbols[COMMENT]) {
-        advance_if_eq(lexer, '<');
-        advance_if_eq(lexer, '!');
         return scan_comment(lexer);
     }
 

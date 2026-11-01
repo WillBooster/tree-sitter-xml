@@ -19,6 +19,7 @@ export default grammar({
     $.PITarget,
     $._pi_content,
     $.Comment,
+    $.CharRef,
 
     // XML
     $.CharData,
@@ -154,7 +155,7 @@ export default grammar({
 
     CDStart: _ => seq('<![', 'CDATA', '['),
 
-    CData: _ => repeat1(choice(/[^\]]+/, ']')),
+    CData: _ => repeat1(choice(c.xmlChars(']', '+'), ']')),
 
     StyleSheetPI: $ => seq(
       '<?',

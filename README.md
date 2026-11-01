@@ -18,11 +18,9 @@ number (`0x5742000b`) and load with that fork's runtime, version 15.0.0 or later
 adapts to the generated array API with the change upstream itself made after 0.7.0. The parsers differ from
 upstream's 0.7.0 packages in these ways:
 
-- A NUL character inside a quoted literal, such as an attribute value (`AttValue`), an entity value (`EntityValue`),
-  or a system literal (`SystemLiteral`), is part of that token, where upstream's lexer reports an error.
-- Where a NUL character cannot be part of any token, the `ERROR` node covers it as it covers any other unexpected
-  character, without the unexpected-character node that upstream's parsers put inside it.
-
+- Decoded literal text and numeric character references follow the XML 1.0 Char ranges; forbidden controls and invalid
+  scalar references report errors. Malformed UTF-16 strings containing isolated surrogates are not rejected in every
+  context.
 - The XML scanner retains paired tag names and nesting state without truncating either to the snapshot buffer's capacity.
 - Names and enumeration tokens use the [XML 1.0 Unicode character ranges](https://www.w3.org/TR/xml/#NT-NameStartChar),
   including supplementary characters, in attributes, references, and DTD declarations.
@@ -141,7 +139,7 @@ well (e.g. `script/tree-sitter parse --grammar-path xml file.xml`).
 then generates compact parser tables. It would also profile files tracked in `examples/`, but this repository tracks
 none. The corpus is upstream's, with the blank line between each case's name and its attributes removed, since the
 WillBooster/tree-sitter CLI, like upstream's current CLI, reads no case whose header has one, plus
-`null-characters.txt`, which pins this parser's reading of NUL characters. The parsers also embed metadata from
+`null-characters.txt`, which checks rejection of NUL characters. The parsers also embed metadata from
 `tree-sitter.json`. After changing a grammar, `tree-sitter.json`, or a corpus case, regenerate and commit `xml/src/`
 and `dtd/src/`. Profiles in `.tmp/generation-profiles/` are temporary and must not be committed. `bun run build-wasm`,
 `bun run build/ci`, and the release build regenerate the parsers before compiling them.
