@@ -35,14 +35,14 @@ export const att_value = ($, q) =>
  * @param {GrammarSymbols<any>} $
  * @param {'"' | "'"} q
  */
-export const entity_value = ($, q) =>
+export const entity_value = ($, q, allowParameterReferences = true) =>
   seq(
     q,
     optional(field(
       'content',
       alias(repeat1(choice(
         new RegExp(`[^%&${q}]`),
-        $.PEReference,
+        ...(allowParameterReferences ? [$.PEReference] : []),
         $._Reference
       )), 'content')
     )),
@@ -75,8 +75,23 @@ const nameChars = String.raw`${nameStartChars}\-.0-9\u00B7\u0300-\u036F\u203F-\u
 
 const O = optional;
 
-/** @type {Record<string, ($: GrammarSymbols<any>) => RuleOrLiteral>} */
-export const rules = {
+/**
+ * @param {boolean} allowParameterReferences
+ * @returns {Record<string, ($: GrammarSymbols<any>) => RuleOrLiteral>}
+ */
+export const rules = (allowParameterReferences) => {
+  /** @param {GrammarSymbols<any>} $ */
+  const parameterReferences = ($) => allowParameterReferences ? [$.PEReference] : [];
+  /**
+   * @param {GrammarSymbols<any>} $
+   * @param {RuleOrLiteral} first
+   * @param {RuleOrLiteral[]} rest
+   */
+  const reference = ($, first, ...rest) => {
+    const alternatives = [first, ...rest, ...parameterReferences($)];
+    return alternatives.length > 1 ? choice(...alternatives) : first;
+  };
+  return {
     _markupdecl: $ => choice(
       $.elementdecl,
       $.AttlistDecl,
@@ -92,7 +107,7 @@ export const rules = {
       '<!',
       'ELEMENT',
       $._S,
-      ref($, $.Name),
+      reference($, $.Name),
       $._S,
       $.contentspec,
       O($._S),
@@ -104,37 +119,31 @@ export const rules = {
       'ANY',
       $.Mixed,
       $.children,
-      $.PEReference
+      ...parameterReferences($)
     ),
 
     Mixed: $ => choice(
       seq(
         '(',
         O($._S),
-        ref($, '#PCDATA'),
+        reference($, '#PCDATA'),
         rseq(
           O($._S),
           '|',
           O($._S),
-          ref($, $.Name),
+          reference($, $.Name),
         ),
         O($._S),
-        rseq(
-          $.PEReference,
-          O($._S)
-        ),
+        ...(allowParameterReferences ? [rseq($.PEReference, O($._S))] : []),
         ')',
         '*'
       ),
       prec(-1, seq(
         '(',
         O($._S),
-        ref($, '#PCDATA'),
+        reference($, '#PCDATA'),
         O($._S),
-        rseq(
-          $.PEReference,
-          O($._S)
-        ),
+        ...(allowParameterReferences ? [rseq($.PEReference, O($._S))] : []),
         ')'
       ))
     ),
@@ -145,7 +154,7 @@ export const rules = {
     )),
 
     _cp: $ => prec.left(seq(
-      ref($, $.Name, $._choice),
+      reference($, $.Name, $._choice),
       O(choice('?', '*', '+'))
     )),
 
@@ -159,10 +168,7 @@ export const rules = {
         O($._S),
         $._cp
       ),
-      rseq(
-        O($._S),
-        $.PEReference,
-      ),
+      ...(allowParameterReferences ? [rseq(O($._S), $.PEReference)] : []),
       O($._S),
       ')'
     ))),
@@ -171,24 +177,26 @@ export const rules = {
       '<!',
       'ATTLIST',
       $._S,
-      ref($, $.Name),
+      reference($, $.Name),
       repeat(choice(
         $.AttDef,
-        seq($._S, $.PEReference)
+        ...(allowParameterReferences ? [seq($._S, $.PEReference)] : [])
       )),
       O($._S),
       '>'
     ),
 
-    AttDef: $ => prec.right(seq(
-      $._S,
-      ref($, $.Name),
-      $._S,
-      choice(
-        seq($._AttType, $._S, $.DefaultDecl),
-        seq($.PEReference, O(seq($._S, $.DefaultDecl)))
-      )
-    )),
+    AttDef: $ => {
+      const concrete = seq($._AttType, $._S, $.DefaultDecl);
+      return prec.right(seq(
+        $._S,
+        reference($, $.Name),
+        $._S,
+        allowParameterReferences
+          ? choice(concrete, seq($.PEReference, O(seq($._S, $.DefaultDecl))))
+          : concrete
+      ));
+    },
 
     _AttType: $ => choice(
       $.StringType,
@@ -218,12 +226,12 @@ export const rules = {
       $._S,
       '(',
       O($._S),
-      ref($, $.Name),
+      reference($, $.Name),
       rseq(
         O($._S),
         '|',
         O($._S),
-        ref($, $.Name)
+        reference($, $.Name)
       ),
       O($._S),
       ')'
@@ -250,7 +258,7 @@ export const rules = {
         O(seq('#FIXED', $._S)),
         $.AttValue
       ),
-      $.PEReference
+      ...parameterReferences($)
     ),
 
     _EntityDecl: $ => choice(
@@ -262,7 +270,7 @@ export const rules = {
       '<!',
       'ENTITY',
       $._S,
-      ref($, $.Name),
+      reference($, $.Name),
       $._S,
       choice(
         $.EntityValue,
@@ -292,17 +300,17 @@ export const rules = {
     ),
 
     EntityValue: $ => choice(
-      entity_value($, '"'),
-      entity_value($, "'")
+      entity_value($, '"', allowParameterReferences),
+      entity_value($, "'", allowParameterReferences)
     ),
 
-    NDataDecl: $ => seq($._S, 'NDATA', $._S, ref($, $.Name)),
+    NDataDecl: $ => seq($._S, 'NDATA', $._S, reference($, $.Name)),
 
     NotationDecl: $ => seq(
       '<!',
       'NOTATION',
       $._S,
-      ref($, $.Name),
+      reference($, $.Name),
       $._S,
       choice($.ExternalID, $.PublicID),
       O($._S),
@@ -337,7 +345,7 @@ export const rules = {
     ),
 
     PublicID: $ => prec.right(
-      seq(ref($, 'PUBLIC'), $._S, $.PubidLiteral)
+      seq(reference($, 'PUBLIC'), $._S, $.PubidLiteral)
     ),
 
     SystemLiteral: $ => choice(
@@ -376,4 +384,5 @@ export const rules = {
     ),
 
     _Eq: $ => seq(O($._S), '=', O($._S))
-}
+  };
+};
