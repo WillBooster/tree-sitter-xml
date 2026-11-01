@@ -185,19 +185,22 @@ export const rules = (allowParameterReferences) => {
       '>'
     ),
 
-    AttDef: $ => prec.right(seq(
-      $._S,
-      reference($, $.Name),
-      $._S,
-      $._AttType,
-      O(seq($._S, $.DefaultDecl))
-    )),
+    AttDef: $ => {
+      const concrete = seq($._AttType, $._S, $.DefaultDecl);
+      return prec.right(seq(
+        $._S,
+        reference($, $.Name),
+        $._S,
+        allowParameterReferences
+          ? choice(concrete, seq($.PEReference, O(seq($._S, $.DefaultDecl))))
+          : concrete
+      ));
+    },
 
     _AttType: $ => choice(
       $.StringType,
       $.TokenizedType,
-      $._EnumeratedType,
-      ...parameterReferences($)
+      $._EnumeratedType
     ),
 
     StringType: _ => 'CDATA',

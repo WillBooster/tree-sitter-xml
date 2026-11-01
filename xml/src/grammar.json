@@ -1413,27 +1413,19 @@
             "name": "_S"
           },
           {
-            "type": "SYMBOL",
-            "name": "_AttType"
-          },
-          {
-            "type": "CHOICE",
+            "type": "SEQ",
             "members": [
               {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "SYMBOL",
-                    "name": "_S"
-                  },
-                  {
-                    "type": "SYMBOL",
-                    "name": "DefaultDecl"
-                  }
-                ]
+                "type": "SYMBOL",
+                "name": "_AttType"
               },
               {
-                "type": "BLANK"
+                "type": "SYMBOL",
+                "name": "_S"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "DefaultDecl"
               }
             ]
           }
