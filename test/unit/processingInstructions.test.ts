@@ -1,4 +1,4 @@
-import { Language, Parser, Query } from '@willbooster/web-tree-sitter';
+import { Language, Parser } from '@willbooster/web-tree-sitter';
 import { afterAll, expect, test } from 'vitest';
 
 await Parser.init();
@@ -25,13 +25,11 @@ for (const grammar of ['xml', 'dtd']) {
     ];
     const source = instructions.join('') + suffix;
     const tree = parser.parse(source)!;
-    const query = new Query(language, '(PI) @instruction');
     try {
       expect(tree.rootNode.hasError).toBe(false);
-      expect(query.captures(tree.rootNode).map(({ node }) => node.text)).toEqual(instructions);
+      expect(tree.rootNode.descendantsOfType('PI').map((node) => node.text)).toEqual(instructions);
       expect(tree.rootNode.namedChildren.at(-1)?.text).toBe(suffix);
     } finally {
-      query.delete();
       tree.delete();
     }
   });

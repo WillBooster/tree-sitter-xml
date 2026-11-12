@@ -13,10 +13,12 @@ XML and DTD grammars for [tree-sitter](https://github.com/tree-sitter/tree-sitte
 to its authors and contributors. This is not an official release of that project.
 
 This fork builds on the grammars of upstream's version 0.7.0 and generates the parsers with the
-[WillBooster/tree-sitter](https://github.com/WillBooster/tree-sitter) generator. The parsers carry that fork's own ABI
-number (`0x5742000c`) and load with that fork's runtime, version 17.0.1 or later in the 17.x series. The XML scanner
-adapts to the generated array API with the change upstream itself made after 0.7.0. The parsers differ from
-upstream's 0.7.0 packages in these ways:
+[WillBooster/tree-sitter](https://github.com/WillBooster/tree-sitter) generator. Their ABI number (`0x5742000c`)
+rejects upstream Tree-sitter runtimes, and the generated parsers omit unused `TSLanguage` tables that pre-19.1.0
+WillBooster runtimes dereference despite sharing ABI `0x5742000c`; use `willbooster-tree-sitter` or
+`@willbooster/web-tree-sitter` version 19.1.1 or later in the 19.x series. The XML scanner adapts to the generated
+array API with the change upstream itself made after 0.7.0. The parsers differ from upstream's 0.7.0 packages in these
+ways:
 
 - Decoded literal text and numeric character references follow the XML 1.0 Char ranges; forbidden controls and invalid
   scalar references report errors. Malformed UTF-16 strings containing isolated surrogates are not rejected in every
@@ -56,7 +58,7 @@ new major versions.
 ## Usage
 
 The npm package ships `tree-sitter-xml.wasm` and `tree-sitter-dtd.wasm` for
-[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 17.0.1 or later in the 17.x series, which runs in Node.js, Bun, browsers, and Cloudflare Workers.
+[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 19.1.1 or later in the 19.x series, which runs in Node.js, Bun, browsers, and Cloudflare Workers.
 In Node.js and Bun, load the grammar from its path:
 
 ```js
@@ -105,7 +107,7 @@ In Rust, depend on the [crate](https://crates.io/crates/willbooster-tree-sitter-
 fuzzed with:
 
 ```sh
-cargo add willbooster-tree-sitter@17.0.1 --rename tree-sitter
+cargo add willbooster-tree-sitter@19.1.1 --rename tree-sitter
 cargo add willbooster-tree-sitter-xml --rename tree-sitter-xml
 ```
 
