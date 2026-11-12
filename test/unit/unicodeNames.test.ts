@@ -1,4 +1,4 @@
-import { Language, Parser, Query } from '@willbooster/web-tree-sitter';
+import { Language, Parser } from '@willbooster/web-tree-sitter';
 import { afterAll, expect, test } from 'vitest';
 
 await Parser.init();
@@ -46,18 +46,16 @@ for (const grammar of ['xml', 'dtd'] as const) {
   test(`${grammar} exposes complete Unicode names and Nmtokens at their source ranges`, () => {
     const { source, names } = fixtures[grammar];
     const tree = parser.parse(source)!;
-    const query = new Query(language, '(Name) @name\n(Nmtoken) @name');
     try {
       expect(tree.rootNode.hasError).toBe(false);
-      const captures = query.captures(tree.rootNode);
-      expect(captures.map(({ node }) => node.text)).toEqual(names);
-      for (const { node } of captures) {
+      const nodes = tree.rootNode.descendantsOfType(['Name', 'Nmtoken']);
+      expect(nodes.map((node) => node.text)).toEqual(names);
+      for (const node of nodes) {
         expect(source.slice(node.startIndex, node.endIndex)).toBe(node.text);
         const prefix = source.slice(0, node.startIndex).split('\n');
         expect(node.startPosition).toEqual({ row: prefix.length - 1, column: prefix.at(-1)!.length });
       }
     } finally {
-      query.delete();
       tree.delete();
     }
   });

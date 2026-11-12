@@ -1,13 +1,5 @@
 #include "../../common/scanner.h"
 
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable : 4100)
-#elif defined(__GNUC__) || defined(__clang__)
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#endif
-
 static inline bool in_error_recovery(const bool *valid_symbols) {
     return valid_symbols[PI_TARGET] && valid_symbols[PI_CONTENT] && valid_symbols[COMMENT] && valid_symbols[CHAR_REF] &&
            valid_symbols[IGNORE_CONTENT];
@@ -19,7 +11,7 @@ static void scan_ignore_delimiter(TSLexer *lexer, unsigned *depth);
 static bool scan_ignore_content(TSLexer *lexer) {
     unsigned depth = 0;
     bool has_content = false;
-    while (!lexer->eof(lexer) && is_valid_xml_char(lexer->lookahead)) {
+    while (is_valid_xml_char(lexer->lookahead)) {
         if (lexer->lookahead == ']' && depth == 0) {
             if (has_content) break;
             return scan_ignore_bracket(lexer);
@@ -27,9 +19,10 @@ static bool scan_ignore_content(TSLexer *lexer) {
         scan_ignore_delimiter(lexer, &depth);
         has_content = true;
     }
+    if (!has_content) return false;
     lexer->mark_end(lexer);
     lexer->result_symbol = IGNORE_CONTENT;
-    return has_content;
+    return true;
 }
 
 static bool scan_ignore_bracket(TSLexer *lexer) {
@@ -44,32 +37,33 @@ static bool scan_ignore_bracket(TSLexer *lexer) {
 }
 
 static void scan_ignore_delimiter(TSLexer *lexer, unsigned *depth) {
-        switch (lexer->lookahead) {
-            case '<':
+    switch (lexer->lookahead) {
+        case '<':
+            advance(lexer);
+            if (lexer->lookahead != '!') break;
+            advance(lexer);
+            if (lexer->lookahead != '[') break;
+            advance(lexer);
+            (*depth)++;
+            break;
+        case ']': {
+            unsigned brackets = 0;
+            do {
                 advance(lexer);
-                if (lexer->lookahead != '!') break;
-                advance(lexer);
-                if (lexer->lookahead != '[') break;
-                advance(lexer);
-                (*depth)++;
-                break;
-            case ']': {
-                unsigned brackets = 0;
-                do {
-                    advance(lexer);
-                    brackets++;
-                } while (lexer->lookahead == ']');
-                if (brackets < 2 || lexer->lookahead != '>') break;
-                advance(lexer);
-                (*depth)--;
-                break;
-            }
-            default:
-                advance(lexer);
+                brackets++;
+            } while (lexer->lookahead == ']');
+            if (brackets < 2 || lexer->lookahead != '>') break;
+            advance(lexer);
+            (*depth)--;
+            break;
         }
+        default:
+            advance(lexer);
+    }
 }
 
 bool tree_sitter_dtd_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+    (void)payload;
     if (in_error_recovery(valid_symbols))
         return false;
 
@@ -92,16 +86,18 @@ bool tree_sitter_dtd_external_scanner_scan(void *payload, TSLexer *lexer, const 
     return false;
 }
 
-void *tree_sitter_dtd_external_scanner_create() { return NULL; }
+void *tree_sitter_dtd_external_scanner_create(void) { return NULL; }
 
-void tree_sitter_dtd_external_scanner_destroy(void *payload) {}
+void tree_sitter_dtd_external_scanner_destroy(void *payload) { (void)payload; }
 
-unsigned tree_sitter_dtd_external_scanner_serialize(void *payload, char *buffer) { return 0; }
+unsigned tree_sitter_dtd_external_scanner_serialize(void *payload, char *buffer) {
+    (void)payload;
+    (void)buffer;
+    return 0;
+}
 
-void tree_sitter_dtd_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {}
-
-#ifdef _MSC_VER
-#pragma warning(pop)
-#elif defined(__GNUC__) || defined(__clang__)
-#pragma GCC diagnostic pop
-#endif
+void tree_sitter_dtd_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
+    (void)payload;
+    (void)buffer;
+    (void)length;
+}

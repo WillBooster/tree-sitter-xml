@@ -5,89 +5,135 @@
 #include <assert.h>
 #include <string.h>
 
-typedef Array(char) String;
-
 typedef struct {
-    String name;
+    uint32_t offset;
+    uint32_t length;
     uint32_t parent;
 } TagFrame;
 
 typedef struct {
     Array(TagFrame) frames;
+    Array(char) names;
     uint32_t current;
 } Scanner;
 
-static inline bool string_eq(const String *a, const String *b) {
-    if (a->size != b->size) {
-        return false;
+static inline uint32_t encode_utf8(int32_t code_point, char out[4]) {
+    uint32_t cp = (uint32_t)code_point;
+    if (cp <= 0x7Fu) {
+        out[0] = (char)cp;
+        return 1;
     }
-    return memcmp(a->contents, b->contents, a->size) == 0;
+    if (cp <= 0x7FFu) {
+        out[0] = (char)(0xC0u | (cp >> 6));
+        out[1] = (char)(0x80u | (cp & 0x3Fu));
+        return 2;
+    }
+    if (cp <= 0xFFFFu) {
+        out[0] = (char)(0xE0u | (cp >> 12));
+        out[1] = (char)(0x80u | ((cp >> 6) & 0x3Fu));
+        out[2] = (char)(0x80u | (cp & 0x3Fu));
+        return 3;
+    }
+    out[0] = (char)(0xF0u | (cp >> 18));
+    out[1] = (char)(0x80u | ((cp >> 12) & 0x3Fu));
+    out[2] = (char)(0x80u | ((cp >> 6) & 0x3Fu));
+    out[3] = (char)(0x80u | (cp & 0x3Fu));
+    return 4;
 }
 
-static void append_code_point(String *string, int32_t code_point);
-
-static String scan_tag_name(TSLexer *lexer) {
-    String tag_name = array_new();
-    if (!is_valid_name_start_char(lexer->lookahead)) {
-        return tag_name;
+static inline void append_code_point(Scanner *scanner, int32_t code_point) {
+    if ((uint32_t)code_point <= 0x7Fu) {
+        if (scanner->names.size == UINT32_MAX) abort();
+        array_push(&scanner->names, (char)code_point);
+        return;
     }
-    append_code_point(&tag_name, lexer->lookahead);
-    advance(lexer);
-    while (is_valid_name_char(lexer->lookahead)) {
-        append_code_point(&tag_name, lexer->lookahead);
-        advance(lexer);
-    }
-    return tag_name;
-}
-
-static void append_code_point(String *string, int32_t code_point) {
-    if (code_point <= 0x7F) {
-        array_push(string, (char)code_point);
-    } else if (code_point <= 0x7FF) {
-        array_push(string, (char)(0xC0 | (code_point >> 6)));
-        array_push(string, (char)(0x80 | (code_point & 0x3F)));
-    } else if (code_point <= 0xFFFF) {
-        array_push(string, (char)(0xE0 | (code_point >> 12)));
-        array_push(string, (char)(0x80 | ((code_point >> 6) & 0x3F)));
-        array_push(string, (char)(0x80 | (code_point & 0x3F)));
-    } else {
-        array_push(string, (char)(0xF0 | (code_point >> 18)));
-        array_push(string, (char)(0x80 | ((code_point >> 12) & 0x3F)));
-        array_push(string, (char)(0x80 | ((code_point >> 6) & 0x3F)));
-        array_push(string, (char)(0x80 | (code_point & 0x3F)));
+    char encoded[4];
+    uint32_t len = encode_utf8(code_point, encoded);
+    if (UINT32_MAX - scanner->names.size < len) abort();
+    for (uint32_t i = 0; i < len; ++i) {
+        array_push(&scanner->names, encoded[i]);
     }
 }
 
 static bool scan_start_tag_name(Scanner *scanner, TSLexer *lexer) {
-    String tag_name = scan_tag_name(lexer);
-    if (tag_name.size == 0) {
-        array_delete(&tag_name);
+    if (!is_valid_name_start_char(lexer->lookahead)) {
         return false;
     }
+    if (scanner->frames.capacity == 0) {
+        array_reserve(&scanner->frames, 64);
+        array_reserve(&scanner->names, 256);
+    }
 
-    lexer->result_symbol = START_TAG_NAME;
-    TagFrame frame = {tag_name, scanner->current};
+    uint32_t offset = scanner->names.size;
+    append_code_point(scanner, lexer->lookahead);
+    advance(lexer);
+    while (is_valid_name_char(lexer->lookahead)) {
+        append_code_point(scanner, lexer->lookahead);
+        advance(lexer);
+    }
+
+    if (scanner->frames.size == UINT32_MAX) abort();
+    TagFrame frame = {offset, scanner->names.size - offset, scanner->current};
     array_push(&scanner->frames, frame);
     scanner->current = scanner->frames.size;
+    lexer->result_symbol = START_TAG_NAME;
+    return true;
+}
+
+static inline bool match_code_point(
+    const char *expected,
+    uint32_t expected_len,
+    uint32_t *matched,
+    int32_t code_point
+) {
+    if ((uint32_t)code_point <= 0x7Fu) {
+        if (*matched >= expected_len || expected[*matched] != (char)code_point) {
+            return false;
+        }
+        (*matched)++;
+        return true;
+    }
+    char encoded[4];
+    uint32_t len = encode_utf8(code_point, encoded);
+    if (expected_len - *matched < len) {
+        return false;
+    }
+    for (uint32_t i = 0; i < len; ++i) {
+        if (expected[*matched + i] != encoded[i]) {
+            return false;
+        }
+    }
+    *matched += len;
     return true;
 }
 
 static bool scan_end_tag_name(Scanner *scanner, TSLexer *lexer) {
-    String tag_name = scan_tag_name(lexer);
-    if (tag_name.size == 0) {
-        array_delete(&tag_name);
+    if (scanner->current == 0 || !is_valid_name_start_char(lexer->lookahead)) {
         return false;
     }
 
-    const TagFrame *frame = scanner->current > 0 ? array_get(&scanner->frames, scanner->current - 1) : NULL;
-    if (frame && string_eq(&frame->name, &tag_name)) {
-        scanner->current = frame->parent;
-        lexer->result_symbol = END_TAG_NAME;
-    } else {
-        lexer->result_symbol = ERRONEOUS_END_NAME;
+    const TagFrame *frame = array_get(&scanner->frames, scanner->current - 1);
+    const char *expected = scanner->names.contents + frame->offset;
+    uint32_t expected_len = frame->length;
+    uint32_t matched = 0;
+
+    if (!match_code_point(expected, expected_len, &matched, lexer->lookahead)) {
+        return false;
     }
-    array_delete(&tag_name);
-    return lexer->result_symbol == END_TAG_NAME;
+    advance(lexer);
+    while (is_valid_name_char(lexer->lookahead)) {
+        if (!match_code_point(expected, expected_len, &matched, lexer->lookahead)) {
+            return false;
+        }
+        advance(lexer);
+    }
+    if (matched != expected_len) {
+        return false;
+    }
+
+    scanner->current = frame->parent;
+    lexer->result_symbol = END_TAG_NAME;
+    return true;
 }
 
 static bool scan_self_closing_tag_delimiter(Scanner *scanner, TSLexer *lexer) {
@@ -106,34 +152,38 @@ static inline bool in_error_recovery(const bool *valid_symbols) {
 }
 
 static inline bool in_char_data(TSLexer *lexer) {
-    return !lexer->eof(lexer) && is_valid_xml_char(lexer->lookahead) && lexer->lookahead != '<' && lexer->lookahead != '&';
+    int32_t chr = lexer->lookahead;
+    return chr != '<' && chr != '&' && is_valid_xml_char(chr);
 }
 
 static bool scan_char_data(TSLexer *lexer) {
     bool advanced_once = false;
 
     while (in_char_data(lexer)) {
-        if (lexer->lookahead == ']') {
-            lexer->mark_end(lexer);
+        if (lexer->lookahead != ']') {
             advance(lexer);
-            if (lexer->lookahead == ']') {
-                do {
-                    advance(lexer);
-                } while (lexer->lookahead == ']');
-                if (lexer->lookahead == '>') {
-                    lexer->result_symbol = CHAR_DATA;
-                    return advanced_once;
-                }
-            }
-        } else {
+            advanced_once = true;
+            continue;
+        }
+        lexer->mark_end(lexer);
+        unsigned brackets = 0;
+        do {
             advance(lexer);
+            brackets++;
+        } while (lexer->lookahead == ']');
+        if (brackets >= 2 && lexer->lookahead == '>') {
+            lexer->result_symbol = CHAR_DATA;
+            return advanced_once;
         }
         advanced_once = true;
     }
 
+    if (!advanced_once) {
+        return false;
+    }
     lexer->mark_end(lexer);
     lexer->result_symbol = CHAR_DATA;
-    return advanced_once;
+    return true;
 }
 
 bool tree_sitter_xml_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
@@ -177,7 +227,7 @@ bool tree_sitter_xml_external_scanner_scan(void *payload, TSLexer *lexer, const 
     return false;
 }
 
-void *tree_sitter_xml_external_scanner_create() {
+void *tree_sitter_xml_external_scanner_create(void) {
     Scanner *scanner = (Scanner *)ts_calloc(1, sizeof(Scanner));
     if (scanner == NULL) abort();
     return scanner;
@@ -185,17 +235,19 @@ void *tree_sitter_xml_external_scanner_create() {
 
 void tree_sitter_xml_external_scanner_destroy(void *payload) {
     Scanner *scanner = (Scanner *)payload;
-    for (uint32_t i = 0; i < scanner->frames.size; ++i) {
-        array_delete(&array_get(&scanner->frames, i)->name);
-    }
     array_delete(&scanner->frames);
+    array_delete(&scanner->names);
     ts_free(scanner);
 }
 
-// The runtime creates a scanner for each full parse. Immutable frames retain names for every parse branch;
-// snapshots only need a frame ID, so nesting depth and name length cannot truncate serialized state.
+// The runtime creates a scanner for each full parse. Append-only frames and name bytes remain valid across
+// parse branches; snapshots only need the active frame ID (omitted at root depth 0), so nesting depth and
+// name length cannot truncate serialized state.
 unsigned tree_sitter_xml_external_scanner_serialize(void *payload, char *buffer) {
     Scanner *scanner = (Scanner *)payload;
+    if (scanner->current == 0) {
+        return 0;
+    }
     memcpy(buffer, &scanner->current, sizeof(scanner->current));
     return sizeof(scanner->current);
 }

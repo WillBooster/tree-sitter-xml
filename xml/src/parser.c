@@ -1059,29 +1059,6 @@ static const TSSymbol ts_alias_sequences[13] = {
   [2] = anon_alias_sym_content,
 };
 
-static const uint16_t ts_non_terminal_alias_map[] = {
-  aux_sym_PseudoAttValue_repeat1, 2,
-    aux_sym_PseudoAttValue_repeat1,
-    anon_alias_sym_content,
-  aux_sym_PseudoAttValue_repeat2, 2,
-    aux_sym_PseudoAttValue_repeat2,
-    anon_alias_sym_content,
-  aux_sym_EntityValue_repeat1, 2,
-    aux_sym_EntityValue_repeat1,
-    anon_alias_sym_content,
-  aux_sym_EntityValue_repeat2, 2,
-    aux_sym_EntityValue_repeat2,
-    anon_alias_sym_content,
-  0,
-};
-
-static const uint8_t ts_primary_state_bitmap[] = {
-  255, 255, 255, 207, 255, 255, 248, 236, 255, 255, 254, 239, 255, 255, 255, 255, 
-  255, 255, 15, 255, 157, 255, 255, 255, 255, 63, 252, 255, 15, 255, 251, 253, 
-  195, 255, 255, 237, 255, 191, 15, 255, 255, 255, 255, 255, 255, 255, 159, 255, 
-  255, 255, 255, 255, 255, 173, 0, 
-};
-
 static const TSSymbol ts_supertype_symbols[SUPERTYPE_COUNT] = {
   sym__AttType,
   sym__EntityDecl,
@@ -5245,7 +5222,6 @@ TS_PUBLIC const TSLanguage *tree_sitter_xml(void) {
     .supertype_symbols = ts_supertype_symbols,
     .symbol_metadata = ts_symbol_metadata,
     .public_symbol_map = ts_symbol_map,
-    .alias_map = ts_non_terminal_alias_map,
     .alias_sequences = ts_alias_sequences,
     .alias_sequence_offsets = ts_alias_sequence_offsets,
     .alias_sequence_count = 13,
@@ -5265,7 +5241,6 @@ TS_PUBLIC const TSLanguage *tree_sitter_xml(void) {
       tree_sitter_xml_external_scanner_serialize,
       tree_sitter_xml_external_scanner_deserialize,
     },
-    .primary_state_bitmap = ts_primary_state_bitmap,
     .name = "xml",
     .max_reserved_word_set_size = 0,
     .metadata = {
