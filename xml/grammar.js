@@ -27,7 +27,6 @@ export default grammar({
     'xml-stylesheet',
     $._start_tag_name,
     $._end_tag_name,
-    $._erroneous_end_name,
     '/>',
   ],
 
@@ -130,13 +129,6 @@ export default grammar({
     ),
 
     ETag: $ => seq('</', alias($._end_tag_name, $.Name), O($._S), '>'),
-
-    _ErroneousETag: $ => seq(
-      '</',
-      alias($._erroneous_end_name, $.ERROR),
-      O($._S),
-      '>',
-    ),
 
     content: $ => repeat1(
       choice(

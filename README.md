@@ -13,10 +13,9 @@ XML and DTD grammars for [tree-sitter](https://github.com/tree-sitter/tree-sitte
 to its authors and contributors. This is not an official release of that project.
 
 This fork builds on the grammars of upstream's version 0.7.0 and generates the parsers with the
-[WillBooster/tree-sitter](https://github.com/WillBooster/tree-sitter) generator. Their ABI number (`0x5742000c`)
-rejects upstream Tree-sitter runtimes, and the generated parsers omit unused `TSLanguage` tables that pre-19.1.0
-WillBooster runtimes dereference despite sharing ABI `0x5742000c`; use `willbooster-tree-sitter` or
-`@willbooster/web-tree-sitter` version 19.1.1 or later in the 19.x series. The XML scanner adapts to the generated
+[WillBooster/tree-sitter](https://github.com/WillBooster/tree-sitter) generator. The generated parsers carry ABI
+`0x5742000c`, which upstream `tree-sitter` runtimes reject, and are tested and supported with `willbooster-tree-sitter`
+and `@willbooster/web-tree-sitter` version 20.0.0 or later in the 20.x series. The XML scanner adapts to the generated
 array API with the change upstream itself made after 0.7.0. The parsers differ from upstream's 0.7.0 packages in these
 ways:
 
@@ -50,15 +49,15 @@ parses external DTD files.
 
 ## Support Scope
 
-This fork maintains only full parsing: valid input yields a correct tree, and invalid input yields `ERROR` or `MISSING`
-nodes without crashing, hanging, or taking more than linear time. No queries (highlights, locals, injections, tags) are
-shipped. Node types, field names, and the trees that error recovery produces may change; such changes are released as
-new major versions.
+Valid input yields a correct tree on a full parse, and invalid input yields `ERROR` or `MISSING` nodes without
+crashing, hanging, or taking more than linear time. Incremental parsing is not supported, and no queries (highlights,
+locals, injections, tags) are shipped. Node types, field names, and the trees that error recovery produces may change;
+such changes are released as new major versions.
 
 ## Usage
 
 The npm package ships `tree-sitter-xml.wasm` and `tree-sitter-dtd.wasm` for
-[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 19.1.1 or later in the 19.x series, which runs in Node.js, Bun, browsers, and Cloudflare Workers.
+[@willbooster/web-tree-sitter](https://www.npmjs.com/package/@willbooster/web-tree-sitter) version 20.0.0 or later in the 20.x series, which runs in Node.js, Bun, browsers, and Cloudflare Workers.
 In Node.js and Bun, load the grammar from its path:
 
 ```js
@@ -107,7 +106,7 @@ In Rust, depend on the [crate](https://crates.io/crates/willbooster-tree-sitter-
 fuzzed with:
 
 ```sh
-cargo add willbooster-tree-sitter@19.1.1 --rename tree-sitter
+cargo add willbooster-tree-sitter@20.0.0 --rename tree-sitter
 cargo add willbooster-tree-sitter-xml --rename tree-sitter-xml
 ```
 
@@ -126,48 +125,15 @@ mise install
 bun install --frozen-lockfile
 bun run test/ci-setup # installs Chromium for the browser test
 bun run build/ci
+bun run verify
 bun run test
-script/parse-examples
 cargo test
 ```
 
-The scripts and tests generate, build, test, and parse with `script/tree-sitter`, the tree-sitter CLI of the
-WillBooster/tree-sitter runtime version locked in `Cargo.lock`, since the generator and the runtime of upstream's CLI are
-not the ones this package ships with. Its first run downloads that CLI from the runtime's GitHub Release, or builds it
-with `cargo` (whose build runs the CMake that `mise.toml` pins) when the download fails or the release has no binary that runs here. Run other CLI commands through it as
-well (e.g. `script/tree-sitter parse --grammar-path xml file.xml`).
-
-`bun run generate` records a fresh generation profile for each grammar from the `test/corpus` cases of that grammar,
-then generates compact parser tables. It would also profile files tracked in `examples/`, but this repository tracks
-none. The corpus is upstream's, with the blank line between each case's name and its attributes removed, since the
-WillBooster/tree-sitter CLI, like upstream's current CLI, reads no case whose header has one, plus
-`null-characters.txt`, which checks rejection of NUL characters. The parsers also embed metadata from
-`tree-sitter.json`. After changing a grammar, `tree-sitter.json`, or a corpus case, regenerate and commit `xml/src/`
-and `dtd/src/`. Profiles in `.tmp/generation-profiles/` are temporary and must not be committed. `bun run build-wasm`,
-`bun run build/ci`, and the release build regenerate the parsers before compiling them.
-
-`bun run test` runs:
-
-- the corpus in `test/corpus`, with the native build and with the Wasm build (the first run downloads the WASI SDK).
-  Each case names its grammar with `:language(xml)` or `:language(dtd)`;
-- a check that the real-world files in `examples/` fail to parse exactly as listed in `script/known-failures.txt`, each
-  parsed with the grammar its extension belongs to in `tree-sitter.json`. The first run clones the repositories. The
-  example repositories are pinned to commits in `script/parse-examples`. After a grammar change or a moved pin alters
-  that list, `script/parse-examples` rewrites it; review its diff before committing;
-- a performance check (`test/unit/performance.test.ts`) that recovering from an error on each line takes linear
-  time with both grammars, since consumers parse files while they are being edited. It loads the Wasm builds through
-  @willbooster/web-tree-sitter, which `bun run build/ci` rebuilds after regenerating the parsers;
-- a check (`test/unit/runtimeVersion.test.ts`) that `@willbooster/web-tree-sitter` in `package.json` and
-  `willbooster-tree-sitter` in `Cargo.lock` are the same version, since the Wasm tests run on the former and the Rust
-  tests, the fuzzer, and the CLI on the latter;
-- tests that load the Wasm builds with @willbooster/web-tree-sitter in Chromium (`test/e2e/browser.test.ts`) and in
-  Cloudflare Workers with and without Node.js compatibility (`test/e2e/workers.test.ts`).
-
-The tests compile the parsers into `.tmp/tree-sitter-lib` rather than the CLI's cache shared by every checkout;
-`script/parse-examples` builds parsers of its own in `.tmp/` for each run and deletes them afterwards.
-
-CI also runs these tests on Linux arm64 and macOS, where the CLI compiles the parsers and the scanners natively, and
-fuzzes both parsers with libFuzzer and sanitizers (`.github/workflows/robustness.yml`).
+- Run CLI subcommands through `script/tree-sitter` so the generator and runtime match the version locked in `Cargo.lock` and `package.json`.
+- Run `bun run build/ci` after editing grammars, scanners, `tree-sitter.json`, or `test/corpus/`, and commit the updated files under `xml/src/` and `dtd/src/`.
+- Declare `:language(xml)` or `:language(dtd)` immediately below each `test/corpus/` case title without a blank line.
+- Run `script/parse-examples` to update `script/known-failures.txt` when grammar changes or updated pins alter real-world parse results.
 
 ### References
 

@@ -14,7 +14,6 @@ enum TokenType {
     XML_STYLESHEET,
     START_TAG_NAME,
     END_TAG_NAME,
-    ERRONEOUS_END_NAME,
     SELF_CLOSING_TAG_DELIMITER,
 #else
     IGNORE_CONTENT,
@@ -60,7 +59,6 @@ static bool scan_char_ref(TSLexer *lexer) {
     }
     if (!has_digit || !is_valid_xml_char((int32_t)value)) return false;
     advance_if_eq(lexer, ';');
-    lexer->mark_end(lexer);
     lexer->result_symbol = CHAR_REF;
     return true;
 }
@@ -131,14 +129,15 @@ static bool scan_pi_target(TSLexer *lexer, const bool *valid_symbols) {
     (void)valid_symbols;
 #endif
 
-    lexer->mark_end(lexer);
     lexer->result_symbol = PI_TARGET;
     return true;
 }
 
 static bool scan_pi_content(TSLexer *lexer) {
+    bool marked_end = false;
     while (is_valid_xml_char(lexer->lookahead)) {
         if (lexer->lookahead == '?') {
+            marked_end = true;
             lexer->mark_end(lexer);
             advance(lexer);
             if (lexer->lookahead == '>') {
@@ -149,7 +148,9 @@ static bool scan_pi_content(TSLexer *lexer) {
             advance(lexer);
         }
     }
-    lexer->mark_end(lexer);
+    if (marked_end) {
+        lexer->mark_end(lexer);
+    }
     lexer->result_symbol = PI_CONTENT;
     return true;
 }
@@ -167,7 +168,6 @@ static bool scan_comment(TSLexer *lexer) {
                 advance(lexer);
                 if (lexer->lookahead == '>') {
                     advance(lexer);
-                    lexer->mark_end(lexer);
                     lexer->result_symbol = COMMENT;
                     return true;
                 }

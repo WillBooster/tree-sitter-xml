@@ -20,15 +20,14 @@ static bool scan_ignore_content(TSLexer *lexer) {
         has_content = true;
     }
     if (!has_content) return false;
-    lexer->mark_end(lexer);
     lexer->result_symbol = IGNORE_CONTENT;
     return true;
 }
 
 static bool scan_ignore_bracket(TSLexer *lexer) {
     advance(lexer);
-    lexer->mark_end(lexer);
     if (lexer->lookahead == ']') {
+        lexer->mark_end(lexer);
         advance(lexer);
         if (lexer->lookahead == '>') return false;
     }

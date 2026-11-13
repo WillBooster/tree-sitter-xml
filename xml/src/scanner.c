@@ -137,12 +137,13 @@ static bool scan_end_tag_name(Scanner *scanner, TSLexer *lexer) {
 }
 
 static bool scan_self_closing_tag_delimiter(Scanner *scanner, TSLexer *lexer) {
+    if (scanner->current == 0) {
+        return false;
+    }
     advance(lexer);
     advance_if_eq(lexer, '>');
-    if (scanner->current > 0) {
-        scanner->current = array_get(&scanner->frames, scanner->current - 1)->parent;
-        lexer->result_symbol = SELF_CLOSING_TAG_DELIMITER;
-    }
+    scanner->current = array_get(&scanner->frames, scanner->current - 1)->parent;
+    lexer->result_symbol = SELF_CLOSING_TAG_DELIMITER;
     return true;
 }
 
@@ -158,6 +159,7 @@ static inline bool in_char_data(TSLexer *lexer) {
 
 static bool scan_char_data(TSLexer *lexer) {
     bool advanced_once = false;
+    bool marked_end = false;
 
     while (in_char_data(lexer)) {
         if (lexer->lookahead != ']') {
@@ -165,6 +167,7 @@ static bool scan_char_data(TSLexer *lexer) {
             advanced_once = true;
             continue;
         }
+        marked_end = true;
         lexer->mark_end(lexer);
         unsigned brackets = 0;
         do {
@@ -181,7 +184,9 @@ static bool scan_char_data(TSLexer *lexer) {
     if (!advanced_once) {
         return false;
     }
-    lexer->mark_end(lexer);
+    if (marked_end) {
+        lexer->mark_end(lexer);
+    }
     lexer->result_symbol = CHAR_DATA;
     return true;
 }
@@ -240,7 +245,7 @@ void tree_sitter_xml_external_scanner_destroy(void *payload) {
     ts_free(scanner);
 }
 
-// The runtime creates a scanner for each full parse. Append-only frames and name bytes remain valid across
+// The runtime creates a scanner for each parse. Append-only frames and name bytes remain valid across
 // parse branches; snapshots only need the active frame ID (omitted at root depth 0), so nesting depth and
 // name length cannot truncate serialized state.
 unsigned tree_sitter_xml_external_scanner_serialize(void *payload, char *buffer) {
