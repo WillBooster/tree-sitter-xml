@@ -54,7 +54,7 @@ export const att_value = ($, q) =>
     optional(field(
       'content',
       alias(repeat1(choice(
-        xmlChars(`<&${q}`),
+        xmlChars(`<&${q}`, '+'),
         $._Reference
       )), 'content')
     )),
@@ -71,7 +71,7 @@ export const entity_value = ($, q, allowParameterReferences = true) =>
     optional(field(
       'content',
       alias(repeat1(choice(
-        xmlChars(`%&${q}`),
+        xmlChars(`%&${q}`, '+'),
         ...(allowParameterReferences ? [$.PEReference] : []),
         $._Reference
       )), 'content')

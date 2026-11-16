@@ -78,7 +78,7 @@ jobs:
           fun:tree_sitter_*_external_scanner_deserialize
           EOF
           # tree-sitter/fuzz-action builds upstream's runtime and passes the removed old_tree argument to
-          # ts_parser_parse_string, so write an inline harness for the 3-argument WillBooster/tree-sitter v20 API.
+          # ts_parser_parse_string, so write an inline harness for the 3-argument WillBooster/tree-sitter API.
           cat << 'EOF' > .tmp/fuzzer.c
           #include <assert.h>
           #include <tree_sitter/api.h>
